@@ -1,4 +1,4 @@
-package org.goodfood2;
+package org.goodfood2.Entity;
 
 import javax.persistence.Entity;
 

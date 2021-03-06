@@ -1,4 +1,4 @@
-package org.goodfood2;
+package org.goodfood2.Resource;
 
 
 import java.util.List;
@@ -16,6 +16,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.goodfood2.Entity.Users;
+import org.goodfood2.Repository.UsersRepository;
 
 import io.quarkus.panache.common.Parameters;
 @Path("/account")

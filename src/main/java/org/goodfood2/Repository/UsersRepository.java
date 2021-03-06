@@ -1,8 +1,10 @@
-package org.goodfood2;
+package org.goodfood2.Repository;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+
+import org.goodfood2.Entity.Users;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
