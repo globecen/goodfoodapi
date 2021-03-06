@@ -15,9 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+
 import io.quarkus.panache.common.Parameters;
 @Path("/account")
 public class UserResource {
+
+
     @Inject
     UsersRepository repository;
 
@@ -27,6 +31,10 @@ public class UserResource {
         
         return Users.listAll();
     }
+    @Counted(
+        name = "LeNombreDeRequete",
+        description = "Donne le nombre de requête a la base"
+    )
     @Path("/getOneUser/{id}")
     @POST
     public List<Users> userId(@PathParam ("id") Long id) {
@@ -47,7 +55,7 @@ public class UserResource {
             return "Email ou mot de passe incorrect !"; 
         }
         else {
-            return "Vous êtes connecter !";
+            return "Vous êtes connecté !";
         }
     }
     //
@@ -60,6 +68,7 @@ public class UserResource {
         user.persist();
         return Response.status(Status.CREATED).entity(user).build();
     }
+    
    /* @Path("/fr")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
