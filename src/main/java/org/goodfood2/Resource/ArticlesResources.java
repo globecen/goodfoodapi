@@ -19,12 +19,17 @@ import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Repository.ArticlesRepository;
+
+import io.quarkus.panache.common.Sort;
+
 import org.goodfood2.Entity.Articles;
 
-@Path("/article")
+@Path("/Article")
 public class ArticlesResources {
     @Inject
     ArticlesRepository repository;
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getAllArticle")
     @GET
     public List<Articles> articles() {
@@ -40,9 +45,26 @@ public class ArticlesResources {
         article.persist();
         return Response.status(Status.CREATED).entity(article).build();
     }
-    @Path("/getOneArticle/{ref}")
-    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/ref={ref}")
+    @GET
     public List<Articles> articleRef(@PathParam ("ref") String ref) {
         return repository.findByRef(ref);
     }
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/id={id}")
+    @GET
+    public List<Articles> articleId(@PathParam ("id")Long  id) {
+        return repository.findById(id);
+    }
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/tycode={tycode}")
+    @GET
+    public List<Articles> articleTycode(@PathParam ("tycode") String tycode) {
+        return repository.findByTycode(tycode);
+    }
+    
 }
