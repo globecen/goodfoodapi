@@ -3,7 +3,9 @@ package org.goodfood2;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,6 +18,9 @@ import javax.ws.rs.core.Response.Status;
 import io.quarkus.panache.common.Parameters;
 @Path("/account")
 public class UserResource {
+    @Inject
+    UsersRepository repository;
+
     @Path("/getAllUsers")
     @GET
     public List<Users> users() {
@@ -24,8 +29,13 @@ public class UserResource {
     }
     @Path("/getOneUser/{id}")
     @POST
-    public List<Users> user(@PathParam ("id") Long id) {
+    public List<Users> userId(@PathParam ("id") Long id) {
         return Users.find("id", id).list();
+    }
+    @Path("/getOneUser/{name}")
+    @POST
+    public List<Users> userName(@PathParam ("name") String name) {
+        return repository.findByName(name);
     }
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/login/{email}&{password}")
@@ -40,8 +50,11 @@ public class UserResource {
             return "Vous êtes connecter !";
         }
     }
+    //
     @Path("/addUser")
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public Response saveUser(Users user){
         user.persist();
