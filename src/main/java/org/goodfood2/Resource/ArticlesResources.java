@@ -57,7 +57,7 @@ public class ArticlesResources {
     @Path("/id={id}")
     @GET
     public List<Articles> articleId(@PathParam ("id")Long  id) {
-        return repository.findById(id);
+        return Articles.find("id", id).list();
     }
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
