@@ -20,13 +20,14 @@ import org.goodfood2.Entity.Users;
 import org.goodfood2.Repository.UsersRepository;
 
 import io.quarkus.panache.common.Parameters;
-@Path("/account")
+@Path("/User")
 public class UserResource {
 
 
     @Inject
     UsersRepository repository;
-
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getAllUsers")
     @GET
     public List<Users> users() {
@@ -37,15 +38,26 @@ public class UserResource {
         name = "LeNombreDeRequete",
         description = "Donne le nombre de requête a la base"
     )
-    @Path("/getOneUser/{id}")
-    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/id={id}")
+    @GET
     public List<Users> userId(@PathParam ("id") Long id) {
         return Users.find("id", id).list();
     }
-    @Path("/getOneUser/{name}")
-    @POST
+    @Path("/name={name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @GET
     public List<Users> userName(@PathParam ("name") String name) {
-        return repository.findByName(name);
+        return Users.find("name", name).list();
+    }
+    @Path("/email={email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @GET
+    public List<Users> userMail(@PathParam ("email") String email) {
+        return Users.find("email", email).list();
     }
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/login/{email}&{password}")

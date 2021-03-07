@@ -16,5 +16,8 @@ public class UsersRepository implements PanacheRepository<Users>{
     public List<Users> findByName(String name) {
         return find("name",name).list();
     }
+    public List<Users> findByEmail(String email) {
+        return find("email",email).list();
+    }
     
 }
