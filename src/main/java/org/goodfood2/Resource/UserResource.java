@@ -15,16 +15,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Entity.Users;
 import org.goodfood2.Repository.UsersRepository;
 
 import io.quarkus.panache.common.Parameters;
+import io.smallrye.jwt.build.Jwt;
+import io.smallrye.jwt.build.JwtClaimsBuilder;
 @Path("/User")
 public class UserResource {
 
-
-    @Inject
     UsersRepository repository;
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -59,6 +60,7 @@ public class UserResource {
     public List<Users> userMail(@PathParam ("email") String email) {
         return Users.find("email", email).list();
     }
+    String jwt1 = Jwt.claims("/tokenClaims.json").sign();
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/login/{email}&{password}")
     @POST
@@ -69,7 +71,7 @@ public class UserResource {
             return "Email ou mot de passe incorrect !"; 
         }
         else {
-            return "Vous êtes connecté !";
+            return "Vous êtes connecté !"+jwt1;
         }
     }
     //
@@ -82,7 +84,6 @@ public class UserResource {
         user.persist();
         return Response.status(Status.CREATED).entity(user).build();
     }
-    
    /* @Path("/fr")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
