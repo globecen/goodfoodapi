@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class TVA extends PanacheEntity{
-    String pays;
-    String devise;
-    int tva;
+    public String pays;
+    public String devise;
+    public int tva;
 }

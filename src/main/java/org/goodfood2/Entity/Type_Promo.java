@@ -10,5 +10,5 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Type_Promo extends PanacheEntity{
 
-    String typePromo;
+    public String typePromo;
 }

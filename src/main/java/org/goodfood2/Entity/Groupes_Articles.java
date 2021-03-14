@@ -7,6 +7,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  */
 @Entity
 public class Groupes_Articles extends PanacheEntity{
-    String ref;
-    String des;
+    public String ref;
+    public String des;
 }

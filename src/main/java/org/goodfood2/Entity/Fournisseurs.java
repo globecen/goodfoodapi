@@ -10,6 +10,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Fournisseurs extends PanacheEntity{
 
-    String siret;
-    String des;
+    public String siret;
+    public String des;
 }

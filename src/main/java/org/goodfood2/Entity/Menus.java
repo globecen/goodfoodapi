@@ -5,6 +5,6 @@ import javax.persistence.Entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Menus extends PanacheEntity{
-    String ref;
-    String des;
+    public String ref;
+    public String des;
 }

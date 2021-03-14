@@ -6,8 +6,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 public class Unites_Conversion extends PanacheEntity{
-    String unite_Source;
-    Double unite_Qte;
-    String unite_DEst;
-    Double unite_DEstQte; 
+    public String unite_Source;
+    public Double unite_Qte;
+    public String unite_DEst;
+    public Double unite_DEstQte;
 }

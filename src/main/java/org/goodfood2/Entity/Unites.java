@@ -10,9 +10,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Unites extends PanacheEntity{
 
-    String un;
-    String des;
-    String un_FAM0001;
-    String un_FAM0002;
-    String un_FAM0003; 
+    public String un;
+    public String des;
+    public String un_FAM0001;
+    public String un_FAM0002;
+    public String un_FAM0003;
 }

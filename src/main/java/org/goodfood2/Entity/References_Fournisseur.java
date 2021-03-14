@@ -6,9 +6,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class References_Fournisseur extends PanacheEntity{
 
-    String ref;
-    String des;
-    String sRefF1;
-    String sRefF2;
-    String prixUnitaire;
+    public String ref;
+    public String des;
+    public String sRefF1;
+    public String sRefF2;
+    public String prixUnitaire;
 }

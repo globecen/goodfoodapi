@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Promos extends PanacheEntity{
-    String ref;
-    String des;
-    Double qteMin;
-    Double qteMax;
+    public String ref;
+    public String des;
+    public Double qteMin;
+    public Double qteMax;
 }

@@ -9,11 +9,11 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  */
 @Entity
 public class Articles extends PanacheEntity{
-    String ref;
-    String des;
-    String url_img;
-    String tycode;
-    String grp_0001;
-    String grp_0002; 
-    String grp_0003;  
+    public String ref;
+    public String des;
+    public String url_img;
+    public String tycode;
+    public String grp_0001;
+    public String grp_0002;
+    public String grp_0003;
 }

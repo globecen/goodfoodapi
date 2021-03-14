@@ -10,14 +10,14 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Articles_Detail extends PanacheEntity{
 
-    String ref;
-    String des;
-    String sref1;
-    String sref2;
-    String lot;
-    int perempdt;
-    int dtstock;
-    Double pu;
-    int stqte;
+    public String ref;
+    public String des;
+    public String sref1;
+    public String sref2;
+    public String lot;
+    public int perempdt;
+    public int dtstock;
+    public Double pu;
+    public int stqte;
     
 }
