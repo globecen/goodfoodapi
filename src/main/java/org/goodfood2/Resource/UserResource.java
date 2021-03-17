@@ -1,7 +1,10 @@
 package org.goodfood2.Resource;
 
 
+
+
 import java.util.List;
+import java.util.Properties;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -11,11 +14,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.eclipse.microprofile.jwt.JsonWebToken;
+import io.netty.util.internal.ResourcesUtil;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Entity.Users;
 import org.goodfood2.Repository.UsersRepository;
@@ -23,6 +27,8 @@ import org.goodfood2.Repository.UsersRepository;
 import io.quarkus.panache.common.Parameters;
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtClaimsBuilder;
+import org.goodfood2.utils.TokenUtils;
+
 @Path("/User")
 public class UserResource {
 
@@ -60,18 +66,21 @@ public class UserResource {
     public List<Users> userMail(@PathParam ("email") String email) {
         return Users.find("email", email).list();
     }
-    String jwt1 = Jwt.claims("/tokenClaims.json").sign();
+
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/login/{email}&{password}")
     @POST
-    public String val (@PathParam ("email")String email,  @PathParam ("password")String password) {
+    public String val (@PathParam ("email")String email,  @PathParam ("password")String password) throws Exception {
+        long tokenDuration = 3600;
+        String issuer = "https://localhost:8080/issuer";
+        String token = TokenUtils.generateToken(tokenDuration, issuer);
         Long nb =Users.find("email =:email and password = :password", Parameters.with("email", email).and("password", password)).count();
         if (nb==0)
         {
             return "Email ou mot de passe incorrect !"; 
         }
         else {
-            return "Vous êtes connecté !"+jwt1;
+            return token;
         }
     }
     //
