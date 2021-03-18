@@ -72,14 +72,17 @@ public class UserResource {
     @POST
     public String val (@PathParam ("email")String email,  @PathParam ("password")String password) throws Exception {
         long tokenDuration = 3600;
-        String issuer = "https://localhost:8080/issuer";
-        String token = TokenUtils.generateToken(tokenDuration, issuer);
+        //String issuer = "https://localhost:8080/issuer";
+        
         Long nb =Users.find("email =:email and password = :password", Parameters.with("email", email).and("password", password)).count();
         if (nb==0)
         {
             return "Email ou mot de passe incorrect !"; 
         }
         else {
+            Users users = Users.find("email =:email and password = :password", Parameters.with("email", email).and("password", password)).firstResult();
+            long id = users.id;
+            String token = TokenUtils.generateToken(tokenDuration, email,id);
             return token;
         }
     }
@@ -89,9 +92,16 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response saveUser(Users user){
-        user.persist();
-        return Response.status(Status.CREATED).entity(user).build();
+    public String addUser(Users user){
+        
+        if (Users.find("email =:email", Parameters.with("email", user.getEmail())).count()>0)
+        {
+        return "email déjà existante";
+        }
+        else {
+            user.persist();
+        }
+        return "création de compte ok";
     }
    /* @Path("/fr")
     @GET

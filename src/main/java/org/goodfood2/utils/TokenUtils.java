@@ -12,12 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TokenUtils {
-    public static String generateToken(Long duration, String issuer) throws Exception {
+    public static String generateToken(Long duration, String email, Long id) throws Exception {
         String privateKeyLocation = "/META-INF/resources/privatekey.pem";
         PrivateKey privateKey = readPrivateKey(privateKeyLocation);
         JwtClaimsBuilder claimsBuilder = Jwt.claims();
         long currentTimeInSecs = currentTimeInSecs();
-        claimsBuilder.issuer(issuer);
+        claimsBuilder.claim("email",email);
+        claimsBuilder.claim("id",id.toString());
         claimsBuilder.issuedAt(currentTimeInSecs);
         claimsBuilder.expiresAt(currentTimeInSecs + duration);
         return claimsBuilder.jws().sign(privateKey);
