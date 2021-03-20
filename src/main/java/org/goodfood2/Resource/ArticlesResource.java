@@ -3,12 +3,14 @@ package org.goodfood2.Resource;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -22,6 +24,8 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Repository.ArticlesRepository;
 
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import io.quarkus.security.jpa.Roles;
 
@@ -50,6 +54,24 @@ public class ArticlesResource {
         return Response.status(Status.CREATED).entity(article).build();
     }
 
+    @Path("/modifyArticleById={id}")
+    @PATCH
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public void modifyArticle(@PathParam("id") Long id) {
+ 
+    }
+
+    @Path("/deleteArticleById={id}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public void deleteArticle(@PathParam("id") Long id) {
+        Articles.delete("id", id);
+    }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/ref={ref}")
@@ -72,6 +94,26 @@ public class ArticlesResource {
     @GET
     public List<Articles> articleTycode(@PathParam("tycode") String tycode) {
         return repository.findByTycode(tycode);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/a_pageSize={pageSize}&pageNumber={pageNumber}")
+    @GET
+    public List<Articles> articlesPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
+        PanacheQuery<Articles> articlesPanacheQuery = Articles.findAll();
+        List<Articles> page = articlesPanacheQuery.page(Page.of(pageNumber, pageSize)).list();
+        return page;
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/m_pageSize={pageSize}&pageNumber={pageNumber}")
+    @GET
+    public List<Articles> menusPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
+        PanacheQuery<Articles> menusPanacheQuery = Articles.find("tycode", "menu");
+        List<Articles> page = menusPanacheQuery.page(Page.of(pageNumber, pageSize)).list();
+        return page;
     }
 
 }
