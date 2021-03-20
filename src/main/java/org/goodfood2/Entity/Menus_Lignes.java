@@ -9,5 +9,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  */
 @Entity
 public class Menus_Lignes extends PanacheEntity{
-
+    public String art_ref_menu;
+    public String art_ref;
 }
