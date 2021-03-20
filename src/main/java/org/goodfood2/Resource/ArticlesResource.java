@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -22,14 +23,14 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Repository.ArticlesRepository;
 
 import io.quarkus.panache.common.Sort;
+import io.quarkus.security.jpa.Roles;
 
 import org.goodfood2.Entity.Articles;
 
 @Path("/Article")
-public class ArticlesResources {
+public class ArticlesResource {
     @Inject
     ArticlesRepository repository;
-
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getAllArticle")

@@ -6,6 +6,7 @@ package org.goodfood2.Resource;
 import java.util.List;
 import java.util.Properties;
 
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -25,13 +26,13 @@ import org.goodfood2.Entity.Users;
 import org.goodfood2.Repository.UsersRepository;
 
 import io.quarkus.panache.common.Parameters;
+import io.quarkus.runtime.StartupEvent;
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtClaimsBuilder;
 import org.goodfood2.utils.TokenUtils;
 
 @Path("/User")
 public class UserResource {
-
     UsersRepository repository;
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -82,7 +83,8 @@ public class UserResource {
         else {
             Users users = Users.find("email =:email and password = :password", Parameters.with("email", email).and("password", password)).firstResult();
             long id = users.id;
-            String token = TokenUtils.generateToken(tokenDuration, email,id);
+            String role = users.role;
+            String token = TokenUtils.generateToken(tokenDuration, email,id,role);
             return token;
         }
     }
