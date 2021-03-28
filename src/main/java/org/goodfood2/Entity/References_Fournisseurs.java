@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
-public class References_Fournisseur extends PanacheEntity{
+public class References_Fournisseurs extends PanacheEntity{
 
     public String ref;
     public String des;
