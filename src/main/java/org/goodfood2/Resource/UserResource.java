@@ -69,7 +69,7 @@ public class UserResource {
     }
 
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/login/{email}&{password}")
+    @Path("/login/email={email}&password={password}")
     @POST
     public String val (@PathParam ("email")String email,  @PathParam ("password")String password) throws Exception {
         long tokenDuration = 3600;
