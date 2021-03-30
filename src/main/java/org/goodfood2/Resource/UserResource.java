@@ -64,7 +64,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @GET
-    public List<Users> userMail(@PathParam ("email") String email) {
+    public List<Users> userEmail(@PathParam ("email") String email) {
         return Users.find("email", email).list();
     }
 

@@ -11,4 +11,17 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 public class Menus_Lignes extends PanacheEntity{
     public String art_ref_menu;
     public String art_ref;
+    public String getArt_ref_menu() {
+        return art_ref_menu;
+    }
+    public void setArt_ref_menu(String art_ref_menu) {
+        this.art_ref_menu = art_ref_menu;
+    }
+    public String getArt_ref() {
+        return art_ref;
+    }
+    public void setArt_ref(String art_ref) {
+        this.art_ref = art_ref;
+    }
+    
 }
