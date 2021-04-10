@@ -1,34 +1,21 @@
 package org.goodfood2.Resource;
-
 import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Repository.ArticlesRepository;
-
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-import io.quarkus.panache.common.Sort;
-import io.quarkus.security.jpa.Roles;
-
 import org.goodfood2.Entity.Articles;
 
 @Path("/Article")
@@ -40,7 +27,6 @@ public class ArticlesResource {
     @Path("/getAllArticle")
     @GET
     public List<Articles> articles() {
-
         return Articles.listAll();
     }
 

@@ -1,12 +1,6 @@
 package org.goodfood2.Resource;
-
-
-
-
 import java.util.List;
-import java.util.Properties;
 
-import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -15,54 +9,46 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
-import io.netty.util.internal.ResourcesUtil;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.goodfood2.Entity.Users;
 import org.goodfood2.Repository.UsersRepository;
-
 import io.quarkus.panache.common.Parameters;
-import io.quarkus.runtime.StartupEvent;
-import io.smallrye.jwt.build.Jwt;
-import io.smallrye.jwt.build.JwtClaimsBuilder;
 import org.goodfood2.utils.TokenUtils;
 
 @Path("/User")
 public class UserResource {
+    @Inject
     UsersRepository repository;
+
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getAllUsers")
     @GET
     public List<Users> users() {
-        
         return Users.listAll();
     }
     @Counted(
         name = "LeNombreDeRequete",
         description = "Donne le nombre de requête a la base"
     )
+
+
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/id={id}")
     @GET
     public List<Users> userId(@PathParam ("id") Long id) {
         return Users.find("id", id).list();
     }
+
     @Path("/name={name}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @GET
     public List<Users> userName(@PathParam ("name") String name) {
         return Users.find("name", name).list();
     }
+
     @Path("/email={email}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @GET
     public List<Users> userEmail(@PathParam ("email") String email) {
         return Users.find("email", email).list();
@@ -88,6 +74,7 @@ public class UserResource {
             return token;
         }
     }
+
     //
     @Path("/addUser")
     @POST
@@ -105,7 +92,7 @@ public class UserResource {
         }
         return "création de compte ok";
     }
-   /* @Path("/fr")
+    /* @Path("/fr")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String bonjour() {

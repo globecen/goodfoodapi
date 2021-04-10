@@ -1,12 +1,6 @@
 package org.goodfood2;
-
-import org.junit.jupiter.api.Test;
-
 import io.quarkus.test.junit.QuarkusTest;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
 
-import org.goodfood2.Entity.Users;
 @QuarkusTest
 public class UserResourceTest {
     //@Test
