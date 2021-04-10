@@ -8,8 +8,6 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
-import java.util.HashSet;
-import java.util.Set;
 
 public class TokenUtils {
     public static String generateToken(Long duration, String email, Long id, String role) throws Exception {
