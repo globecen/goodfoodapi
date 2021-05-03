@@ -15,6 +15,7 @@ import org.goodfood2.Entity.Users;
 import org.goodfood2.Repository.UsersRepository;
 import io.quarkus.panache.common.Parameters;
 import org.goodfood2.utils.TokenUtils;
+import io.quarkus.elytron.security.common.BcryptUtil;
 
 @Path("/User")
 public class UserResource {
@@ -61,7 +62,7 @@ public class UserResource {
         long tokenDuration = 3600;
         //String issuer = "https://localhost:8080/issuer";
         
-        Long nb =Users.find("email =:email and password = :password", Parameters.with("email", email).and("password", password)).count();
+        Long nb =Users.find("email =:email and password = :password", Parameters.with("email", email).and("password", BcryptUtil.bcryptHash(password))).count();
         if (nb==0)
         {
             return "Email ou mot de passe incorrect !"; 
