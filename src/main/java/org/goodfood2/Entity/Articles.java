@@ -1,6 +1,9 @@
 package org.goodfood2.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -9,18 +12,22 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  */
 @Entity
 public class Articles extends PanacheEntity{
-    public String ref;
+    public String refArticle;
     public String des;
     public String url_img;
     public String tycode;
     public String grp_0001;
     public String grp_0002;
     public String grp_0003;
-    public String getRef() {
-        return ref;
+    @ManyToOne
+    @JoinColumn(name="refArticle",referencedColumnName ="refArticleDetail",insertable=false, updatable=false)
+    public Articles_Detail article_Detail;
+    
+    public String getRefArticle() {
+        return refArticle;
     }
-    public void setRef(String ref) {
-        this.ref = ref;
+    public void setRefArticle(String refArticle) {
+        this.refArticle = refArticle;
     }
     public String getDes() {
         return des;
@@ -58,5 +65,6 @@ public class Articles extends PanacheEntity{
     public void setGrp_0003(String grp_0003) {
         this.grp_0003 = grp_0003;
     }
+    
     
 }

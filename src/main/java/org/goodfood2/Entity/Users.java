@@ -17,7 +17,6 @@ public class Users extends PanacheEntity{
     public String password;
     @Roles
     public String role;
-
     public String getName() {
         return name;
     }
