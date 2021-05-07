@@ -15,18 +15,18 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.goodfood2.Entity.Promos;
+import org.goodfood2.Entity.Promo;
 
 @Path("/Promo")
-public class PromosResources {
+public class PromoResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/getAllPromos")
+    @Path("/getAllPromo")
     @GET
-    public List<Promos> promos() {
-        return Promos.listAll();
+    public List<Promo> promos() {
+        return Promo.listAll();
     }
-    @Produces(MediaType.APPLICATION_JSON)
+   /*  @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/id={id}")
     @GET
@@ -48,13 +48,13 @@ public class PromosResources {
     @Transactional
     public void deletePromo(@PathParam("id") Long id) {
         Promos.delete("id", id);
-    }
+    } */
     @Path("/addPromo")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response savePromo(Promos promo) {
+    public Response savePromo(Promo promo) {
         promo.persist();
         return Response.status(Status.CREATED).entity(promo).build();
     }

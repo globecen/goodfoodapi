@@ -15,19 +15,18 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.goodfood2.Entity.Fournisseurs;
-import org.goodfood2.Entity.Promos;
+import org.goodfood2.Entity.Fournisseur;
 
 @Path("/Fournisseur")
-public class FournisseursResources {
+public class FournisseurResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getAllFournisseur")
     @GET
-    public List<Fournisseurs> promos() {
-        return Fournisseurs.listAll();
+    public List<Fournisseur> promos() {
+        return Fournisseur.listAll();
     }
-    @Produces(MediaType.APPLICATION_JSON)
+/*     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/id={id}")
     @GET
@@ -49,13 +48,13 @@ public class FournisseursResources {
     @Transactional
     public void deleteFournisseur(@PathParam("id") Long id) {
         Promos.delete("id", id);
-    }
+    } */
     @Path("/addFournisseur")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response saveFournisseur(Fournisseurs fournisseur) {
+    public Response saveFournisseur(Fournisseur fournisseur) {
         fournisseur.persist();
         return Response.status(Status.CREATED).entity(fournisseur).build();
     }

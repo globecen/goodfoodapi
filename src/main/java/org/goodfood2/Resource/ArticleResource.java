@@ -13,21 +13,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import org.goodfood2.Repository.ArticlesRepository;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-import org.goodfood2.Entity.Articles;
+import org.goodfood2.Entity.Article;
 
 @Path("/Article")
-public class ArticlesResource {
-    @Inject
-    ArticlesRepository repository;
+public class ArticleResource {
+    //@Inject
+    //ArticlesRepository repository;
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getAllArticle")
     @GET
-    public List<Articles> articles() {
-        return Articles.listAll();
+    public List<Article> articles() {
+        return Article.listAll();
     }
 
     @Path("/addArticle")
@@ -35,11 +34,11 @@ public class ArticlesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response saveArticle(Articles article) {
+    public Response saveArticle(Article article) {
         article.persist();
         return Response.status(Status.CREATED).entity(article).build();
     }
-
+/* 
     @Path("/modifyArticleById={id}")
     @PATCH
     @Produces(MediaType.APPLICATION_JSON)
@@ -100,6 +99,6 @@ public class ArticlesResource {
         PanacheQuery<Articles> menusPanacheQuery = Articles.find("tycode", "menu");
         List<Articles> page = menusPanacheQuery.page(Page.of(pageNumber, pageSize)).list();
         return page;
-    }
+    } */
 
 }

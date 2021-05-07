@@ -11,24 +11,23 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.eclipse.microprofile.metrics.annotation.Counted;
-import org.goodfood2.Entity.Users;
-import org.goodfood2.Repository.UsersRepository;
 import io.quarkus.panache.common.Parameters;
 import org.goodfood2.utils.TokenUtils;
 import io.quarkus.elytron.security.common.BcryptUtil;
+import org.goodfood2.Entity.*;
 
-@Path("/User")
-public class UserResource {
-    @Inject
-    UsersRepository repository;
+@Path("/Utilisateur")
+public class UtilisateurResource {
+    //@Inject
+    //UsersRepository repository;
 
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/getAllUsers")
+    @Path("/")
     @GET
-    public List<Users> users() {
-        return Users.listAll();
+    public List<Utilisateur> utilisateur() {
+        return Utilisateur.listAll();
     }
-    @Counted(
+   /*  @Counted(
         name = "LeNombreDeRequete",
         description = "Donne le nombre de requête a la base"
     )
@@ -76,21 +75,21 @@ public class UserResource {
         }
     }
 
-    //
-    @Path("/addUser")
+    // */
+    @Path("/")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public String addUser(Users user){
+    public String addUtilisateur(Utilisateur utilisateur){
         
-        if (Users.find("email =:email", Parameters.with("email", user.getEmail())).count()>0)
-        {
-        return "email déjà existante";
-        }
-        else {
-            user.persist();
-        }
+        // if (Utilisateur.find("email =:email", Parameters.with("email", Utilisateur.getEmail())).count()>0)
+        // {
+        // return "email déjà existante";
+        // }
+        // else {
+            utilisateur.persist();
+        // }
         return "création de compte ok";
     }
     /* @Path("/fr")
