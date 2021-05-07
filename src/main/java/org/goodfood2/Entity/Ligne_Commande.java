@@ -25,6 +25,7 @@ public class Ligne_Commande {
 	@Id
 	@Column(name="id_ligneCommande")
 	private int idLigneCommande;
+	
 	@Column(name="id_commande")
 	private int idCommande;
 
