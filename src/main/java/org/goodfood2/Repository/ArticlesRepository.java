@@ -1,19 +1,27 @@
-package org.goodfood2.Repository;
-import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
-import org.goodfood2.Entity.Articles;
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
+// package org.goodfood2.Repository;
+// import java.util.List;
+// import javax.enterprise.context.ApplicationScoped;
+// import javax.inject.Inject;
+// import javax.persistence.EntityManager;
 
-/**
- * ArticlesResources
- */
+// import org.goodfood2.Entity.Articles;
+// import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-@ApplicationScoped
-public class ArticlesRepository  implements PanacheRepository <Articles>{
-    public List<Articles> findByRef(String ref) {
-        return find("ref",ref).list();
-    }
-    public List<Articles> findByTycode(String tycode) {
-        return find("tycode",tycode).list();
-    }
-}
+// /**
+//  * ArticlesResources
+//  */
+
+// @ApplicationScoped
+// public class ArticlesRepository <Article>{
+//     @Inject
+//     EntityManager entityManager;
+
+//     public List<Article> listAll() {
+
+//         return null;
+        
+//     }
+//     public void persist(Article article){
+//         fruit.persist();
+//     }
+// }
