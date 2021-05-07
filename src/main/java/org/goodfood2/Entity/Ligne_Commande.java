@@ -22,7 +22,9 @@ import javax.persistence.*;
 @NamedQuery(name="Ligne_Commande.findAll", query="SELECT l FROM Ligne_Commande l")
 public class Ligne_Commande {
 
-
+	@Id
+	@Column(name="id_ligneCommande")
+	private int idLigneCommande;
 	@Column(name="id_commande")
 	private int idCommande;
 

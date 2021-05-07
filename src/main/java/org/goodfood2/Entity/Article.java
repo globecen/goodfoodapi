@@ -20,7 +20,9 @@ import javax.persistence.Column;
 @Entity
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
 public class Article {
-
+	@Id
+	@Column(name="id_article")
+	private int idArticle;
 	@Column(name="description_article")
 	private String descriptionArticle;
 
