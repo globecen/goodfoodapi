@@ -31,7 +31,7 @@ public class ArticleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public Article[] articles() {
+    public List<Article> articles() {
         return entityManager.createQuery(
             QueryUtils.makeFindAllQuery("Article"))
                 .setMaxResults(25)
