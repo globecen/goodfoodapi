@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 
-
 /**
  * The persistent class for the Article_Allergene database table.
  * 
@@ -20,6 +19,10 @@ import javax.persistence.Column;
 @Entity
 @NamedQuery(name="Article_Allergene.findAll", query="SELECT a FROM Article_Allergene a")
 public class Article_Allergene {
+
+	@Id
+	@Column(name="id_allergene_article ")
+	private int idAllergeneArticle ;
 
 	@Column(name="id_allergene")
 	private int idAllergene;

@@ -12,14 +12,13 @@ import javax.persistence.Table;
 import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 
-
 /**
  * The persistent class for the Allergene database table.
  * 
  */
 @Entity
 @NamedQuery(name="Allergene.findAll", query="SELECT a FROM Allergene a")
-public class Allergene {
+public class Allergene{
 
 	@Id
 	@Column(name="id_allergene")

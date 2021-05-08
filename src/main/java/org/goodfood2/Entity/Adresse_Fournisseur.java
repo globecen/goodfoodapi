@@ -21,7 +21,7 @@ import javax.persistence.Column;
  */
 @Entity
 @NamedQuery(name="Adresse_Fournisseur.findAll", query="SELECT a FROM Adresse_Fournisseur a")
-public class Adresse_Fournisseur {
+public class Adresse_Fournisseur  {
 	@Id
 	@Column(name="id_adresse")
 	private int idAdresse;
