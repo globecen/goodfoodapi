@@ -34,7 +34,6 @@ public class ArticleResource {
     public List<Article> articles() {
         return entityManager.createQuery(
             QueryUtils.makeFindAllQuery("Article"))
-                .setMaxResults(25)
                 .getResultList();
     }
 
@@ -42,11 +41,30 @@ public class ArticleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @GET
-    public Article articleId(@PathParam("id") Long id) {
-        return (Article)entityManager.createQuery(
+    public Article articleId(@PathParam("id") Long id) throws Exception{
+        Article article = (Article)entityManager.createQuery(
             QueryUtils.makeFindByIdQuery("Article", id, "id_article"))
-                .setMaxResults(1)
                 .getResultList().get(0);
+        if (article == null) {
+            throw new Exception("L'article " + id + " n'existe pas.");
+        }    
+        return article;
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete{id}")
+    @DELETE
+    @Transactional
+    public Response articleSuppr(@PathParam("id") Long id) throws Exception{
+        Article article = (Article)entityManager.createQuery(
+            QueryUtils.makeFindByIdQuery("Article", id, "id_article"))
+                .getResultList().get(0);
+        if (article == null) {
+            throw new Exception("L'article " + id + " n'existe pas.");
+        }
+        entityManager.remove(article);
+        return Response.status(200).build();
     }
 
 /* 
