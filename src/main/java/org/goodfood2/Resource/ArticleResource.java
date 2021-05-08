@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
 import org.goodfood2.Entity.Article;
-import org.goodfood2.utils.QueryUtils;
+import org.goodfood2.utils.*;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -43,10 +43,10 @@ public class ArticleResource {
     @Path("/{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) {
-        return entityManager.createQuery(
+        return (Article)entityManager.createQuery(
             QueryUtils.makeFindByIdQuery("Article", id, "id_article"))
                 .setMaxResults(1)
-                .getResultList()[0];
+                .getResultList().get(0);
     }
 
 /* 
