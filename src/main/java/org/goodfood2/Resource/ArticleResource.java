@@ -32,7 +32,7 @@ public class ArticleResource {
     @Path("/")
     @GET
     public Article[] articles() {
-        return em.createQuery(
+        return entityManager.createQuery(
             QueryUtils.makeFindAllQuery("Article"))
                 .setMaxResults(25)
                 .getResultList();
@@ -43,7 +43,7 @@ public class ArticleResource {
     @Path("/{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) {
-        return em.createQuery(
+        return entityManager.createQuery(
             QueryUtils.makeFindByIdQuery("Article", id, "id_article"))
                 .setMaxResults(1)
                 .getResultList()[0];
