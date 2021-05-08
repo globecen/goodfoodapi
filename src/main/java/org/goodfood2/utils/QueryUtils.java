@@ -1,3 +1,5 @@
+package org.goodfood2.utils;
+
 public class QueryUtils {
 
     public static String makeFindAllQuery(String className){
