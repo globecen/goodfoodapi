@@ -51,7 +51,21 @@ public class Article {
 	@Column(name="url_img_article")
 	private String urlImgArticle;
 
-	public Article() {
+	public Article(){
+	}
+
+
+	public void setParams(String descriptionArticle, byte estMenu, int idCategorie, int idFranchise,
+	String libelleArticle, double prixArticleHt, double stockArticle, double tva, String urlImgArticle){
+		this.descriptionArticle = descriptionArticle;
+		this.estMenu = estMenu;
+		this.idCategorie = idCategorie;
+		this.idFranchise = idFranchise;
+		this.libelleArticle = libelleArticle;
+		this.prixArticleHt = prixArticleHt;
+		this.stockArticle = stockArticle;
+		this.tva = tva;
+		this.urlImgArticle = urlImgArticle;
 	}
 
 	public int getIdArticle() {

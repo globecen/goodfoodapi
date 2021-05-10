@@ -10,13 +10,13 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
 public class TokenUtils {
-    public static String generateToken(Long duration, String email, Long id, String role) throws Exception {
+    public static String generateToken(Long duration, String email, int id, int role) throws Exception {
         String privateKeyLocation = "/META-INF/resources/privateKey.pem";
         PrivateKey privateKey = readPrivateKey(privateKeyLocation);
         JwtClaimsBuilder claimsBuilder = Jwt.claims();
         long currentTimeInSecs = currentTimeInSecs();
         claimsBuilder.claim("email",email);
-        claimsBuilder.claim("id",id.toString());
+        claimsBuilder.claim("id",id);
         claimsBuilder.claim("role", role);
         claimsBuilder.issuedAt(currentTimeInSecs);
         claimsBuilder.expiresAt(currentTimeInSecs + duration);

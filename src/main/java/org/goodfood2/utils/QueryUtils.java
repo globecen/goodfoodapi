@@ -6,7 +6,15 @@ public class QueryUtils {
         return "from " + className + " obj";
     }
     
-    public static String makeFindByIdQuery(String className, long id, String idPropertyName){
-        return "from " + className + " obj where id = " + id;
+    public static String makeFindByParamQueryInt(String className, String param, String value){
+        return "from " + className + " obj where " + param + " = " + value;
+    }
+
+    public static String makeFindByParamQueryString(String className, String param, String value){
+        return "from " + className + " obj where " + param + " = '" + value + "'";
+    }
+
+    public static String makeFindBy2ParamQueryString(String className, String param, String value, String param2, String value2){
+        return "from " + className + " obj where" + param + " = '" + value + "' and " + param2 + " = '" + value2 + "'";
     }
 }

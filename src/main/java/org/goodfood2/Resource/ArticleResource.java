@@ -2,23 +2,19 @@ package org.goodfood2.Resource;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
-import io.quarkus.panache.common.Page;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.utils.*;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 @Path("/Article")
@@ -43,7 +39,7 @@ public class ArticleResource {
     @GET
     public Article articleId(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
-            QueryUtils.makeFindByIdQuery("Article", id, "id_article"))
+            QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
                 .getResultList().get(0);
         if (article == null) {
             throw new Exception("L'article " + id + " n'existe pas.");
@@ -56,9 +52,9 @@ public class ArticleResource {
     @Path("/delete{id}")
     @DELETE
     @Transactional
-    public Response articleSuppr(@PathParam("id") Long id) throws Exception{
+    public Response supprArticle(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
-            QueryUtils.makeFindByIdQuery("Article", id, "id_article"))
+            QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
                 .getResultList().get(0);
         if (article == null) {
             throw new Exception("L'article " + id + " n'existe pas.");
@@ -67,49 +63,27 @@ public class ArticleResource {
         return Response.status(200).build();
     }
 
-/* 
-    @Path("/modifyArticleById={id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/create")
+    @POST
+    @Transactional
+    public Response creerArticle(Article a) throws Exception {
+        entityManager.persist(a);
+        return Response.status(200).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/modify")
     @PATCH
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public void modifyArticle(@PathParam("id") Long id) {
- 
+    public Article modifArticle(Article a) throws Exception {
+        return entityManager.merge(a);
     }
 
-    @Path("/deleteArticleById={id}")
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Transactional
-    public void deleteArticle(@PathParam("id") Long id) {
-        Articles.delete("id", id);
-    }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/ref={ref}")
-    @GET
-    public List<Articles> articleRef(@PathParam("ref") String ref) {
-        return repository.findByRef(ref);
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/id={id}")
-    @GET
-    public List<Articles> articleId(@PathParam("id") Long id) {
-        return Articles.find("id", id).list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/tycode={tycode}")
-    @GET
-    public List<Articles> articleTycode(@PathParam("tycode") String tycode) {
-        return repository.findByTycode(tycode);
-    }
-
+    /*
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/a_pageSize={pageSize}&pageNumber={pageNumber}")
