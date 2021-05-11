@@ -35,6 +35,26 @@ public class ArticleResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/ingredient")
+    @GET
+    public List<Article> articlesIngredient() {
+        return entityManager.createQuery(
+            QueryUtils.makeFindIngredient())
+                .getResultList();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/menu")
+    @GET
+    public List<Article> articlesMenu() {
+        return entityManager.createQuery(
+            QueryUtils.makeFindMenu())
+                .getResultList();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) throws Exception{

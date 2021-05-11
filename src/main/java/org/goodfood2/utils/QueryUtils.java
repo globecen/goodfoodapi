@@ -22,7 +22,7 @@ public class QueryUtils {
         return "from Article obj where estMenu = 1";
     }
     
-    public static String makeFindArticle(){
+    public static String makeFindIngredient(){
         return "from Article obj where estMenu = 0";
     }
 }
