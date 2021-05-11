@@ -102,7 +102,6 @@ public class ArticleResource {
         return entityManager.merge(a);
     }
 
-
     /*
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
