@@ -12,6 +12,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import org.goodfood2.Entity.Article;
 import org.goodfood2.utils.*;
 

@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 
@@ -19,8 +22,9 @@ import javax.persistence.Column;
  */
 @Entity
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
+@JsonPropertyOrder({"idArticle", "idCategorie", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "stockArticle"})
 public class Article {
-	
+
 	@Id
 	@Column(name="id_article")
 	private int idArticle;
