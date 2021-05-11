@@ -15,6 +15,6 @@ public class QueryUtils {
     }
 
     public static String makeFindBy2ParamQueryString(String className, String param, String value, String param2, String value2){
-        return "from " + className + " obj where" + param + " = '" + value + "' and " + param2 + " = '" + value2 + "'";
+        return "from " + className + " obj where " + param + " = '" + value + "' and " + param2 + " = '" + value2 + "'";
     }
 }

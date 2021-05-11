@@ -97,10 +97,9 @@ public class UtilisateurResource {
     }
     
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{email}&{password}")
     @GET
-    public Utilisateur utilisateurEmailMdp(@PathParam("email") String email, @PathParam("mdp") String mdp) throws Exception{
+    public Utilisateur utilisateurEmailMdp(@PathParam("email") String email, @PathParam("password") String mdp) throws Exception{
         Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
             QueryUtils.makeFindBy2ParamQueryString("Utilisateur", "emailUtilisateur", email, "mdpUtilisateur", mdp))
                 .getResultList().get(0);
@@ -113,7 +112,7 @@ public class UtilisateurResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/login/{email}&{password}")
     @POST
-    public String val (@PathParam ("email")String email,  @PathParam ("password")String password) throws Exception {
+    public String val (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
         String ret;
         long tokenDuration = 3600;
         Utilisateur utilisateur = this.utilisateurEmail(email);
