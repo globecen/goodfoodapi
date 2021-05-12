@@ -12,6 +12,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 
@@ -23,17 +26,11 @@ import javax.persistence.Column;
 @Entity
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
 @JsonPropertyOrder({"idArticle", "idCategorie", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "stockArticle"})
-public class Article {
+public class Article extends PanacheEntityBase {
 
 	@Id
 	@Column(name="id_article")
 	private int idArticle;
-
-	@Column(name="description_article")
-	private String descriptionArticle;
-
-	@Column(name="est_menu")
-	private byte estMenu;
 
 	@Column(name="id_categorie")
 	private int idCategorie;
@@ -44,22 +41,28 @@ public class Article {
 	@Column(name="libelle_article")
 	private String libelleArticle;
 
-	@Column(name="prix_article_ht")
-	private double prixArticleHt;
-
-	@Column(name="stock_article")
-	private double stockArticle;
-
-	private double tva;
+	@Column(name="description_article")
+	private String descriptionArticle;
 
 	@Column(name="url_img_article")
 	private String urlImgArticle;
+
+	@Column(name="prix_article_ht")
+	private double prixArticleHt;
+
+	private double tva;
+
+	@Column(name="est_menu")
+	private String estMenu;
+
+	@Column(name="stock_article")
+	private double stockArticle;
 
 	public Article(){
 	}
 
 
-	public void setParams(String descriptionArticle, byte estMenu, int idCategorie, int idFranchise,
+	public void setParams(String descriptionArticle, String estMenu, int idCategorie, int idFranchise,
 	String libelleArticle, double prixArticleHt, double stockArticle, double tva, String urlImgArticle){
 		this.descriptionArticle = descriptionArticle;
 		this.estMenu = estMenu;
@@ -88,11 +91,11 @@ public class Article {
 		this.descriptionArticle = descriptionArticle;
 	}
 
-	public byte getEstMenu() {
+	public String getEstMenu() {
 		return this.estMenu;
 	}
 
-	public void setEstMenu(byte estMenu) {
+	public void setEstMenu(String estMenu) {
 		this.estMenu = estMenu;
 	}
 

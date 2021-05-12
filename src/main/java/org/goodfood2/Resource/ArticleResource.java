@@ -18,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.utils.*;
 
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
+
 import javax.persistence.EntityManager;
 
 @Path("/Article")
@@ -105,25 +108,43 @@ public class ArticleResource {
         return entityManager.merge(a);
     }
 
-    /*
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/a_pageSize={pageSize}&pageNumber={pageNumber}")
     @GET
-    public List<Articles> articlesPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Articles> articlesPanacheQuery = Articles.findAll();
-        List<Articles> page = articlesPanacheQuery.page(Page.of(pageNumber, pageSize)).list();
-        return page;
+    public List<Article> articlesPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
+        PanacheQuery<Article> articles = Article.findAll();
+        articles.page(Page.ofSize(pageSize));
+        for (int i = 0; i < pageNumber - 1; i++){
+            articles.nextPage();
+        }
+        return articles.list();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/m_pageSize={pageSize}&pageNumber={pageNumber}")
+    @Path("/menu/a_pageSize={pageSize}&pageNumber={pageNumber}")
     @GET
-    public List<Articles> menusPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Articles> menusPanacheQuery = Articles.find("tycode", "menu");
-        List<Articles> page = menusPanacheQuery.page(Page.of(pageNumber, pageSize)).list();
-        return page;
-    } */
+    public List<Article> menusPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
+        PanacheQuery<Article> menus = Article.find("estMenu", "1");
+        menus.page(Page.ofSize(pageSize));
+        for (int i = 0; i < pageNumber - 1; i++){
+            menus.nextPage();
+        }
+        return menus.list();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/ingr/a_pageSize={pageSize}&pageNumber={pageNumber}")
+    @GET
+    public List<Article> ingrsPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
+        PanacheQuery<Article> ingrs = Article.find("estMenu", "0");
+        ingrs.page(Page.ofSize(pageSize));
+        for (int i = 0; i < pageNumber - 1; i++){
+            ingrs.nextPage();
+        }
+        return ingrs.list();
+    }
 
 }
