@@ -70,6 +70,24 @@ public class ArticleResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/ingr/count")
+    @GET
+    @Transactional
+    public long countIngr() throws Exception {
+        return Article.count(QueryUtils.makeFindIngredient());
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/menu/count")
+    @GET
+    @Transactional
+    public long countMenu() throws Exception {
+        return Article.count(QueryUtils.makeFindMenu());
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) throws Exception{
