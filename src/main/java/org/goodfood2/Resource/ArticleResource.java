@@ -61,6 +61,15 @@ public class ArticleResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/count")
+    @GET
+    @Transactional
+    public long countArticle() throws Exception {
+        return Article.count();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) throws Exception{
@@ -146,5 +155,4 @@ public class ArticleResource {
         }
         return ingrs.list();
     }
-
 }
