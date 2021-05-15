@@ -63,12 +63,13 @@ public class PromoResource {
     @Path("/delete{id}")
     @DELETE
     @Transactional
-    public Response supprPromo(@PathParam("id") Long id) throws Exception{
+    public Response supprPromo(@PathParam("id") Long id){
         Promo promo = (Promo)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Promo", "id", id.toString()))
                 .getResultList().get(0);
         if (promo == null) {
-            throw new Exception("La promo " + id + " n'existe pas.");
+            return Response.status(404).build();
+            //throw new Exception("La promo " + id + " n'existe pas.");
         }
         entityManager.remove(promo);
         return Response.status(200).build();
