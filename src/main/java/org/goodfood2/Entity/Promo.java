@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 import java.io.Serializable;
@@ -20,7 +24,7 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Promo.findAll", query="SELECT p FROM Promo p")
-public class Promo {
+public class Promo extends PanacheEntityBase{
 	@Id
 	@Column(name="id_promo")
 	private int idPromo;
