@@ -15,11 +15,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 import org.goodfood2.utils.TokenUtils;
-
 @Path("/User")
+@Tag(name = "Utilisateur Resource", description = "L'ensemble des routes pour la partie Utilisateur")
 public class UtilisateurResource {
 
     @Inject
@@ -29,7 +30,7 @@ public class UtilisateurResource {
         name = "LeNombreDeRequete",
         description = "Donne le nombre de requete a la base"
     )*/
-
+    
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")

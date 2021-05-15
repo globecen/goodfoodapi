@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.utils.*;
 
@@ -24,6 +25,7 @@ import io.quarkus.panache.common.Page;
 import javax.persistence.EntityManager;
 
 @Path("/Article")
+@Tag(name = "Article Resource", description = "L'ensemble des routes pour la partie Article")
 public class ArticleResource {
 
     @Inject

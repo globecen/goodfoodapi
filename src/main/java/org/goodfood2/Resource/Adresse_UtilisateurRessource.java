@@ -13,11 +13,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Utilisateur;
 import org.goodfood2.Entity.Commande;
 import org.goodfood2.utils.QueryUtils;
 
 @Path("/Adresse_Utilisateur")
+@Tag(name = "Adresse_Utilisateur Resource", description = "L'ensemble des routes pour la partie Adresse_Utilisateur")
 public class Adresse_UtilisateurRessource {
   
     @Inject

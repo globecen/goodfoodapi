@@ -13,10 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Groupe_Franchise;
 import org.goodfood2.utils.QueryUtils;
 
 @Path("/Groupe_Franchise")
+@Tag(name = "Groupe_Franchise Resource", description = "L'ensemble des routes pour la partie Groupe_Franchise")
 public class Groupe_FranchiseRessource {
   
     @Inject
