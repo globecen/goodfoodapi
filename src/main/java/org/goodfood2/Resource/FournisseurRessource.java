@@ -14,9 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.goodfood2.Entity.Commande;
 import org.goodfood2.Entity.Fournisseur;
-import org.goodfood2.Entity.Franchise;
 import org.goodfood2.utils.QueryUtils;
 
 @Path("/Fournisseur")

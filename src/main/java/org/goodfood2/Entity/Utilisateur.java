@@ -1,30 +1,12 @@
 package org.goodfood2.Entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.NamedQuery;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.ManyToMany;
 import javax.persistence.Column;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.security.jpa.Password;
-import io.quarkus.security.jpa.Roles;
-import io.quarkus.security.jpa.UserDefinition;
-import io.quarkus.security.jpa.Username;
-import io.quarkus.elytron.security.common.BcryptUtil;
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 /**

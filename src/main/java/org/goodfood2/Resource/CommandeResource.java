@@ -14,9 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.goodfood2.Entity.Article;
 import org.goodfood2.Entity.Commande;
-import org.goodfood2.utils.QueryUtils;
 
 @Path("/Commande")
 @Tag(name = "Commande Resource", description = "L'ensemble des routes pour la partie Commande")
