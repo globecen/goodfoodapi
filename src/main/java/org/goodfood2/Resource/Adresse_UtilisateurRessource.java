@@ -10,21 +10,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.goodfood2.Entity.Franchise;
+import org.goodfood2.Entity.Adresse_Utilisateur;
+import org.goodfood2.utils.QueryUtils;
 
-@Path("/Franchise")
-public class FranchiseResource {
-    
+@Path("/Adresse_Utilisateur")
+public class Adresse_UtilisateurRessource {
+  
     @Inject
     EntityManager entityManager;
-
+  
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Franchise> franchises() {
-        return entityManager.createQuery("select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise from Franchise").getResultList();
+    public List<Adresse_Utilisateur> adresse_Utilisateurs() {
+        return entityManager.createQuery(
+            QueryUtils.makeFindAllQuery("Adresse_Fournisseur"))
+                .getResultList();
     }
-
-    
 }

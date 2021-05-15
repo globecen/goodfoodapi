@@ -120,6 +120,7 @@ public class UtilisateurResource {
         else ret = "Email ou mot de passe incorrect";
         return ret;
     }
+    
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")

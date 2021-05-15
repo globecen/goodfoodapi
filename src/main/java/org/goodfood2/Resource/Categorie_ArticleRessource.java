@@ -19,8 +19,10 @@ import org.goodfood2.utils.QueryUtils;
 
 @Path("/Categorie_Article")
 public class Categorie_ArticleRessource {
+
     @Inject
     EntityManager entityManager;
+    
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/id{id}")
@@ -34,6 +36,7 @@ public class Categorie_ArticleRessource {
         }    
         return categorie_Article;
     }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/nom{nom}")
@@ -47,6 +50,7 @@ public class Categorie_ArticleRessource {
         }    
         return categorie_Article;
     }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
@@ -56,6 +60,7 @@ public class Categorie_ArticleRessource {
             QueryUtils.makeFindAllQuery("Categorie_Article"))
                 .getResultList();
     }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
