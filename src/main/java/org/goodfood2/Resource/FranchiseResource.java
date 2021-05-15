@@ -23,6 +23,6 @@ public class FranchiseResource {
     @Path("/")
     @GET
     public List<Franchise> franchises() {
-        return entityManager.createQuery("from Franchise obj").getResultList();
+        return entityManager.createQuery("select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise from Franchise").getResultList();
     }
 }
