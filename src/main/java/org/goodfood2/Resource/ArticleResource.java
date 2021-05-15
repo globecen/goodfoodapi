@@ -13,8 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.utils.*;
