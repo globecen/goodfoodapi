@@ -120,4 +120,13 @@ public class UtilisateurResource {
         else ret = "Email ou mot de passe incorrect";
         return ret;
     }
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/create")
+    @POST
+    @Transactional
+    public Response creerUtilisateur(Utilisateur u) throws Exception {
+        entityManager.persist(u);
+        return Response.status(200).build();
+    }
 }    
