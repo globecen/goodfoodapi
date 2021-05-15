@@ -25,7 +25,7 @@ public class Categorie_ArticleRessource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/id{id}")
     @GET
-    public Categorie_Article categorie_Article(@PathParam("id") Long id) throws Exception{
+    public Categorie_Article categorie_ArticleId(@PathParam("id") Long id) throws Exception{
         Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Categorie_Article", "idCategorieArticle", id.toString()))
                 .getResultList().get(0);
@@ -38,7 +38,7 @@ public class Categorie_ArticleRessource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/nom{nom}")
     @GET
-    public Categorie_Article categorie_Article(@PathParam("libelle_categorie_article") String libelle_categorie_article) throws Exception{
+    public Categorie_Article categorie_ArticleNom(@PathParam("libelle_categorie_article") String libelle_categorie_article) throws Exception{
         Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Categorie_Article", "libelleCategorieArticle", libelle_categorie_article))
                 .getResultList().get(0);

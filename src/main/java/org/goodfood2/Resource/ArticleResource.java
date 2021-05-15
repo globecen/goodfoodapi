@@ -45,7 +45,7 @@ public class ArticleResource {
     @GET
     public List<Article> articlesIngredient() {
         return entityManager.createQuery(
-            QueryUtils.makeFindIngredient())
+            "from Article obj where estMenu = 0")
                 .getResultList();
     }
 
@@ -55,7 +55,7 @@ public class ArticleResource {
     @GET
     public List<Article> articlesMenu() {
         return entityManager.createQuery(
-            QueryUtils.makeFindMenu())
+            "from Article obj where estMenu = 1")
                 .getResultList();
     }
 
@@ -74,7 +74,7 @@ public class ArticleResource {
     @GET
     @Transactional
     public long countIngr() throws Exception {
-        return Article.count(QueryUtils.makeFindIngredient());
+        return Article.count("from Article obj where estMenu = 0");
     }
 
     @Produces(MediaType.APPLICATION_JSON)
@@ -83,7 +83,7 @@ public class ArticleResource {
     @GET
     @Transactional
     public long countMenu() throws Exception {
-        return Article.count(QueryUtils.makeFindMenu());
+        return Article.count("from Article obj where estMenu = 1");
     }
 
     @Produces(MediaType.APPLICATION_JSON)

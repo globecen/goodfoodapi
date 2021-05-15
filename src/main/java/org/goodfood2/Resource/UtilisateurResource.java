@@ -48,10 +48,8 @@ public class UtilisateurResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Utilisateur> utilisateur() {
-        return entityManager.createQuery(
-            QueryUtils.makeFindAllQuery("Utilisateur"))
-                .getResultList();
+    public List<Utilisateur> utilisateurs() {
+        return entityManager.createQuery("select adresseUtilisateur, emailUtilisateur, idRole, idUtilisateur, mdpUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur").getResultList();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
@@ -101,7 +99,7 @@ public class UtilisateurResource {
     @GET
     public Utilisateur utilisateurEmailMdp(@PathParam("email") String email, @PathParam("password") String mdp) throws Exception{
         Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
-            QueryUtils.makeFindBy2ParamQueryString("Utilisateur", "emailUtilisateur", email, "mdpUtilisateur", mdp))
+            "from Utilisateur obj where emailUtilisateur = '" + email + "' and mdpUtilisateur = '" + mdp + "'")
                 .getResultList().get(0);
         if (utilisateur == null) {
             throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
