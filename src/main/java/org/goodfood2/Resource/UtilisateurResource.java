@@ -1,10 +1,6 @@
 package org.goodfood2.Resource;
 
-
-
-
 import java.util.List;
-import java.util.Properties;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -16,18 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
-import io.netty.util.internal.ResourcesUtil;
-import org.eclipse.microprofile.metrics.annotation.Counted;
-
-
-import io.quarkus.panache.common.Parameters;
-import io.smallrye.jwt.build.Jwt;
-import io.smallrye.jwt.build.JwtClaimsBuilder;
 
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
@@ -120,7 +106,7 @@ public class UtilisateurResource {
         else ret = "Email ou mot de passe incorrect";
         return ret;
     }
-    
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")

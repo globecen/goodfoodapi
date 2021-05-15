@@ -13,20 +13,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.goodfood2.Entity.Franchise;
+import org.goodfood2.Entity.Groupe_Franchise;
+import org.goodfood2.utils.QueryUtils;
 
-@Path("/Franchise")
-public class FranchiseResource {
-    
+@Path("/Groupe_Franchise")
+public class Groupe_FranchiseRessource {
+  
     @Inject
     EntityManager entityManager;
-
+  
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Franchise> franchises() {
-        return entityManager.createQuery("select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise from Franchise").getResultList();
+    public List<Groupe_Franchise> groupesfranchise() {
+        return entityManager.createQuery(
+            QueryUtils.makeFindAllQuery("Groupe_Franchise"))
+                .getResultList();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,8 +37,8 @@ public class FranchiseResource {
     @Path("/create")
     @POST
     @Transactional
-    public Response creerFranchise(Franchise f) throws Exception {
-        entityManager.persist(f);
+    public Response creerGroupeFranchise(Groupe_Franchise gF) throws Exception {
+        entityManager.persist(gF);
         return Response.status(200).build();
     }
 }
