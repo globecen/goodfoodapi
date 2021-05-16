@@ -1,4 +1,5 @@
 package org.goodfood2.Resource;
+
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
@@ -10,8 +11,10 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.DefaultValue;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
@@ -19,7 +22,6 @@ import org.goodfood2.utils.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-
 import javax.persistence.EntityManager;
 
 @Path("/Article")
@@ -33,30 +35,27 @@ public class ArticleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Article> articles() {
-        return entityManager.createQuery(
-            QueryUtils.makeFindAllQuery("Article"))
-                .getResultList();
-    }
+    public List<Article> articles(
+        @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
+        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+        @DefaultValue("") @QueryParam("estMenu") String estMenu,
+        @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
+        @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle
+        ) {
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/ingredient")
-    @GET
-    public List<Article> articlesIngredient() {
-        return entityManager.createQuery(
-            "from Article obj where estMenu = 0")
-                .getResultList();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/menu")
-    @GET
-    public List<Article> articlesMenu() {
-        return entityManager.createQuery(
-            "from Article obj where estMenu = 1")
-                .getResultList();
+        PanacheQuery<Article> articles = null;
+           
+        if (estMenu.equals(""))
+            articles = Article.find(
+                "From Article where libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
+        else 
+            articles = Article.find(
+                "From Article where estMenu = '" + estMenu + "' and libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
+        articles.page(Page.ofSize(pageSize));
+        for (int i = 0; i < pageNumber - 1; i++){
+            articles.nextPage();
+        }
+        return articles.list();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
@@ -130,44 +129,5 @@ public class ArticleResource {
     @Transactional
     public Article modifArticle(Article a) throws Exception {
         return entityManager.merge(a);
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/a_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Article> articlesPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Article> articles = Article.findAll();
-        articles.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            articles.nextPage();
-        }
-        return articles.list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/menu/a_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Article> menusPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Article> menus = Article.find("estMenu", "1");
-        menus.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            menus.nextPage();
-        }
-        return menus.list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/ingr/a_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Article> ingrsPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Article> ingrs = Article.find("estMenu", "0");
-        ingrs.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            ingrs.nextPage();
-        }
-        return ingrs.list();
     }
 }
