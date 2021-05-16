@@ -10,10 +10,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.mysql.cj.util.Util;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Utilisateur;
@@ -115,6 +119,31 @@ public class UtilisateurResource {
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {
         entityManager.persist(u);
+        return Response.status(200).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/modify")
+    @PATCH
+    @Transactional
+    public Utilisateur modifUtilisateur(Utilisateur u) throws Exception {
+        return entityManager.merge(u);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete{id}")
+    @DELETE
+    @Transactional
+    public Response supprLigneCommande(@PathParam("id") Long id) throws Exception{
+        Utilisateur u = (Utilisateur)entityManager.createQuery(
+            QueryUtils.makeFindByParamQueryInt("Utilisateur", "id", id.toString()))
+                .getResultList().get(0);
+        if (u == null) {
+            return Response.status(404).build();
+        }
+        entityManager.remove(u);
         return Response.status(200).build();
     }
 }    

@@ -6,9 +6,12 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,6 +44,31 @@ public class Adresse_FournisseurRessource {
     @Transactional
     public Response creerAdresseFournisseur(Adresse_Fournisseur aF) throws Exception {
         entityManager.persist(aF);
+        return Response.status(200).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/modify")
+    @PATCH
+    @Transactional
+    public Adresse_Fournisseur modifAdresseFournisseur(Adresse_Fournisseur aF) throws Exception {
+        return entityManager.merge(aF);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete{id}")
+    @DELETE
+    @Transactional
+    public Response supprAdresseFournisseur(@PathParam("id") Long id) throws Exception{
+        Adresse_Fournisseur aFournisseur = (Adresse_Fournisseur)entityManager.createQuery(
+            QueryUtils.makeFindByParamQueryInt("Adresse_Fournisseur", "id", id.toString()))
+                .getResultList().get(0);
+        if (aFournisseur == null) {
+            return Response.status(404).build();
+        }
+        entityManager.remove(aFournisseur);
         return Response.status(200).build();
     }
 }
