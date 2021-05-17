@@ -9,8 +9,10 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
@@ -23,24 +25,43 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 import org.goodfood2.utils.TokenUtils;
+
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
 @Path("/User")
 @Tag(name = "Utilisateur Resource", description = "L'ensemble des routes pour la partie Utilisateur")
 public class UtilisateurResource {
 
     @Inject
     EntityManager entityManager;
-
-    /*@Counted(
-        name = "LeNombreDeRequete",
-        description = "Donne le nombre de requete a la base"
-    )*/
     
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Utilisateur> utilisateurs() {
-        return entityManager.createQuery("select adresseUtilisateur, emailUtilisateur, idRole, idUtilisateur, mdpUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur").getResultList();
+    public List<Utilisateur> utilisateurs(
+        @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
+        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+        @DefaultValue("") @QueryParam("adresseUtilisateur") String adresseUtilisateur,
+        @DefaultValue("") @QueryParam("emailUtilisateur") String emailUtilisateur,
+        @DefaultValue("") @QueryParam("nomUtilisateur") String nomUtilisateur,
+        @DefaultValue("") @QueryParam("prenomUtilisateur") String prenomUtilisateur,
+        @DefaultValue("") @QueryParam("numeroTelUtilisateur") String numeroTelUtilisateur
+        ) {
+
+        PanacheQuery<Utilisateur> utilisateurs = null;
+        utilisateurs = Utilisateur.find(
+            "select adresseUtilisateur, emailUtilisateur, idRole, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where adresseUtilisateur like '%" + 
+            adresseUtilisateur + "%' and emailUtilisateur like '%" + 
+            emailUtilisateur + "%' and nomUtilisateur like '%" + 
+            nomUtilisateur + "%' and prenomUtilisateur like '%" +
+            prenomUtilisateur + "%' and numeroTelUtilisateur like '%" + 
+            numeroTelUtilisateur + "%'");
+        utilisateurs.page(Page.ofSize(pageSize));
+        for (int i = 0; i < pageNumber - 1; i++){
+            utilisateurs.nextPage();
+        }
+        return utilisateurs.list();
     }
 
     @Produces(MediaType.APPLICATION_JSON)

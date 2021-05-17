@@ -16,15 +16,15 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
  */
 @Entity
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
-@JsonPropertyOrder({"idArticle", "idCategorie", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "stockArticle"})
+@JsonPropertyOrder({"idArticle", "idCategorieArticle", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "stockArticle"})
 public class Article extends PanacheEntityBase {
 
 	@Id
 	@Column(name="id_article")
 	private int idArticle;
 
-	@Column(name="id_categorie")
-	private int idCategorie;
+	@Column(name="id_categorie_article")
+	private int idCategorieArticle;
 
 	@Column(name="id_franchise")
 	private int idFranchise;
@@ -52,20 +52,6 @@ public class Article extends PanacheEntityBase {
 	public Article(){
 	}
 
-
-	public void setParams(String descriptionArticle, String estMenu, int idCategorie, int idFranchise,
-	String libelleArticle, double prixArticleHt, double stockArticle, double tva, String urlImgArticle){
-		this.descriptionArticle = descriptionArticle;
-		this.estMenu = estMenu;
-		this.idCategorie = idCategorie;
-		this.idFranchise = idFranchise;
-		this.libelleArticle = libelleArticle;
-		this.prixArticleHt = prixArticleHt;
-		this.stockArticle = stockArticle;
-		this.tva = tva;
-		this.urlImgArticle = urlImgArticle;
-	}
-
 	public int getIdArticle() {
 		return this.idArticle;
 	}
@@ -91,11 +77,11 @@ public class Article extends PanacheEntityBase {
 	}
 
 	public int getIdCategorie() {
-		return this.idCategorie;
+		return this.idCategorieArticle;
 	}
 
 	public void setIdCategorie(int idCategorie) {
-		this.idCategorie = idCategorie;
+		this.idCategorieArticle = idCategorie;
 	}
 
 	public int getIdFranchise() {

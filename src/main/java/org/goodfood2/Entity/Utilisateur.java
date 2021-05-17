@@ -8,14 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 
 /**
  * The persistent class for the Utilisateur database table.
- * 
  */
 @Entity
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
-public class Utilisateur{
+public class Utilisateur  extends PanacheEntityBase {
 	@Id
 	@Column(name="id_utilisateur")
 	private int idUtilisateur;
@@ -36,7 +37,7 @@ public class Utilisateur{
 	private String nomUtilisateur;
 
 	@Column(name="numero_tel_utilisateur")
-	private int numeroTelUtilisateur;
+	private String numeroTelUtilisateur;
 
 	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
@@ -96,11 +97,11 @@ public class Utilisateur{
 		this.nomUtilisateur = nomUtilisateur;
 	}
 
-	public int getNumeroTelUtilisateur() {
+	public String getNumeroTelUtilisateur() {
 		return this.numeroTelUtilisateur;
 	}
 
-	public void setNumeroTelUtilisateur(int numeroTelUtilisateur) {
+	public void setNumeroTelUtilisateur(String numeroTelUtilisateur) {
 		this.numeroTelUtilisateur = numeroTelUtilisateur;
 	}
 

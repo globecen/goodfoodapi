@@ -42,9 +42,8 @@ public class ArticleResource {
         @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
         @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle
         ) {
-
+            
         PanacheQuery<Article> articles = null;
-           
         if (estMenu.equals(""))
             articles = Article.find(
                 "From Article where libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
