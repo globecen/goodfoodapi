@@ -17,6 +17,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 @Entity
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur  extends PanacheEntityBase {
+	
 	@Id
 	@Column(name="id_utilisateur")
 	private int idUtilisateur;
@@ -41,10 +42,6 @@ public class Utilisateur  extends PanacheEntityBase {
 
 	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
-
-	//bi-directional many-to-one association to Commande
-	@OneToMany(mappedBy="utilisateur")
-	private List<Commande> commandes;
 
 	public Utilisateur() {
 	}
@@ -111,28 +108,6 @@ public class Utilisateur  extends PanacheEntityBase {
 
 	public void setPrenomUtilisateur(String prenomUtilisateur) {
 		this.prenomUtilisateur = prenomUtilisateur;
-	}
-
-	public List<Commande> getCommandes() {
-		return this.commandes;
-	}
-
-	public void setCommandes(List<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
-	public Commande addCommande(Commande commande) {
-		getCommandes().add(commande);
-		commande.setUtilisateur(this);
-
-		return commande;
-	}
-
-	public Commande removeCommande(Commande commande) {
-		getCommandes().remove(commande);
-		commande.setUtilisateur(null);
-
-		return commande;
 	}
 
 }
