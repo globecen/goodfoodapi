@@ -18,6 +18,7 @@ import javax.ws.rs.DefaultValue;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
+import org.goodfood2.Entity.Categorie_Article;
 import org.goodfood2.utils.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -40,22 +41,30 @@ public class ArticleResource {
         @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
         @DefaultValue("") @QueryParam("estMenu") String estMenu,
         @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
-        @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle
-        ) {
-            
+        @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
+        @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle
+        ) { 
         PanacheQuery<Article> articles = null;
-        if (estMenu.equals(""))
+        if (idCategorieArticle == -1) {
+            if (estMenu.equals(""))
+                articles = Article.find(
+                    "From Article where libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
+            else 
+                articles = Article.find(
+                    "From Article where estMenu = '" + estMenu + "' and libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
+        }
+        else {
             articles = Article.find(
-                "From Article where libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
-        else 
-            articles = Article.find(
-                "From Article where estMenu = '" + estMenu + "' and libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
+                    "From Article where idCategorieArticle = " + idCategorieArticle);
+        }
         articles.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++){
             articles.nextPage();
         }
         return articles.list();
     }
+
+
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

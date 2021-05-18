@@ -94,7 +94,7 @@ public class UtilisateurResource {
     @Path("/adresse{id}")
     @GET
     public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
-        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.idAdresse, a.numeroAdresse, a.suppNomAdresse, a.villeAdresse, a.codePostal, a.pays from Adresse_Utilisateur as a where a.utilisateur = " + id);
+        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select idAdresse, numeroAdresse, suppNomAdresse, villeAdresse, codePostal, pays from Adresse_Utilisateur where utilisateur = " + id);
         return adressesU.list();
     }
 
