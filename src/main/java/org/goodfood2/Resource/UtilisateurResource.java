@@ -21,6 +21,8 @@ import javax.ws.rs.core.Response;
 
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.goodfood2.Entity.Adresse_Utilisateur;
+import org.goodfood2.Entity.Commande;
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 import org.goodfood2.utils.TokenUtils;
@@ -75,6 +77,24 @@ public class UtilisateurResource {
             throw new Exception("L'utilisateur " + id + " n'existe pas.");
         }    
         return utilisateur;
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/commande{id}")
+    @GET
+    public List<Commande> utilisateurIdCommande(@PathParam("id") Long id) throws Exception{
+        PanacheQuery<Commande> commandes = Commande.find("select idCommande, dateCommande, totalTtc, statutCommande from Commande where utilisateur = " + id);
+        return commandes.list();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/adresse{id}")
+    @GET
+    public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
+        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.idAdresse, a.numeroAdresse, a.suppNomAdresse, a.villeAdresse, a.codePostal, a.pays from Adresse_Utilisateur as a where a.utilisateur = " + id);
+        return adressesU.list();
     }
 
     @Produces(MediaType.APPLICATION_JSON)

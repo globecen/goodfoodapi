@@ -2,6 +2,9 @@ package org.goodfood2.Entity;
 
 import java.util.List;
 import javax.persistence.NamedQuery;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.*;
@@ -12,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Adresse_Utilisateur.findAll", query="SELECT a FROM Adresse_Utilisateur a")
-public class Adresse_Utilisateur {
+public class Adresse_Utilisateur extends PanacheEntityBase{
 
 	@Id
 	@Column(name="id_adresse")
@@ -20,9 +23,6 @@ public class Adresse_Utilisateur {
 
 	@Column(name="code_postal")
 	private int codePostal;
-
-	@Column(name="id_utilisateur")
-	private int idUtilisateur;
 
 	@Column(name="nom_adresse")
 	private String nomAdresse;
@@ -38,9 +38,10 @@ public class Adresse_Utilisateur {
 	@Column(name="ville_adresse")
 	private String villeAdresse;
 
-	//bi-directional many-to-one association to Commande
-	@OneToMany(mappedBy="adresseUtilisateur")
-	private List<Commande> commandes;
+	//bi-directional many-to-one association to Fournisseur
+	@ManyToOne
+	@JoinColumn(name="id_utilisateur")
+	private Utilisateur utilisateur;
 
 	public Adresse_Utilisateur() {
 	}
@@ -59,14 +60,6 @@ public class Adresse_Utilisateur {
 
 	public void setCodePostal(int codePostal) {
 		this.codePostal = codePostal;
-	}
-
-	public int getIdUtilisateur() {
-		return this.idUtilisateur;
-	}
-
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
 	}
 
 	public String getNomAdresse() {
@@ -109,26 +102,5 @@ public class Adresse_Utilisateur {
 		this.villeAdresse = villeAdresse;
 	}
 
-	public List<Commande> getCommandes() {
-		return this.commandes;
-	}
-
-	public void setCommandes(List<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
-	public Commande addCommande(Commande commande) {
-		getCommandes().add(commande);
-		commande.setAdresseUtilisateur(this);
-
-		return commande;
-	}
-
-	public Commande removeCommande(Commande commande) {
-		getCommandes().remove(commande);
-		commande.setAdresseUtilisateur(null);
-
-		return commande;
-	}
 
 }

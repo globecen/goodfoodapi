@@ -44,18 +44,21 @@ public class CommandeResource {
     @GET
     public List<Commande> commandes(
         @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
-        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber
-        /*@DefaultValue("") @QueryParam("emailUtilisateur") String emailUtilisateur,
-        @DefaultValue("") @QueryParam("dateCommande") Timestamp dateCommande,
-        @DefaultValue("1") @QueryParam("statutCommande") int statutCommande*/
+        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+        @QueryParam("dateCommande") Timestamp dateCommande,
+        @DefaultValue("1") @QueryParam("statutCommande") int statutCommande
         ) {
-
-        PanacheQuery<Commande> commandes = Commande.findAll();
-        
-        /*commandes = Commande.find(
-            "select idCommande, idUtilisateur, emailUtilisateur, idAdresse, dateCommande, totalTtc, statutCommande "from Commande "where emailUtilisateur like '%" + 
-            emailUtilisateur + "%' and statutCommande = " + statutCommande + " and extract(day from dateCommande) = extract(day from '" + dateCommande +"')"
-        );*/
+        PanacheQuery<Commande> commandes = null;
+        if (dateCommande == null){
+            commandes = Commande.find(
+                "select idCommande, dateCommande, totalTtc, statutCommande from Commande where statutCommande = " + statutCommande 
+            );
+        }
+        else { 
+            commandes = Commande.find(
+                "select idCommande, dateCommande, totalTtc, statutCommande from Commande where statutCommande = " + statutCommande + " and extract(day from dateCommande) = extract(day from '" + dateCommande +"')"
+            );
+        }    
         commandes.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++){
             commandes.nextPage();
