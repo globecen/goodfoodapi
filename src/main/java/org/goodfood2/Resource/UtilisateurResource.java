@@ -19,7 +19,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.mysql.cj.util.Util;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Utilisateur;

@@ -1,6 +1,5 @@
 package org.goodfood2.Entity;
 
-import java.util.List;
 import javax.persistence.NamedQuery;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
