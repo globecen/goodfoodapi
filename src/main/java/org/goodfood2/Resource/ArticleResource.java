@@ -45,19 +45,16 @@ public class ArticleResource {
         @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle
         ) { 
         PanacheQuery<Article> articles = null;
-        if (idCategorieArticle == -1) {
-            if (estMenu.equals(""))
-                articles = Article.find(
-                    "From Article where libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
-            else 
-                articles = Article.find(
-                    "From Article where estMenu = '" + estMenu + "' and libelleArticle like '%" + libelleArticle + "%' and descriptionArticle like '%" + descriptionArticle + "%'");
-        }
-        else {
-            articles = Article.find(
-                    "From Article where idCategorieArticle = " + idCategorieArticle);
-        }
+        
+        String query = "from Article" + " ";
+        query += String.format("where libelleArticle like '%s'",libelleArticle) + " "; 
+        query += String.format("and descriptionArticle like '%s'",descriptionArticle) + " "; 
+        if(!estMenu.isEmpty())query += String.format("and estMenu = '%s'",estMenu) + " "; 
+        if (idCategorieArticle > -1) query += String.format("and idCategorieArticle = %d ",idCategorieArticle) + ";"; 
+        
+        articles = Article.find(query);
         articles.page(Page.ofSize(pageSize));
+
         for (int i = 0; i < pageNumber - 1; i++){
             articles.nextPage();
         }
