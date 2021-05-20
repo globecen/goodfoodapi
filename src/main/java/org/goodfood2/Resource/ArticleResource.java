@@ -1,4 +1,5 @@
 package org.goodfood2.Resource;
+import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
@@ -9,6 +10,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -172,5 +175,40 @@ public class ArticleResource {
             ingrs.nextPage();
         }
         return ingrs.list();
+    }
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/")
+    @GET
+    public List<Article> articles(
+                                    @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
+                                    @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+                                    @DefaultValue("") @QueryParam("estMenu") String estMenu,
+                                    @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
+                                    @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
+                                    @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle
+    ) { 
+        PanacheQuery<Article> articles = null;
+        //String query = String.format("FROM Article WHERE estMenu = '%s' AND libelleArticle LIKE '%s' AND LIKE '%s'", estMenu);
+        String query = "FROM Article" + " ";
+        query += String.format("WHERE libelleArticle like '%s'",libelleArticle) + " "; 
+        query += String.format("AND descriptionArticle like '%s'",descriptionArticle) + " "; 
+
+        if(!estMenu.isEmpty())
+        {
+            query += String.format("AND estMenu = '%s'",estMenu) + " "; 
+        }
+
+        if (idCategorieArticle > -1) {
+            query += String.format("AND idCategorieArticle = %d ",idCategorieArticle) + ";"; 
+        }
+
+        articles = Article.find(query);
+        
+        articles.page(Page.ofSize(pageSize));
+        for (int i = 0; i < pageNumber - 1; i++){
+            articles.nextPage();
+        }
+        return articles.list();
     }
 }

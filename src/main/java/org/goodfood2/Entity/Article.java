@@ -23,8 +23,8 @@ public class Article extends PanacheEntityBase {
 	@Column(name="id_article")
 	private int idArticle;
 
-	@Column(name="id_categorie")
-	private int idCategorie;
+	@Column(name="id_categorie_article")
+	private int idCategorieArticle;
 
 	@Column(name="id_franchise")
 	private int idFranchise;
