@@ -47,10 +47,10 @@ public class ArticleResource {
         PanacheQuery<Article> articles = null;
         
         String query = "from Article" + " ";
-        query += String.format("where libelleArticle like '%s'",libelleArticle) + " "; 
-        query += String.format("and descriptionArticle like '%s'",descriptionArticle) + " "; 
-        if(!estMenu.isEmpty())query += String.format("and estMenu = '%s'",estMenu) + " "; 
-        if (idCategorieArticle > -1) query += String.format("and idCategorieArticle = %d ",idCategorieArticle) + ";"; 
+        query += String.format("where libelleArticle like '%" + libelleArticle + "%'"); 
+        query += String.format("and descriptionArticle like '%" + descriptionArticle + "%'"); 
+        if(!estMenu.isEmpty()) query += String.format("and estMenu = '" + estMenu + "'%"); 
+        if(idCategorieArticle > -1) query += String.format("and idCategorieArticle = '%" + idCategorieArticle + "%'"); 
         
         articles = Article.find(query);
         articles.page(Page.ofSize(pageSize));
