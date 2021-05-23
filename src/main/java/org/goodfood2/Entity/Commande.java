@@ -1,6 +1,6 @@
 package org.goodfood2.Entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 
 /**
@@ -30,9 +31,8 @@ public class Commande{
 	@Column(name="id_commande")
 	private int idCommande;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="date_commande")
-	private Date dateCommande;
+	private Timestamp dateCommande;
 
 	@Column(name="statut_commande")
 	private int statutCommande;
@@ -65,11 +65,11 @@ public class Commande{
 		this.idCommande = idCommande;
 	}
 
-	public Date getDateCommande() {
+	public Timestamp getDateCommande() {
 		return this.dateCommande;
 	}
 
-	public void setDateCommande(Date dateCommande) {
+	public void setDateCommande(Timestamp dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 

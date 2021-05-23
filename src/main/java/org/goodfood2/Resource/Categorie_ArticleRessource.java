@@ -6,7 +6,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,9 +35,6 @@ public class Categorie_ArticleRessource {
         Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Categorie_Article", "idCategorieArticle", id.toString()))
                 .getResultList().get(0);
-        if (categorie_Article == null) {
-            throw new Exception("La categorie d'article " + id + " n'existe pas.");
-        }    
         return categorie_Article;
     }
 
@@ -47,9 +46,6 @@ public class Categorie_ArticleRessource {
         Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Categorie_Article", "libelleCategorieArticle", libelle_categorie_article))
                 .getResultList().get(0);
-        if (categorie_Article == null) {
-            throw new Exception("La categorie d'article " + libelle_categorie_article + " n'existe pas.");
-        }    
         return categorie_Article;
     }
 
@@ -70,6 +66,31 @@ public class Categorie_ArticleRessource {
     @Transactional
     public Response creerCategorieArticle(Categorie_Article cA) throws Exception {
         entityManager.persist(cA);
+        return Response.status(200).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/modify")
+    @PATCH
+    @Transactional
+    public Categorie_Article modifCategorieArticle(Categorie_Article cA) throws Exception {
+        return entityManager.merge(cA);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete{id}")
+    @DELETE
+    @Transactional
+    public Response supprCategorieArticle(@PathParam("id") Long id) throws Exception{
+        Categorie_Article cArticle = (Categorie_Article)entityManager.createQuery(
+            QueryUtils.makeFindByParamQueryInt("Categorie_Article", "id", id.toString()))
+                .getResultList().get(0);
+        if (cArticle == null) {
+            return Response.status(404).build();
+        }
+        entityManager.remove(cArticle);
         return Response.status(200).build();
     }
 }

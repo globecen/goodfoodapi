@@ -69,22 +69,18 @@ public class PromoResource {
                 .getResultList().get(0);
         if (promo == null) {
             return Response.status(404).build();
-            //throw new Exception("La promo " + id + " n'existe pas.");
         }
         entityManager.remove(promo);
         return Response.status(200).build();
     }
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
+    @Path("/id{id}")
     @GET
     public Promo promoId(@PathParam("id") Long id) throws Exception{
         Promo promo = (Promo)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Promo", "id", id.toString()))
                 .getResultList().get(0);
-        if (promo == null) {
-            throw new Exception("La promo " + id + " n'existe pas.");
-        }    
         return promo;
     }
     @Produces(MediaType.APPLICATION_JSON)

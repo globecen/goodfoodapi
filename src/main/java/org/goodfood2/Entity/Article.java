@@ -15,8 +15,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
  * 
  */
 @Entity
+<<<<<<< HEAD
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
 @JsonPropertyOrder({"idArticle", "idCategorieArticle", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "estActif","stockArticle"})
+=======
+@NamedQuery(name="Article.findAll", query="select a from Article a")
+@JsonPropertyOrder({"idArticle", "idCategorieArticle", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "stockArticle"})
+>>>>>>> origin/master
 public class Article extends PanacheEntityBase {
 
 	@Id

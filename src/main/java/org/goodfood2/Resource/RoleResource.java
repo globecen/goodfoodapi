@@ -6,9 +6,12 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,6 +44,31 @@ public class RoleResource {
     @Transactional
     public Response creerRole(Role r) throws Exception {
         entityManager.persist(r);
+        return Response.status(200).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/modify")
+    @PATCH
+    @Transactional
+    public Role modifRole(Role r) throws Exception {
+        return entityManager.merge(r);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete{id}")
+    @DELETE
+    @Transactional
+    public Response supprRole(@PathParam("id") Long id) throws Exception{
+        Role r = (Role)entityManager.createQuery(
+            QueryUtils.makeFindByParamQueryInt("Role", "id", id.toString()))
+                .getResultList().get(0);
+        if (r == null) {
+            return Response.status(404).build();
+        }
+        entityManager.remove(r);
         return Response.status(200).build();
     }
 }

@@ -13,16 +13,18 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.DefaultValue;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
+import org.goodfood2.Entity.Categorie_Article;
 import org.goodfood2.utils.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-
 import javax.persistence.EntityManager;
 
 @Path("/Article")
@@ -31,36 +33,6 @@ public class ArticleResource {
 
     @Inject
     EntityManager entityManager;
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    @GET
-    public List<Article> articles() {
-        return entityManager.createQuery(
-            QueryUtils.makeFindAllQuery("Article"))
-                .getResultList();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/ingredient")
-    @GET
-    public List<Article> articlesIngredient() {
-        return entityManager.createQuery(
-            "from Article obj where estMenu = 0")
-                .getResultList();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/menu")
-    @GET
-    public List<Article> articlesMenu() {
-        return entityManager.createQuery(
-            "from Article obj where estMenu = 1")
-                .getResultList();
-    }
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -91,15 +63,12 @@ public class ArticleResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
+    @Path("/id{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
                 .getResultList().get(0);
-        if (article == null) {
-            throw new Exception("L'article " + id + " n'existe pas.");
-        }    
         return article;
     }
 
@@ -113,7 +82,7 @@ public class ArticleResource {
             QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
                 .getResultList().get(0);
         if (article == null) {
-            throw new Exception("L'article " + id + " n'existe pas.");
+            return Response.status(404).build();
         }
         entityManager.remove(article);
         return Response.status(200).build();
