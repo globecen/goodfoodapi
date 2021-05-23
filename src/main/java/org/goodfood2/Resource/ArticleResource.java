@@ -63,7 +63,7 @@ public class ArticleResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/id{id}")
+    @Path("/{id}")
     @GET
     public Article articleId(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
