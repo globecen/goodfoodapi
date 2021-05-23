@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -20,10 +22,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @Entity
 @NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c")
-@JsonPropertyOrder({"idCommande", "idUtilisateur", "idAdresse", "dateCommande", "totalTtc", "statutCommande"})
-public class Commande  {
+@JsonPropertyOrder({"idCommande", "idUtilisateur", "id_adresse_facturation", "id_adresse_livraison", "dateCommande", "totalTtc", "statutCommande"})
+public class Commande{
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_commande")
 	private int idCommande;
 
@@ -37,15 +40,19 @@ public class Commande  {
 	@Column(name="total_ttc")
 	private double totalTtc;
 
-	//bi-directional many-to-one association to Adresse_Utilisateur
-	@ManyToOne
-	@JoinColumn(name="id_adresse")
-	private Adresse_Utilisateur adresseUtilisateur;
+	@Column(name="id_adresse_facturation")
+	private Integer idAdresseFacturation;
 
-	//bi-directional many-to-one association to Utilisateur
+	@Column(name="id_adresse_livraison")
+	private Integer idAdresseLivraison;
+
 	@ManyToOne
 	@JoinColumn(name="id_utilisateur")
 	private Utilisateur utilisateur;
+
+	@Column(name="est_active")
+	private int estActive;
+
 
 	public Commande() {
 	}
@@ -82,12 +89,20 @@ public class Commande  {
 		this.totalTtc = totalTtc;
 	}
 
-	public Adresse_Utilisateur getAdresseUtilisateur() {
-		return this.adresseUtilisateur;
+	public int getIdAdresseFacturation() {
+		return this.idAdresseFacturation;
 	}
 
-	public void setAdresseUtilisateur(Adresse_Utilisateur adresseUtilisateur) {
-		this.adresseUtilisateur = adresseUtilisateur;
+	public void setIdAdresseFacturation(Integer idAdresseFacturation) {
+		this.idAdresseFacturation = idAdresseFacturation;
+	}
+
+	public int getIdAdresseLivraison() {
+		return this.idAdresseFacturation;
+	}
+
+	public void setIdAdresseLivraison(Integer idAdresseLivraison) {
+		this.idAdresseLivraison = idAdresseLivraison;
 	}
 
 	public Utilisateur getUtilisateur() {
@@ -96,6 +111,14 @@ public class Commande  {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 
 }

@@ -4,7 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 /**
  * The persistent class for the Ligne_Commande database table.
@@ -15,11 +16,15 @@ import javax.persistence.NamedQuery;
 public class Ligne_Commande {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_ligneCommande")
 	private int idLigneCommande;
 	
 	@Column(name="id_commande")
 	private int idCommande;
+
+	@Column(name="id_article")
+	private int idArticle;
 
 	@Column(name="quantite_article")
 	private double quantiteArticle;
@@ -44,6 +49,14 @@ public class Ligne_Commande {
 
 	public void setIdCommande(int idCommande) {
 		this.idCommande = idCommande;
+	}
+
+	public int getIdArticle() {
+		return this.idArticle;
+	}
+
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
 	}
 
 	public double getQuantiteArticle() {

@@ -7,14 +7,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Column;
 
-
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 /**
  * The persistent class for the Adresse_Fournisseur database table.
  * 
  */
 @Entity
 @NamedQuery(name="Adresse_Fournisseur.findAll", query="SELECT a FROM Adresse_Fournisseur a")
-public class Adresse_Fournisseur  {
+public class Adresse_Fournisseur  extends PanacheEntityBase{
 	@Id
 	@Column(name="id_adresse")
 	private int idAdresse;
@@ -36,6 +36,8 @@ public class Adresse_Fournisseur  {
 	@Column(name="ville_adresse")
 	private String villeAdresse;
 
+	@Column(name="est_active")
+	private int estActive;
 	//bi-directional many-to-one association to Fournisseur
 	@ManyToOne
 	@JoinColumn(name="id_tiers")
@@ -99,6 +101,15 @@ public class Adresse_Fournisseur  {
 	public void setVilleAdresse(String villeAdresse) {
 		this.villeAdresse = villeAdresse;
 	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
+	}
+
 
 	public Fournisseur getFournisseur() {
 		return this.fournisseur;

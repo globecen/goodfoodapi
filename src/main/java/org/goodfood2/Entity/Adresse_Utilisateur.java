@@ -5,7 +5,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.*;
-
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 /**
  * The persistent class for the Adresse_Utilisateur database table.
  * 
@@ -36,11 +36,10 @@ public class Adresse_Utilisateur {
 	private String suppNomAdresse;
 
 	@Column(name="ville_adresse")
-	private String villeAdresse;
+	private String villeAdresse;	
 
-	//bi-directional many-to-one association to Commande
-	@OneToMany(mappedBy="adresseUtilisateur")
-	private List<Commande> commandes;
+	@Column(name="est_active")
+	private int estActive;
 
 	public Adresse_Utilisateur() {
 	}
@@ -108,27 +107,13 @@ public class Adresse_Utilisateur {
 	public void setVilleAdresse(String villeAdresse) {
 		this.villeAdresse = villeAdresse;
 	}
-
-	public List<Commande> getCommandes() {
-		return this.commandes;
+	
+	public int getEstActive() {
+		return this.estActive;
 	}
 
-	public void setCommandes(List<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
-	public Commande addCommande(Commande commande) {
-		getCommandes().add(commande);
-		commande.setAdresseUtilisateur(this);
-
-		return commande;
-	}
-
-	public Commande removeCommande(Commande commande) {
-		getCommandes().remove(commande);
-		commande.setAdresseUtilisateur(null);
-
-		return commande;
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 
 }

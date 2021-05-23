@@ -12,6 +12,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.DefaultValue;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Fournisseur;
@@ -28,7 +30,7 @@ public class Adresse_FournisseurRessource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Adresse_Fournisseur> adressesFournisseur() {
+    public List<Adresse_Fournisseur> adressesFournisseur_old() {
         return entityManager.createQuery(
             QueryUtils.makeFindAllQuery("Adresse_Fournisseur"))
                 .getResultList();

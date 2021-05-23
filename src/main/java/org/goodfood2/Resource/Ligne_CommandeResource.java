@@ -36,11 +36,28 @@ public class Ligne_CommandeResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/create")
+    @Path("/create1")
     @POST
     @Transactional
     public Response creerLigneCommande(Ligne_Commande lC) throws Exception {
         entityManager.persist(lC);
         return Response.status(200).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/create")
+    @POST
+    @Transactional
+    public Response creerLigneCommande(Ligne_Commande[] lC) throws Exception {
+        try {
+            for (Ligne_Commande ligne_Commande : lC) {
+                entityManager.persist(ligne_Commande);
+            }
+            return Response.status(200).build();
+        } catch (Exception e) {
+            return Response.status(500).build();
+        }
+
     }
 }

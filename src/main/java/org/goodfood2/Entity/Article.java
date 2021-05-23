@@ -16,7 +16,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
  */
 @Entity
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
-@JsonPropertyOrder({"idArticle", "idCategorie", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "stockArticle"})
+@JsonPropertyOrder({"idArticle", "idCategorieArticle", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "estActif","stockArticle"})
 public class Article extends PanacheEntityBase {
 
 	@Id
@@ -46,26 +46,15 @@ public class Article extends PanacheEntityBase {
 	@Column(name="est_menu")
 	private String estMenu;
 
+	@Column(name="est_active")
+	private int estActive;
+
 	@Column(name="stock_article")
 	private double stockArticle;
 
 	public Article(){
 	}
-
-
-	public void setParams(String descriptionArticle, String estMenu, int idCategorie, int idFranchise,
-	String libelleArticle, double prixArticleHt, double stockArticle, double tva, String urlImgArticle){
-		this.descriptionArticle = descriptionArticle;
-		this.estMenu = estMenu;
-		this.idCategorie = idCategorie;
-		this.idFranchise = idFranchise;
-		this.libelleArticle = libelleArticle;
-		this.prixArticleHt = prixArticleHt;
-		this.stockArticle = stockArticle;
-		this.tva = tva;
-		this.urlImgArticle = urlImgArticle;
-	}
-
+	
 	public int getIdArticle() {
 		return this.idArticle;
 	}
@@ -90,12 +79,20 @@ public class Article extends PanacheEntityBase {
 		this.estMenu = estMenu;
 	}
 
-	public int getIdCategorie() {
-		return this.idCategorie;
+	public int getEstActive() {
+		return this.estActive;
 	}
 
-	public void setIdCategorie(int idCategorie) {
-		this.idCategorie = idCategorie;
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
+	}
+
+	public int getIdCategorieArticle() {
+		return this.idCategorieArticle;
+	}
+
+	public void setIdCategorieArticle(int idCategorieArticle) {
+		this.idCategorieArticle = idCategorieArticle;
 	}
 
 	public int getIdFranchise() {

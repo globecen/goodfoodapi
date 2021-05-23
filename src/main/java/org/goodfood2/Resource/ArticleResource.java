@@ -176,35 +176,38 @@ public class ArticleResource {
         }
         return ingrs.list();
     }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
     public List<Article> articles(
-                                    @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
-                                    @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-                                    @DefaultValue("") @QueryParam("estMenu") String estMenu,
-                                    @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
-                                    @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
-                                    @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle
+        @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
+        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+        @DefaultValue("") @QueryParam("estMenu") String estMenu,
+        @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
+        @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
+        @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle
     ) { 
         PanacheQuery<Article> articles = null;
         //String query = String.format("FROM Article WHERE estMenu = '%s' AND libelleArticle LIKE '%s' AND LIKE '%s'", estMenu);
-        String query = "FROM Article" + " ";
-        query += String.format("WHERE libelleArticle like '%s'",libelleArticle) + " "; 
-        query += String.format("AND descriptionArticle like '%s'",descriptionArticle) + " "; 
+        String query = "from Article" + " ";
+        query += String.format("where libelleArticle like '%s'","%" + libelleArticle + "%") + " "; 
+        query += String.format("and descriptionArticle like '%s'","%" + descriptionArticle + "%") + " "; 
 
         if(!estMenu.isEmpty())
         {
-            query += String.format("AND estMenu = '%s'",estMenu) + " "; 
+            query += String.format("and estMenu = '%s'",estMenu) + " "; 
         }
 
         if (idCategorieArticle > -1) {
-            query += String.format("AND idCategorieArticle = %d ",idCategorieArticle) + ";"; 
+            query += String.format("and idCategorieArticle = %d",idCategorieArticle) + " "; 
         }
 
+        query += "and estActive = 1"; 
+
         articles = Article.find(query);
-        
+        System.out.print(query);
         articles.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++){
             articles.nextPage();
