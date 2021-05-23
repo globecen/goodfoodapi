@@ -79,14 +79,6 @@ public class UtilisateurResource {
         return utilisateur;
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/commande{id}")
-    @GET
-    public List<Commande> utilisateurIdCommande(@PathParam("id") Long id) throws Exception{
-        PanacheQuery<Commande> commandes = Commande.find("select idCommande, dateCommande, totalTtc, statutCommande from Commande where utilisateur = " + id);
-        return commandes.list();
-    }
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

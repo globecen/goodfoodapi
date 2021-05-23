@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
+import org.goodfood2.utils.QueryUtils;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Commande;
