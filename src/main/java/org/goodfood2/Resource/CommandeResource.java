@@ -7,12 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-<<<<<<< HEAD
 import javax.persistence.EntityTransaction;
-=======
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
->>>>>>> origin/master
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
