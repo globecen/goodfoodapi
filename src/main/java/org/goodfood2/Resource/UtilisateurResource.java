@@ -27,6 +27,7 @@ import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 import org.goodfood2.utils.TokenUtils;
 
+import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
 @Path("/User")
@@ -52,7 +53,7 @@ public class UtilisateurResource {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
         utilisateurs = Utilisateur.find(
-            "select adresseUtilisateur, emailUtilisateur, idRole, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where adresseUtilisateur like '%" + 
+            "select adresseUtilisateur, emailUtilisateur, role, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where adresseUtilisateur like '%" + 
             adresseUtilisateur + "%' and emailUtilisateur like '%" + 
             emailUtilisateur + "%' and nomUtilisateur like '%" + 
             nomUtilisateur + "%' and prenomUtilisateur like '%" +
@@ -137,7 +138,7 @@ public class UtilisateurResource {
         String ret;
         long tokenDuration = 3600;
         Utilisateur utilisateur = this.utilisateurEmail(email);
-        String token = TokenUtils.generateToken(tokenDuration, email, utilisateur.getIdUtilisateur(), utilisateur.getIdRole());
+        String token = TokenUtils.generateToken(tokenDuration, email, utilisateur.getIdUtilisateur(), utilisateur.getRole());
         utilisateur = this.utilisateurEmailMdp(email, password);
         if (utilisateur != null) ret = token;
         else ret = "Email ou mot de passe incorrect";

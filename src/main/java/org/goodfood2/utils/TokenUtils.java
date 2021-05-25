@@ -6,11 +6,12 @@ import io.smallrye.jwt.build.JwtClaimsBuilder;
 import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
 public class TokenUtils {
-    public static String generateToken(Long duration, String email, int id, int role) throws Exception {
+    public static String generateToken(Long duration, String email, int id, String role) throws Exception {
         String privateKeyLocation = "/META-INF/resources/privateKey.pem";
         PrivateKey privateKey = readPrivateKey(privateKeyLocation);
         JwtClaimsBuilder claimsBuilder = Jwt.claims();
@@ -31,12 +32,29 @@ public class TokenUtils {
         }
     }
 
+    
+    public static PublicKey readPublicKey(final String pemResName) throws Exception {
+        try (InputStream contentIS = TokenUtils.class.getResourceAsStream(pemResName)) {
+            byte[] tmp = new byte[4096];
+            int length = contentIS.read(tmp);
+            return decodePublicKey(new String(tmp, 0, length, "UTF-8"));
+        }
+    }
+
     public static PrivateKey decodePrivateKey(final String pemEncoded) throws Exception {
         byte[] encodedBytes = toEncodedBytes(pemEncoded);
 
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encodedBytes);
         KeyFactory kf = KeyFactory.getInstance("RSA");
         return kf.generatePrivate(keySpec);
+    }
+
+    public static PublicKey decodePublicKey(final String pemEncoded) throws Exception {
+        byte[] encodedBytes = toEncodedBytes(pemEncoded);
+
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encodedBytes);
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        return kf.generatePublic(keySpec);
     }
 
     public static byte[] toEncodedBytes(final String pemEncoded) {

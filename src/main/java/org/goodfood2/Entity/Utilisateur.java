@@ -9,12 +9,18 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.security.jpa.Password;
+import io.quarkus.security.jpa.PasswordType;
+import io.quarkus.security.jpa.Roles;
+import io.quarkus.security.jpa.UserDefinition;
+import io.quarkus.security.jpa.Username;
 
 
 /**
  * The persistent class for the Utilisateur database table.
  */
 @Entity
+@UserDefinition
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur  extends PanacheEntityBase {
 	
@@ -25,12 +31,11 @@ public class Utilisateur  extends PanacheEntityBase {
 	@Column(name="adresse_utilisateur")
 	private int adresseUtilisateur;
 
+	@Username
 	@Column(name="email_utilisateur")
 	private String emailUtilisateur;
 
-	@Column(name="id_role")
-	private int idRole;
-
+	@Password(PasswordType.CLEAR)
 	@Column(name="mdp_utilisateur")
 	private String mdpUtilisateur;
 
@@ -42,6 +47,10 @@ public class Utilisateur  extends PanacheEntityBase {
 
 	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
+
+	@Roles
+	@Column(name="role")
+	private String role;
 
 	public Utilisateur() {
 	}
@@ -70,12 +79,12 @@ public class Utilisateur  extends PanacheEntityBase {
 		this.emailUtilisateur = emailUtilisateur;
 	}
 
-	public int getIdRole() {
-		return this.idRole;
+	public String getRole() {
+		return this.role;
 	}
 
-	public void setIdRole(int idRole) {
-		this.idRole = idRole;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getMdpUtilisateur() {

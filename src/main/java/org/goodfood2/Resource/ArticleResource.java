@@ -1,12 +1,17 @@
 package org.goodfood2.Resource;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.Path;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.CookieParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -14,10 +19,14 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.DefaultValue;
+import io.smallrye.jwt.auth.principal.JWTParser;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.Entity.Categorie_Article;
@@ -31,6 +40,8 @@ import javax.persistence.EntityManager;
 @Tag(name = "Article Resource", description = "L'ensemble des routes pour la partie Article")
 public class ArticleResource {
 
+    @Inject JWTParser parser;
+
     @Inject
     EntityManager entityManager;
 
@@ -39,8 +50,17 @@ public class ArticleResource {
     @Path("/count")
     @GET
     @Transactional
-    public long countArticle() throws Exception {
-        return Article.count();
+    public long countArticle(@CookieParam("jwt") String jwtCookie) throws Exception {
+        Long ret;
+        if (jwtCookie == null) ret = Long.parseLong("-1");
+        else{
+            String privateKeyLocation = "/META-INF/resources/privateKey.pem";
+            PublicKey publicKey = TokenUtils.readPublicKey(privateKeyLocation);
+            JsonWebToken jwt = parser.verify(jwtCookie, publicKey);
+            
+            ret = Article.count();
+        }
+        return ret;
     }
 
     @Produces(MediaType.APPLICATION_JSON)
