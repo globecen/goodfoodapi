@@ -53,42 +53,34 @@ public class ArticleResource {
     @Inject
     EntityManager entityManager;
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/count")
     @GET
     @Transactional
-    @RolesAllowed({ "user", "admin" }) 
+    @PermitAll
     public long countArticle() throws Exception {
         return Article.count();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/ingr/count")
     @GET
     @Transactional
-    @RolesAllowed({ "user", "admin" }) 
+    @PermitAll
     public long countIngr() throws Exception {
         return Article.count("from Article obj where estMenu = 0");
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/menu/count")
     @GET
     @Transactional
-    @RolesAllowed({ "user", "admin" }) 
+    @PermitAll
     public long countMenu() throws Exception {
         return Article.count("from Article obj where estMenu = 1");
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @GET
     @Transactional
-    @RolesAllowed({ "user", "admin" }) 
+    @PermitAll
     public Article articleId(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
@@ -96,8 +88,6 @@ public class ArticleResource {
         return article;
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/delete{id}")
     @DELETE
     @Transactional
@@ -113,20 +103,16 @@ public class ArticleResource {
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
-    @RolesAllowed({ "user", "admin" }) 
+    @RolesAllowed({ "admin" }) 
     public Response creerArticle(@Context SecurityContext sec, Article a) throws Exception {
         Principal user = sec.getUserPrincipal(); 
         entityManager.persist(a);
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/modify")
     @PATCH
     @Transactional
@@ -135,8 +121,6 @@ public class ArticleResource {
         return entityManager.merge(a);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
     @Transactional
