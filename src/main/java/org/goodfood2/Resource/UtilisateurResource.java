@@ -27,6 +27,7 @@ import org.goodfood2.Entity.Commande;
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 import org.goodfood2.utils.TokenUtils;
+import org.wildfly.security.password.util.ModularCrypt;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -105,11 +106,7 @@ public class UtilisateurResource {
         return utilisateur;
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/email{email}")
-    @GET
-    public Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception{
+    private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception{
         Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Utilisateur", "emailUtilisateur", email))
                 .getResultList().get(0);
@@ -143,12 +140,18 @@ public class UtilisateurResource {
     @Path("/login/{email}&{password}")
     @POST
     public String val (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
-        String ret;
+        String ret = "";
         long tokenDuration = 3600;
-        Utilisateur utilisateur  = this.utilisateurEmailMdp(email, BcryptUtil.bcryptHash(password));
-        String token = TokenUtils.generateTokenSmallRye(tokenDuration, email, utilisateur.getIdUtilisateur(), utilisateur.getRole());
-        if (utilisateur != null) ret = token;
-        else ret = "Email ou mot de passe incorrect";
+        boolean test = false;
+        Utilisateur userFound = this.utilisateurEmail(email);
+        if (userFound != null) {
+            test = TokenUtils.verifyPassword(password, userFound.getMdpUtilisateur());
+            if (test)
+                ret = TokenUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(), userFound.getRole());
+        }
+        else 
+            throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");   
+
         return ret;
     }
 
