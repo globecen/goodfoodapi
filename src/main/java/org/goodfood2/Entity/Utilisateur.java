@@ -20,7 +20,6 @@ import io.quarkus.security.jpa.Username;
  * The persistent class for the Utilisateur database table.
  */
 @Entity
-@UserDefinition
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur  extends PanacheEntityBase {
 	
@@ -31,7 +30,6 @@ public class Utilisateur  extends PanacheEntityBase {
 	@Column(name="adresse_utilisateur")
 	private int adresseUtilisateur;
 
-	@Username
 	@Column(name="email_utilisateur")
 	private String emailUtilisateur;
 
