@@ -34,13 +34,13 @@ import org.goodfood2.utils.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
+import io.quarkus.vertx.web.Header;
+
 import javax.persistence.EntityManager;
 
 @Path("/Article")
 @Tag(name = "Article Resource", description = "L'ensemble des routes pour la partie Article")
 public class ArticleResource {
-
-    @Inject JWTParser parser;
 
     @Inject
     EntityManager entityManager;
@@ -50,17 +50,8 @@ public class ArticleResource {
     @Path("/count")
     @GET
     @Transactional
-    public long countArticle(@CookieParam("jwt") String jwtCookie) throws Exception {
-        Long ret;
-        if (jwtCookie == null) ret = Long.parseLong("-1");
-        else{
-            String privateKeyLocation = "/META-INF/resources/privateKey.pem";
-            PublicKey publicKey = TokenUtils.readPublicKey(privateKeyLocation);
-            JsonWebToken jwt = parser.verify(jwtCookie, publicKey);
-            
-            ret = Article.count();
-        }
-        return ret;
+    public long countArticle(@Header("header") String header) throws Exception {
+        return Article.count();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
