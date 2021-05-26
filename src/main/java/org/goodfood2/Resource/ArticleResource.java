@@ -140,7 +140,7 @@ public class ArticleResource {
     @Path("/")
     @GET
     @Transactional
-    @RolesAllowed({ "user", "admin" })
+    @PermitAll
     public List<Article> articles(
         @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
         @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
