@@ -58,12 +58,8 @@ public class ArticleResource {
     @Path("/count")
     @GET
     @Transactional
-<<<<<<< HEAD
     @RolesAllowed({ "user", "admin" }) 
     public long countArticle() throws Exception {
-=======
-    public long countArticle(@Header("header") String header) throws Exception {
->>>>>>> 1586f58cc22decef9803131fa12d4c4d816d853c
         return Article.count();
     }
 
