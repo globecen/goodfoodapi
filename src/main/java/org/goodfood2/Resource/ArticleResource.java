@@ -17,6 +17,15 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.DefaultValue;
+import java.security.Principal;
+
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
@@ -39,6 +48,7 @@ public class ArticleResource {
     @Path("/count")
     @GET
     @Transactional
+    @RolesAllowed({ "user", "admin" }) 
     public long countArticle() throws Exception {
         return Article.count();
     }
@@ -48,6 +58,7 @@ public class ArticleResource {
     @Path("/ingr/count")
     @GET
     @Transactional
+    @RolesAllowed({ "user", "admin" }) 
     public long countIngr() throws Exception {
         return Article.count("from Article obj where estMenu = 0");
     }
@@ -57,6 +68,7 @@ public class ArticleResource {
     @Path("/menu/count")
     @GET
     @Transactional
+    @RolesAllowed({ "user", "admin" }) 
     public long countMenu() throws Exception {
         return Article.count("from Article obj where estMenu = 1");
     }
@@ -65,6 +77,8 @@ public class ArticleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @GET
+    @Transactional
+    @RolesAllowed({ "user", "admin" }) 
     public Article articleId(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
@@ -77,6 +91,7 @@ public class ArticleResource {
     @Path("/delete{id}")
     @DELETE
     @Transactional
+    @RolesAllowed({ "admin" }) 
     public Response supprArticle(@PathParam("id") Long id) throws Exception{
         Article article = (Article)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
@@ -93,7 +108,9 @@ public class ArticleResource {
     @Path("/create")
     @POST
     @Transactional
-    public Response creerArticle(Article a) throws Exception {
+    @RolesAllowed({ "user", "admin" }) 
+    public Response creerArticle(@Context SecurityContext sec, Article a) throws Exception {
+        Principal user = sec.getUserPrincipal(); 
         entityManager.persist(a);
         return Response.status(200).build();
     }
@@ -103,53 +120,17 @@ public class ArticleResource {
     @Path("/modify")
     @PATCH
     @Transactional
+    @RolesAllowed({ "admin" }) 
     public Article modifArticle(Article a) throws Exception {
         return entityManager.merge(a);
     }
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/a_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Article> articlesPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Article> articles = Article.findAll();
-        articles.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            articles.nextPage();
-        }
-        return articles.list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/menu/a_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Article> menusPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Article> menus = Article.find("estMenu", "1");
-        menus.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            menus.nextPage();
-        }
-        return menus.list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/ingr/a_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Article> ingrsPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Article> ingrs = Article.find("estMenu", "0");
-        ingrs.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            ingrs.nextPage();
-        }
-        return ingrs.list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
+    @Transactional
+    @RolesAllowed({ "user", "admin" })
     public List<Article> articles(
         @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
         @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
@@ -183,4 +164,5 @@ public class ArticleResource {
         }
         return articles.list();
     }
+    
 }

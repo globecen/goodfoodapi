@@ -60,15 +60,20 @@ public class CommandeResource {
     @Transactional
     public Commande creerCommande(Commande c) throws Exception {
         try {
+            c.setEstActive(1);
+            c.setStatutCommande(1); 
+            
             entityManager.persist(c);
+            entityManager.getTransaction().commit();
             entityManager.flush();
-            entityManager.refresh(c);
+            entityManager.refresh(c);   
+
             return c;
         } catch (Exception e) {
+            entityManager.getTransaction().rollback();
             Response.status(500).build();
             return c;
         }
-
     }
 
     @Produces(MediaType.APPLICATION_JSON)

@@ -28,9 +28,6 @@ public class Utilisateur  extends PanacheEntityBase {
 	@Column(name="email_utilisateur")
 	private String emailUtilisateur;
 
-	@Column(name="id_role")
-	private int idRole;
-
 	@Column(name="mdp_utilisateur")
 	private String mdpUtilisateur;
 
@@ -42,6 +39,9 @@ public class Utilisateur  extends PanacheEntityBase {
 
 	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
+
+	@Column(name="role")
+	private String role;
 
 	public Utilisateur() {
 	}
@@ -70,12 +70,12 @@ public class Utilisateur  extends PanacheEntityBase {
 		this.emailUtilisateur = emailUtilisateur;
 	}
 
-	public int getIdRole() {
-		return this.idRole;
+	public String getRole() {
+		return this.role;
 	}
 
-	public void setIdRole(int idRole) {
-		this.idRole = idRole;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getMdpUtilisateur() {

@@ -1,16 +1,36 @@
 package org.goodfood2.utils;
 
+import java.util.Collections;
+import javax.json.Json;
+import javax.json.JsonObject;
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtClaimsBuilder;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
-
+import org.eclipse.microprofile.jwt.Claims;
+import java.util.Arrays;
+import java.util.HashSet;
 public class TokenUtils {
-    public static String generateToken(Long duration, String email, int id, int role) throws Exception {
+
+    public static String generateTokenSmallRye(Long duration, String email, int id, String role) throws Exception {
+        String token =
+            Jwt.issuer("https://localhost:8080/issuer") 
+                .upn(email) 
+                .groups(new HashSet<>(Arrays.asList(role))) 
+                .claim("duration", duration) 
+                .claim("email", email) 
+                .claim("id", id) 
+                .claim("role", role) 
+            .sign();
+        return token;
+    }
+
+    public static String generateToken(Long duration, String email, int id, String role) throws Exception {
         String privateKeyLocation = "/META-INF/resources/privateKey.pem";
         PrivateKey privateKey = readPrivateKey(privateKeyLocation);
         JwtClaimsBuilder claimsBuilder = Jwt.claims();
@@ -56,4 +76,6 @@ public class TokenUtils {
         long currentTimeMS = System.currentTimeMillis();
         return (int) (currentTimeMS / 1000);
     }
+    
+
 }

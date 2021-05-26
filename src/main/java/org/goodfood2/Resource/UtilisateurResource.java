@@ -85,7 +85,7 @@ public class UtilisateurResource {
     @Path("/adresse{id}")
     @GET
     public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
-        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select idAdresse, numeroAdresse, suppNomAdresse, villeAdresse, codePostal, pays from Adresse_Utilisateur where utilisateur = " + id);
+        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.idAdresse, a.numeroAdresse, a.suppNomAdresse, a.villeAdresse, a.codePostal, a.pays from Adresse_Utilisateur a where a.utilisateur = " + id);
         return adressesU.list();
     }
 
@@ -121,9 +121,16 @@ public class UtilisateurResource {
     @Path("/{email}&{password}")
     @GET
     public Utilisateur utilisateurEmailMdp(@PathParam("email") String email, @PathParam("password") String mdp) throws Exception{
-        Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
+        Utilisateur utilisateur = null;
+
+        List<Utilisateur> listFoundUser = (List<Utilisateur>)entityManager.createQuery(
             "from Utilisateur obj where emailUtilisateur = '" + email + "' and mdpUtilisateur = '" + mdp + "'")
-                .getResultList().get(0);
+                .getResultList();
+
+        if(listFoundUser.size() > 0){
+            utilisateur = listFoundUser.get(0);
+        }
+
         if (utilisateur == null) {
             throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
         }    
@@ -136,9 +143,9 @@ public class UtilisateurResource {
     public String val (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
         String ret;
         long tokenDuration = 3600;
-        Utilisateur utilisateur = this.utilisateurEmail(email);
-        String token = TokenUtils.generateToken(tokenDuration, email, utilisateur.getIdUtilisateur(), utilisateur.getIdRole());
-        utilisateur = this.utilisateurEmailMdp(email, password);
+        Utilisateur utilisateur  = this.utilisateurEmailMdp(email, password);
+
+        String token = TokenUtils.generateTokenSmallRye(tokenDuration, email, utilisateur.getIdUtilisateur(), utilisateur.getRole());
         if (utilisateur != null) ret = token;
         else ret = "Email ou mot de passe incorrect";
         return ret;

@@ -15,7 +15,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.DefaultValue;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Franchise;
 import org.goodfood2.utils.QueryUtils;
@@ -31,8 +32,22 @@ public class FranchiseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
-    public List<Franchise> franchises() {
-        return entityManager.createQuery("select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise from Franchise").getResultList();
+    public List<Franchise> franchises(@DefaultValue("") @QueryParam("search") String search) {
+        // select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise
+        if(search.isEmpty()){
+            return entityManager.createQuery("from Franchise").getResultList();
+        }else{
+            String emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise;
+            emailFranchise = "emailFranchise like '" + search + "' OR ";
+            idFranchise = "idFranchise like '" + search + "' OR ";
+            idGroupeFranchise = "idGroupeFranchise like '" + search + "' OR ";
+            nomFranchise = "nomFranchise like '" + search + "' OR ";
+            numeroSiretFranchise = "numeroSiretFranchise like '" + search + "' OR ";
+            numeroTelFranchise = "numeroTelFranchise like '" + search + "'";
+            System.out.println("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise);
+            return entityManager.createQuery("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise).getResultList();
+    
+        }
     }
 
     @Produces(MediaType.APPLICATION_JSON)
