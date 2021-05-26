@@ -27,7 +27,6 @@ public class TokenSecuredResource {
 
     @GET()
     @Path("infos")
-    @PermitAll 
     @Produces(MediaType.TEXT_PLAIN)
     public String info(@Context SecurityContext ctx) {
         return getResponseString(ctx); 

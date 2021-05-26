@@ -2,6 +2,7 @@ package org.goodfood2.Resource;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -144,8 +145,7 @@ public class UtilisateurResource {
     public String val (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
         String ret;
         long tokenDuration = 3600;
-        Utilisateur utilisateur  = this.utilisateurEmailMdp(email, password);
-
+        Utilisateur utilisateur  = this.utilisateurEmailMdp(email, BcryptUtil.bcryptHash(password));
         String token = TokenUtils.generateTokenSmallRye(tokenDuration, email, utilisateur.getIdUtilisateur(), utilisateur.getRole());
         if (utilisateur != null) ret = token;
         else ret = "Email ou mot de passe incorrect";
@@ -158,6 +158,7 @@ public class UtilisateurResource {
     @POST
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {
+        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.getMdpUtilisateur()));
         entityManager.persist(u);
         return Response.status(200).build();
     }
