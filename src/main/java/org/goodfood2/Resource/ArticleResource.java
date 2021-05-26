@@ -1,12 +1,17 @@
 package org.goodfood2.Resource;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.Path;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.CookieParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -14,8 +19,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.DefaultValue;
 import java.security.Principal;
 
@@ -27,6 +34,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.Entity.Categorie_Article;
@@ -34,6 +42,8 @@ import org.goodfood2.utils.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
+import io.quarkus.vertx.web.Header;
+
 import javax.persistence.EntityManager;
 
 @Path("/Article")
@@ -48,8 +58,12 @@ public class ArticleResource {
     @Path("/count")
     @GET
     @Transactional
+<<<<<<< HEAD
     @RolesAllowed({ "user", "admin" }) 
     public long countArticle() throws Exception {
+=======
+    public long countArticle(@Header("header") String header) throws Exception {
+>>>>>>> 1586f58cc22decef9803131fa12d4c4d816d853c
         return Article.count();
     }
 
