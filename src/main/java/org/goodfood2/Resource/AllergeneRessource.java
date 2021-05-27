@@ -2,6 +2,7 @@ package org.goodfood2.Resource;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Allergene;
+import org.goodfood2.Entity.VoArtAllergene;
 import org.goodfood2.utils.QueryUtils;
 
 @Path("/Allergene")
@@ -58,7 +60,7 @@ public class AllergeneRessource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/article{id}")
     @DELETE
     @Transactional
     public Response supprAdresseUtilisateur(@PathParam("id") Long id) throws Exception{

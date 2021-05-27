@@ -38,6 +38,8 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Article;
 import org.goodfood2.Entity.Categorie_Article;
+import org.goodfood2.Entity.VoArtAllergene;
+import org.goodfood2.Entity.VoArtPromo;
 import org.goodfood2.utils.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -119,6 +121,27 @@ public class ArticleResource {
     @RolesAllowed({ "admin" }) 
     public Article modifArticle(Article a) throws Exception {
         return entityManager.merge(a);
+    }
+
+    @Path("/{id}/allergene")
+    @GET
+    @Transactional
+    @PermitAll
+    public List<VoArtAllergene> artAllergene(@PathParam("id") Long id) throws Exception{
+        return entityManager.createNativeQuery(
+            //QueryUtils.makeFindByParamQueryInt("Vo_Full_Art_Allergenes", "idArticle", id.toString())
+            "select libelle_allergene from Vo_Full_Art_Allergenes where id_article = " + id)
+                .getResultList();
+    }
+
+    @Path("/{id}/promo")
+    @GET
+    @Transactional
+    @PermitAll
+    public List<VoArtPromo> artPromo(@PathParam("id") Long id) throws Exception{
+        return entityManager.createNativeQuery(
+            "select reduction from Vo_Art_Promo where id_article = " + id)
+                .getResultList();
     }
 
     @Path("/")

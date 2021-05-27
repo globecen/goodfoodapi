@@ -12,41 +12,18 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
  * 
  */
 @Entity
-@NamedQuery(name="Promo.findAll", query="SELECT p FROM Promo p")
-public class Promo extends PanacheEntityBase{
+public class VoArtPromo extends PanacheEntityBase{
 	@Id
-	@Column(name="id_promo")
-	private int idPromo;
-
-	@Column(name="est_active")
-	private byte estActive;
-
 	@Column(name="id_article")
 	private int idArticle;
 
 	@Column(name="libelle_promo")
 	private String libellePromo;
 
-	@Column(name="reduction")
-	private int reduction;
+    @Column(name="reduction")
+    private int reduction;
 
-	public Promo() {
-	}
-
-	public int getIdPromo() {
-		return this.idPromo;
-	}
-
-	public void setIdPromo(int idPromo) {
-		this.idPromo = idPromo;
-	}
-
-	public byte getEstActive() {
-		return this.estActive;
-	}
-
-	public void setEstActive(byte estActive) {
-		this.estActive = estActive;
+	public VoArtPromo() {
 	}
 
 	public int getIdArticle() {
@@ -61,11 +38,11 @@ public class Promo extends PanacheEntityBase{
 		return this.libellePromo;
 	}
 
-	public void setLibellePromo(String libellePromo) {
+	public void setLibelleAllergene(String libellePromo) {
 		this.libellePromo = libellePromo;
 	}
 
-	public int getReduction() {
+    public int getReduction() {
 		return this.reduction;
 	}
 
