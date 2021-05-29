@@ -37,8 +37,6 @@ public class CommandeResource {
     @Inject
     EntityManager entityManager;
     
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
     public List<Commande> articles(
@@ -53,8 +51,6 @@ public class CommandeResource {
         return entityManager.createQuery(query).getResultList();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -76,8 +72,6 @@ public class CommandeResource {
         }
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/modify")
     @PATCH
     @Transactional
@@ -85,9 +79,7 @@ public class CommandeResource {
         return entityManager.merge(c);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprCommande(@PathParam("id") Long id) throws Exception{

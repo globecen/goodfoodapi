@@ -90,7 +90,7 @@ public class ArticleResource {
         return article;
     }
 
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     @RolesAllowed({ "admin" }) 

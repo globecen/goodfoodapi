@@ -21,6 +21,9 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Franchise;
 import org.goodfood2.utils.QueryUtils;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
+
 @Path("/Franchise")
 @Tag(name = "Franchise Resource", description = "L'ensemble des routes pour la partie Franchise")
 public class FranchiseResource {
@@ -28,10 +31,9 @@ public class FranchiseResource {
     @Inject
     EntityManager entityManager;
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
+    @PermitAll
     public List<Franchise> franchises(@DefaultValue("") @QueryParam("search") String search) {
         // select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise
         if(search.isEmpty()){
@@ -41,17 +43,15 @@ public class FranchiseResource {
             emailFranchise = "emailFranchise like '" + search + "' OR ";
             idFranchise = "idFranchise like '" + search + "' OR ";
             idGroupeFranchise = "idGroupeFranchise like '" + search + "' OR ";
-            nomFranchise = "nomFranchise like '" + search + "' OR ";
+            nomFranchise = "nomFranchise like '%" + search + "%' OR ";
             numeroSiretFranchise = "numeroSiretFranchise like '" + search + "' OR ";
             numeroTelFranchise = "numeroTelFranchise like '" + search + "'";
-            System.out.println("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise);
+            // System.out.println("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise);
             return entityManager.createQuery("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise).getResultList();
     
         }
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -60,8 +60,7 @@ public class FranchiseResource {
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+
     @Path("/modify")
     @PATCH
     @Transactional
@@ -69,9 +68,8 @@ public class FranchiseResource {
         return entityManager.merge(f);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprFranchise(@PathParam("id") Long id) throws Exception{

@@ -27,9 +27,7 @@ public class Categorie_ArticleRessource {
     @Inject
     EntityManager entityManager;
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/id{id}")
+    @Path("/{id}")
     @GET
     public Categorie_Article categorieArticleId(@PathParam("id") Long id) throws Exception{
         Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
@@ -38,19 +36,6 @@ public class Categorie_ArticleRessource {
         return categorie_Article;
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/nom{nom}")
-    @GET
-    public Categorie_Article categorieArticleNom(@PathParam("libelle_categorie_article") String libelle_categorie_article) throws Exception{
-        Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryString("Categorie_Article", "libelleCategorieArticle", libelle_categorie_article))
-                .getResultList().get(0);
-        return categorie_Article;
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
     public List<Categorie_Article> categorieArticle() {
@@ -59,8 +44,6 @@ public class Categorie_ArticleRessource {
                 .getResultList();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -69,8 +52,6 @@ public class Categorie_ArticleRessource {
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/modify")
     @PATCH
     @Transactional
@@ -78,9 +59,7 @@ public class Categorie_ArticleRessource {
         return entityManager.merge(cA);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprCategorieArticle(@PathParam("id") Long id) throws Exception{

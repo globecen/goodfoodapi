@@ -39,8 +39,6 @@ public class UtilisateurResource {
     @Inject
     EntityManager entityManager;
     
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
     public List<Utilisateur> utilisateurs(
@@ -68,9 +66,7 @@ public class UtilisateurResource {
         return utilisateurs.list();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/id{id}")
+    @Path("/id/{id}")
     @GET
     public Utilisateur utilisateurId(@PathParam("id") Long id) throws Exception{
         Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
@@ -82,28 +78,11 @@ public class UtilisateurResource {
         return utilisateur;
     }
 
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/adresse{id}")
+    @Path("/adresse/{id}")
     @GET
     public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
         PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.idAdresse, a.numeroAdresse, a.suppNomAdresse, a.villeAdresse, a.codePostal, a.pays from Adresse_Utilisateur a where a.utilisateur = " + id);
         return adressesU.list();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/nom{nom}")
-    @GET
-    public Utilisateur utilisateurNom(@PathParam("nom") String nom) throws Exception{
-        Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryString("Utilisateur", "nomUtilisateur", nom))
-                .getResultList().get(0);
-        if (utilisateur == null) {
-            throw new Exception("L'utilisateur " + nom + " n'existe pas.");
-        }    
-        return utilisateur;
     }
 
     private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception{
@@ -116,25 +95,6 @@ public class UtilisateurResource {
         return utilisateur;
     }
     
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{email}&{password}")
-    @GET
-    public Utilisateur utilisateurEmailMdp(@PathParam("email") String email, @PathParam("password") String mdp) throws Exception{
-        Utilisateur utilisateur = null;
-
-        List<Utilisateur> listFoundUser = (List<Utilisateur>)entityManager.createQuery(
-            "from Utilisateur obj where emailUtilisateur = '" + email + "' and mdpUtilisateur = '" + mdp + "'")
-                .getResultList();
-
-        if(listFoundUser.size() > 0){
-            utilisateur = listFoundUser.get(0);
-        }
-
-        if (utilisateur == null) {
-            throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
-        }    
-        return utilisateur;
-    }
 
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/login/{email}&{password}")
@@ -155,8 +115,6 @@ public class UtilisateurResource {
         return ret;
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -166,8 +124,6 @@ public class UtilisateurResource {
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/modify")
     @PATCH
     @Transactional
@@ -175,9 +131,7 @@ public class UtilisateurResource {
         return entityManager.merge(u);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprLigneCommande(@PathParam("id") Long id) throws Exception{
