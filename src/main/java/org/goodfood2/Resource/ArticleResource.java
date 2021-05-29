@@ -130,7 +130,7 @@ public class ArticleResource {
     public List<VoArtAllergene> artAllergene(@PathParam("id") Long id) throws Exception{
         return entityManager.createNativeQuery(
             //QueryUtils.makeFindByParamQueryInt("Vo_Full_Art_Allergenes", "idArticle", id.toString())
-            "select libelle_allergene from Vo_Full_Art_Allergenes where id_article = " + id)
+            "select distinct(libelle_allergene) from Vo_Full_Art_Allergenes where id_article = " + id)
                 .getResultList();
     }
 
@@ -140,7 +140,7 @@ public class ArticleResource {
     @PermitAll
     public List<VoArtPromo> artPromo(@PathParam("id") Long id) throws Exception{
         return entityManager.createNativeQuery(
-            "select reduction from Vo_Art_Promo where id_article = " + id)
+            "select distinct(reduction) from Vo_Art_Promo where id_article = " + id)
                 .getResultList();
     }
 
