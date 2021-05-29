@@ -89,9 +89,6 @@ public class UtilisateurResource {
         Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Utilisateur", "emailUtilisateur", email))
                 .getResultList().get(0);
-        if (utilisateur == null) {
-            throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
-        }    
         return utilisateur;
     }
     
