@@ -31,8 +31,6 @@ public class Adresse_UtilisateurRessource {
     @Inject
     EntityManager entityManager;
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     @GET
     public List<Adresse_Utilisateur> adressesUtilisateur(   
@@ -46,8 +44,6 @@ public class Adresse_UtilisateurRessource {
         return entityManager.createQuery(query).getResultList();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -56,8 +52,6 @@ public class Adresse_UtilisateurRessource {
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/modify")
     @PATCH
     @Transactional
@@ -65,9 +59,7 @@ public class Adresse_UtilisateurRessource {
         return entityManager.merge(aU);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprAdresseUtilisateur(@PathParam("id") Long id) throws Exception{

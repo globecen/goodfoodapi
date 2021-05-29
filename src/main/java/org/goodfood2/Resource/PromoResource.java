@@ -26,12 +26,10 @@ import io.quarkus.panache.common.Page;
 @Path("/Promo")
 @Tag(name = "Promo Resource", description = "L'ensemble des routes pour la partie Promo")
 public class PromoResource {
-  
+
     @Inject
     EntityManager entityManager;
-  
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+
     @Path("/")
     @GET
     public List<Promo> lignesCommande() {
@@ -40,8 +38,6 @@ public class PromoResource {
                 .getResultList();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -49,8 +45,7 @@ public class PromoResource {
         entityManager.persist(p);
         return Response.status(200).build();
     }
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+
     @Path("/modify")
     @PATCH
     @Transactional
@@ -58,9 +53,7 @@ public class PromoResource {
         return entityManager.merge(p);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprPromo(@PathParam("id") Long id){
@@ -73,9 +66,8 @@ public class PromoResource {
         entityManager.remove(promo);
         return Response.status(200).build();
     }
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/id{id}")
+
+    @Path("/id/{id}")
     @GET
     public Promo promoId(@PathParam("id") Long id) throws Exception{
         Promo promo = (Promo)entityManager.createQuery(
@@ -83,16 +75,5 @@ public class PromoResource {
                 .getResultList().get(0);
         return promo;
     }
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/p_pageSize={pageSize}&pageNumber={pageNumber}")
-    @GET
-    public List<Promo> promosPagines(@PathParam("pageSize") Integer pageSize,@PathParam("pageNumber") Integer pageNumber) {
-        PanacheQuery<Promo> promos = Promo.findAll();
-        promos.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
-            promos.nextPage();
-        }
-        return promos.list();
-    }
+
 }

@@ -23,12 +23,10 @@ import org.goodfood2.utils.QueryUtils;
 @Path("/Allergene")
 @Tag(name = "Allergene Resource", description = "L'ensemble des routes pour la partie Allergene")
 public class AllergeneRessource {
-  
+
     @Inject
     EntityManager entityManager;
-  
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+
     @Path("/")
     @GET
     public List<Allergene> allergenes() {
@@ -37,8 +35,6 @@ public class AllergeneRessource {
                 .getResultList();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     @POST
     @Transactional
@@ -47,8 +43,6 @@ public class AllergeneRessource {
         return Response.status(200).build();
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/modify")
     @PATCH
     @Transactional
@@ -56,9 +50,7 @@ public class AllergeneRessource {
         return entityManager.merge(a);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
     public Response supprAdresseUtilisateur(@PathParam("id") Long id) throws Exception{

@@ -23,10 +23,10 @@ import org.goodfood2.utils.QueryUtils;
 @Path("/Ligne_Commande")
 @Tag(name = "Ligne_Commande Resource", description = "L'ensemble des routes pour la partie Ligne_Commande")
 public class Ligne_CommandeResource {
-  
+
     @Inject
     EntityManager entityManager;
-  
+
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
@@ -35,16 +35,6 @@ public class Ligne_CommandeResource {
         return entityManager.createQuery(
             QueryUtils.makeFindAllQuery("Ligne_Commande"))
                 .getResultList();
-    }
-
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/create1")
-    @POST
-    @Transactional
-    public Response creerLigneCommande(Ligne_Commande lC) throws Exception {
-        entityManager.persist(lC);
-        return Response.status(200).build();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
