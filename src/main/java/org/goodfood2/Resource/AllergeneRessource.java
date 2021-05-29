@@ -52,8 +52,6 @@ public class AllergeneRessource {
         return entityManager.merge(a);
     }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/delete/{id}")
     @DELETE
     @Transactional
