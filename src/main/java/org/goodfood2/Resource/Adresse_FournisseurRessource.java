@@ -5,38 +5,47 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.DefaultValue;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import org.goodfood2.Entity.Adresse_Fournisseur;
 import org.goodfood2.utils.QueryUtils;
 
+/**
+ * Route liees aux adresses des fournisseurs.
+ */
 @Path("/Adresse_Fournisseur")
 @Tag(name = "Adresse_Fournisseur Resource", description = "L'ensemble des routes pour la partie Adresse_Fournisseur")
 public class Adresse_FournisseurRessource {
 
+    // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
 
+    /**
+     * Recupere toutes les adresses des fournisseurs.
+     * @return Les adresses.
+     */
     @Path("/")
     @GET
-    public List<Adresse_Fournisseur> adressesFournisseur_old() {
+    public List<Adresse_Fournisseur> adressesFournisseur() {
         return entityManager.createQuery(
             QueryUtils.makeFindAllQuery("Adresse_Fournisseur"))
                 .getResultList();
     }
 
+    /**
+     * Cree une adresse d un fournisseur.
+     * @param aF L adresse fournisseur.
+     * @return Le statut de la reponse.
+     */
     @Path("/create")
     @POST
     @Transactional
@@ -45,6 +54,11 @@ public class Adresse_FournisseurRessource {
         return Response.status(200).build();
     }
 
+    /**
+     * Modifie une adresse d un fournisseur.
+     * @param aF L adresse fournisseur.
+     * @return L adresse fournisseur modifiee.
+     */
     @Path("/modify")
     @PATCH
     @Transactional
@@ -52,6 +66,11 @@ public class Adresse_FournisseurRessource {
         return entityManager.merge(aF);
     }
 
+    /**
+     * Supprime une adresse d un fournisseur.
+     * @param id L id de l adresse.
+     * @return Le statut de la reponse.
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional

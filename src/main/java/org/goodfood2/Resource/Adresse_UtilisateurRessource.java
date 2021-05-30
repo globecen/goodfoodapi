@@ -5,45 +5,47 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-
 import javax.ws.rs.PathParam;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.QueryParam;
-
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import org.goodfood2.Entity.Adresse_Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 
+/**
+ * Route liees aux adresses des utilisateurs.
+ */
 @Path("/Adresse_Utilisateur")
 @Tag(name = "Adresse_Utilisateur Resource", description = "L'ensemble des routes pour la partie Adresse_Utilisateur")
 public class Adresse_UtilisateurRessource {
 
+    // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
 
+    /**
+     * Recupere toutes les adresses des utilisateurs.
+     * @return Les adresses.
+     */
     @Path("/")
     @GET
-    public List<Adresse_Utilisateur> adressesUtilisateur(   
-        @DefaultValue("-1") @QueryParam("idUtilisateur") Integer idUtilisateur
-    ) {
-        String query = QueryUtils.makeFindAllQuery("Adresse_Utilisateur");
-        System.out.println(idUtilisateur < 0);
-        if(idUtilisateur > -1){
-            query += " where obj.idUtilisateur = " + idUtilisateur;
-        }
-        return entityManager.createQuery(query).getResultList();
+    public List<Adresse_Utilisateur> adressesUtilisateur() {
+        return entityManager.createQuery(
+            QueryUtils.makeFindAllQuery("Adresse_Utilisateur"))
+                .getResultList();
     }
 
+    /**
+     * Cree une adresse d un fournisseur.
+     * @param aU L adresse utilisateur.
+     * @return Le statut de la reponse.
+     */
     @Path("/create")
     @POST
     @Transactional
@@ -52,6 +54,11 @@ public class Adresse_UtilisateurRessource {
         return Response.status(200).build();
     }
 
+    /**
+     * Modifie une adresse d un fournisseur.
+     * @param aU L adresse utilisateur
+     * @return L adresse utilisateur modifiee.
+     */
     @Path("/modify")
     @PATCH
     @Transactional
@@ -59,6 +66,11 @@ public class Adresse_UtilisateurRessource {
         return entityManager.merge(aU);
     }
 
+    /**
+     * Supprime une adresse d un fournisseur.
+     * @param id L id de l adresse.
+     * @return Le statut de la reponse.
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional

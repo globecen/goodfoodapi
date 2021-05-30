@@ -1,8 +1,7 @@
 package org.goodfood2.Resource;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.util.HashMap;
+
 import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.Path;
@@ -10,51 +9,39 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.CookieParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.DefaultValue;
-import java.security.Principal;
+import javax.persistence.EntityManager;
 
-import javax.annotation.security.DenyAll;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.SecurityContext;
-
-import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import org.goodfood2.Entity.Article;
 import org.goodfood2.Entity.Categorie_Article;
 import org.goodfood2.Entity.VoArtAllergene;
 import org.goodfood2.Entity.VoArtPromo;
-import org.goodfood2.utils.*;
+import org.goodfood2.utils.QueryUtils;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-import io.quarkus.vertx.web.Header;
 
-import javax.persistence.EntityManager;
-
+/**
+ * Route liees aux articles.
+ */
 @Path("/Article")
 @Tag(name = "Article Resource", description = "L'ensemble des routes pour la partie Article")
 public class ArticleResource {
 
+    // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
 
+    /**
+     * @return Le nombre d articles.
+     */
     @Path("/count")
     @GET
     @Transactional
@@ -63,7 +50,10 @@ public class ArticleResource {
         return Article.count();
     }
 
-    @Path("/ingr/count")
+    /**
+     * @return Le nombre d ingredients.
+     */
+    @Path("/Ingr/count")
     @GET
     @Transactional
     @PermitAll
@@ -71,7 +61,10 @@ public class ArticleResource {
         return Article.count("from Article obj where estMenu = 0");
     }
 
-    @Path("/menu/count")
+    /**
+     * @return Le nombre de menus.
+     */
+    @Path("/Menu/count")
     @GET
     @Transactional
     @PermitAll
@@ -79,6 +72,11 @@ public class ArticleResource {
         return Article.count("from Article obj where estMenu = 1");
     }
 
+    /**
+     * Recupere un article.
+     * @param id L id de l article.
+     * @return L article.
+     */
     @Path("/{id}")
     @GET
     @Transactional
@@ -90,6 +88,11 @@ public class ArticleResource {
         return article;
     }
 
+    /**
+     * Supprime un article.
+     * @param id L id de l article.
+     * @return Le statut de la reponse.
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional
@@ -105,16 +108,25 @@ public class ArticleResource {
         return Response.status(200).build();
     }
 
+    /**
+     * Cree un article.
+     * @param a L article.
+     * @return Le statut de la reponse.
+     */
     @Path("/create")
     @POST
     @Transactional
     @RolesAllowed({ "admin" }) 
-    public Response creerArticle(@Context SecurityContext sec, Article a) throws Exception {
-        Principal user = sec.getUserPrincipal(); 
+    public Response creerArticle(Article a) throws Exception {
         entityManager.persist(a);
         return Response.status(200).build();
     }
 
+    /**
+     * Modifie un article.
+     * @param a L article.
+     * @return L article modifie.
+     */
     @Path("/modify")
     @PATCH
     @Transactional
@@ -123,18 +135,29 @@ public class ArticleResource {
         return entityManager.merge(a);
     }
 
-    @Path("/{id}/allergene")
+    /**
+     * Recupere les allergenes liees a un article.
+     * @param id L id de l article.
+     * @return La liste des allergenes.
+     * @throws Exception
+     */
+    @Path("/{id}/Allergene")
     @GET
     @Transactional
     @PermitAll
     public List<VoArtAllergene> artAllergene(@PathParam("id") Long id) throws Exception{
         return entityManager.createNativeQuery(
-            //QueryUtils.makeFindByParamQueryInt("Vo_Full_Art_Allergenes", "idArticle", id.toString())
             "select distinct(libelle_allergene) from Vo_Full_Art_Allergenes where id_article = " + id)
                 .getResultList();
     }
 
-    @Path("/{id}/promo")
+    /**
+     * Recupere les promotions liees a un article.
+     * @param id L id de l article.
+     * @return La liste des promotions.
+     * @throws Exception
+     */
+    @Path("/{id}/Promo")
     @GET
     @Transactional
     @PermitAll
@@ -144,6 +167,32 @@ public class ArticleResource {
                 .getResultList();
     }
 
+     /**
+     * Recupere les categories liees a un article.
+     * @param id L id de l article.
+     * @return La categorie.
+     * @throws Exception
+     */
+    @Path("/{id}/Categorie_Article")
+    @GET
+    public Categorie_Article categorieArticleId(@PathParam("id") Long id) throws Exception{
+        Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
+            QueryUtils.makeFindByParamQueryString("Categorie_Article", "idCategorieArticle", id.toString()))
+                .getResultList().get(0);
+        return categorie_Article;
+    }
+
+
+    /**
+     * Recupere la liste des articles en fonctions de plusieurs parametres.
+     * @param pageSize Le nombre d articles par page.
+     * @param pageNumber Le numero de page.
+     * @param estMenu Choix pour recuperer les ingredients, les menus ou tous les articles.
+     * @param libelleArticle Une partie d'un libelle.
+     * @param descriptionArticle Une partie de la description.
+     * @param idCategorieArticle Une categorie specifique d articles.
+     * @return La liste d articles.
+     */
     @Path("/")
     @GET
     @Transactional

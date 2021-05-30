@@ -1,19 +1,15 @@
 package org.goodfood2.Entity;
 
-import javax.persistence.NamedQuery;
-
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.*;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 /**
- * The persistent class for the Adresse_Utilisateur database table.
- * 
+ * Represente une adresse utilisateur.
  */
 @Entity
-@NamedQuery(name="Adresse_Utilisateur.findAll", query="SELECT a FROM Adresse_Utilisateur a")
 public class Adresse_Utilisateur extends PanacheEntityBase{
 
 	@Id
@@ -32,6 +28,7 @@ public class Adresse_Utilisateur extends PanacheEntityBase{
 	@Column(name="numero_adresse")
 	private int numeroAdresse;
 
+	@Column(name="pays")
 	private String pays;
 
 	@Column(name="supp_nom_adresse")

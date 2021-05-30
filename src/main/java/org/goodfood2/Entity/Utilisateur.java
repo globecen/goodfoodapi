@@ -1,26 +1,15 @@
 package org.goodfood2.Entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.quarkus.security.jpa.Password;
-import io.quarkus.security.jpa.PasswordType;
-import io.quarkus.security.jpa.Roles;
-import io.quarkus.security.jpa.UserDefinition;
-import io.quarkus.security.jpa.Username;
-
 
 /**
- * The persistent class for the Utilisateur database table.
+ * Represente un utilisateur.
  */
 @Entity
-@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur  extends PanacheEntityBase {
 	
 	@Id

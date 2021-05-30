@@ -1,18 +1,15 @@
 package org.goodfood2.Entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
-
 /**
- * The persistent class for the Promo database table.
- * 
+ * Represente une promotion sur un article.
  */
 @Entity
-@NamedQuery(name="Promo.findAll", query="SELECT p FROM Promo p")
 public class Promo extends PanacheEntityBase{
 	@Id
 	@Column(name="id_promo")

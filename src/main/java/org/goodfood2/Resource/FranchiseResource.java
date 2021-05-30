@@ -5,40 +5,45 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
+
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import org.goodfood2.Entity.Franchise;
 import org.goodfood2.utils.QueryUtils;
 
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
-
+/**
+ * Route liees aux franchises.
+ */
 @Path("/Franchise")
 @Tag(name = "Franchise Resource", description = "L'ensemble des routes pour la partie Franchise")
 public class FranchiseResource {
     
+    // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
 
+    /**
+     * Recupere la liste des franchises en fonctions de la recherche.
+     * @param search La recherche.
+     * @return La liste des franchises.
+     */
     @Path("/")
     @GET
     @PermitAll
     public List<Franchise> franchises(@DefaultValue("") @QueryParam("search") String search) {
-        // select emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise
-        if(search.isEmpty()){
+        if(search.isEmpty())
             return entityManager.createQuery("from Franchise").getResultList();
-        }else{
+        else {
             String emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise;
             emailFranchise = "emailFranchise like '" + search + "' OR ";
             idFranchise = "idFranchise like '" + search + "' OR ";
@@ -46,12 +51,15 @@ public class FranchiseResource {
             nomFranchise = "nomFranchise like '%" + search + "%' OR ";
             numeroSiretFranchise = "numeroSiretFranchise like '" + search + "' OR ";
             numeroTelFranchise = "numeroTelFranchise like '" + search + "'";
-            // System.out.println("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise);
             return entityManager.createQuery("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise).getResultList();
-    
         }
     }
 
+    /**
+     * Cree une franchise .
+     * @param f La franchise.
+     * @return Le statut de la reponse.
+     */
     @Path("/create")
     @POST
     @Transactional
@@ -60,7 +68,11 @@ public class FranchiseResource {
         return Response.status(200).build();
     }
 
-
+     /**
+     * Modifie une franchise.
+     * @param f La franchise.
+     * @return La franchise modifie.
+     */
     @Path("/modify")
     @PATCH
     @Transactional
@@ -68,7 +80,11 @@ public class FranchiseResource {
         return entityManager.merge(f);
     }
 
-
+    /**
+     * Supprime une franchise.
+     * @param id L id de la franchise.
+     * @return Le statut de la reponse.
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional

@@ -1,9 +1,5 @@
 package org.goodfood2.Resource;
 
-import java.security.Principal;
-
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -15,16 +11,23 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.goodfood2.utils.TokenUtils;
 
+/**
+ * Classe permettant la verification des fonctionnalitees de la securite.
+ */
 @Path("/secured")
 @RequestScoped
 public class TokenSecuredResource {
 
-
+    // Le token de connexion.
     @Inject
     JsonWebToken jwt; 
 
+    /**
+     * Route permettant d afficher les informations du token.
+     * @param ctx
+     * @return
+     */
     @GET()
     @Path("infos")
     @Produces(MediaType.TEXT_PLAIN)
@@ -32,6 +35,11 @@ public class TokenSecuredResource {
         return getResponseString(ctx); 
     }
 
+    /**
+     * Dechiffre le token.
+     * @param ctx Le contexte de securite.
+     * @return Les informations du token.
+     */
     private String getResponseString(SecurityContext ctx) {
         String name;
         if (ctx.getUserPrincipal() == null) { 
@@ -45,10 +53,6 @@ public class TokenSecuredResource {
             + " isHttps: %s,"
             + " authScheme: %s,"
             + " hasJWT: %s",
-            name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJwt()); 
-    }
-
-    private boolean hasJwt() {
-	return jwt.getClaimNames() != null;
+            name, ctx.isSecure(), ctx.getAuthenticationScheme()); 
     }
 }

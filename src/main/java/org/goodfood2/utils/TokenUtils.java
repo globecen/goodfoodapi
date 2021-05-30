@@ -1,26 +1,24 @@
 package org.goodfood2.utils;
 
-import java.util.Collections;
-import javax.json.Json;
-import javax.json.JsonObject;
-
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtClaimsBuilder;
-import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import org.wildfly.security.password.PasswordFactory;
 import org.wildfly.security.password.interfaces.BCryptPassword;
 import org.wildfly.security.password.util.ModularCrypt;
 import org.wildfly.security.password.Password;
 
 import java.io.InputStream;
+
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
+
 import java.util.Base64;
-import org.eclipse.microprofile.jwt.Claims;
 import java.util.Arrays;
 import java.util.HashSet;
+
 public class TokenUtils {
 
     public static String generateTokenSmallRye(Long duration, String email, int id, String role) throws Exception {

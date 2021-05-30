@@ -1,25 +1,18 @@
 package org.goodfood2.Entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-
 
 /**
- * The persistent class for the Franchise database table.
- * 
+ * Represente une fournisseur.
  */
 @Entity
-@NamedQuery(name="Franchise.findAll", query="SELECT f FROM Franchise f")
 public class Franchise {
+
 	@Id
 	@Column(name="id_franchise")
 	private int idFranchise;
-
 
 	@Column(name="email_franchise")
 	private String emailFranchise;
@@ -35,10 +28,6 @@ public class Franchise {
 
 	@Column(name="numero_tel_franchise")
 	private int numeroTelFranchise;
-
-	//bi-directional many-to-one association to Fournisseur
-	@OneToMany(mappedBy="franchise")
-	private List<Fournisseur> fournisseurs;
 
 	public Franchise() {
 	}
@@ -90,27 +79,4 @@ public class Franchise {
 	public void setNumeroTelFranchise(int numeroTelFranchise) {
 		this.numeroTelFranchise = numeroTelFranchise;
 	}
-
-	public List<Fournisseur> getFournisseurs() {
-		return this.fournisseurs;
-	}
-
-	public void setFournisseurs(List<Fournisseur> fournisseurs) {
-		this.fournisseurs = fournisseurs;
-	}
-
-	public Fournisseur addFournisseur(Fournisseur fournisseur) {
-		getFournisseurs().add(fournisseur);
-		fournisseur.setFranchise(this);
-
-		return fournisseur;
-	}
-
-	public Fournisseur removeFournisseur(Fournisseur fournisseur) {
-		getFournisseurs().remove(fournisseur);
-		fournisseur.setFranchise(null);
-
-		return fournisseur;
-	}
-
 }

@@ -1,16 +1,13 @@
 package org.goodfood2.Entity;
 
-import javax.persistence.NamedQuery;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Column;
 
 /**
- * The persistent class for the Allergene database table.
- * 
+ * Represente un allergene.
  */
 @Entity
-@NamedQuery(name="Allergene.findAll", query="SELECT a FROM Allergene a")
 public class Allergene{
 
 	@Id

@@ -3,16 +3,13 @@ package org.goodfood2.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 /**
- * The persistent class for the Ligne_Commande database table.
- * 
+ * Represente une ligne de commande.
  */
 @Entity
-@NamedQuery(name="Ligne_Commande.findAll", query="SELECT l FROM Ligne_Commande l")
 public class Ligne_Commande {
 
 	@Id
