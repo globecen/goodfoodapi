@@ -38,13 +38,16 @@ public class QueryUtils {
         return "from " + className + " obj where " + param + " = '" + value + "'";
     }
 
+    /**
+     * Renvoie la partie de la requete avec les filtres.
+     * @param params Une map des colonnes et des valeurs.
+     * @return La partie de la requete.
+     */
     public static String prepareFilter(HashMap<String,Object> params){
         String where = " where ";
-        // Print keys and values
         for (String key : params.keySet()) {
-            where = where + " " + key + " like " + params.get(key) + " AND";
+            where = where + " " + key + " like " + params.get(key) + " and";
         }
-
         return where.substring(0, where.length() - 3);
     }
 

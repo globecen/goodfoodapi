@@ -22,7 +22,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Utilisateur;
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
-import org.goodfood2.utils.TokenUtils;
+import org.goodfood2.utils.SecurityUtils;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -136,9 +136,9 @@ public class UtilisateurResource {
         boolean test = false;
         Utilisateur userFound = this.utilisateurEmail(email);
         if (userFound != null) {
-            test = TokenUtils.verifyPassword(password, userFound.getMdpUtilisateur());
+            test = SecurityUtils.verifyPassword(password, userFound.getMdpUtilisateur());
             if (test)
-                ret = TokenUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(), userFound.getRole());
+                ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(), userFound.getRole());
         }
         else 
             throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");   
@@ -172,10 +172,16 @@ public class UtilisateurResource {
         return entityManager.merge(u);
     }
 
+    /**
+     * Supprime un utilisateur.
+     * @param id L id de l utilisateur.
+     * @return Le statut de la reponse.
+     * @throws Exception
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional
-    public Response supprLigneCommande(@PathParam("id") Long id) throws Exception{
+    public Response supprUtilisateur(@PathParam("id") Long id) throws Exception{
         Utilisateur u = (Utilisateur)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Utilisateur", "id", id.toString()))
                 .getResultList().get(0);
