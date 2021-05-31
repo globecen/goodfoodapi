@@ -31,6 +31,9 @@ public class Commande{
 	@Column(name="id_adresse_livraison")
 	private Integer idAdresseLivraison;
 
+	@Column(name="id_utilisateur")
+	private Integer idUtilisateur;
+
 	@Column(name="est_active")
 	private int estActive;
 
@@ -83,6 +86,14 @@ public class Commande{
 
 	public void setIdAdresseLivraison(Integer idAdresseLivraison) {
 		this.idAdresseLivraison = idAdresseLivraison;
+	}	
+	
+	public int getIdUtilisateur() {
+		return this.idAdresseFacturation;
+	}
+
+	public void setIdUtilisateur(Integer idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
 
 	public int getEstActive() {
