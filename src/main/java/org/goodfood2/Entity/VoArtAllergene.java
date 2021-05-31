@@ -1,18 +1,17 @@
 package org.goodfood2.Entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
-
 /**
- * The persistent class for the Promo database table.
- * 
+ * Vue pour faciliter le lien entre les articles et les allergenes.
  */
 @Entity
 public class VoArtAllergene extends PanacheEntityBase{
+	
 	@Id
 	@Column(name="id_article")
 	private int idArticle;

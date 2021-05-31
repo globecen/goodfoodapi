@@ -1,15 +1,10 @@
 package org.goodfood2.Resource;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -17,26 +12,30 @@ import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.QueryParam;
 import org.goodfood2.utils.QueryUtils;
+import org.goodfood2.Entity.Commande;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.goodfood2.Entity.Commande;
-import org.goodfood2.Entity.Ligne_Commande;
 
+/**
+ * Route liees aux commandes.
+ */
 @Path("/Commande")
 @Tag(name = "Commande Resource", description = "L'ensemble des routes pour la partie Commande")
 public class CommandeResource {
     
+    // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
     
+    /**
+     * Recupere toutes les commandes d un utilisateur.
+     * @param idUtilisateur L id de l utilisateur.
+     * @return Les commandes.
+     */
     @Path("/")
     @GET
     public List<Commande> articles(
@@ -51,10 +50,16 @@ public class CommandeResource {
         return entityManager.createQuery(query).getResultList();
     }
 
+    /**
+     * Cree une commande .
+     * @param c La commande.
+     * @return L id de la commande necessaire pour creer les lignes.
+     */
     @Path("/create")
     @POST
     @Transactional
-    public Commande creerCommande(Commande c) throws Exception {
+    public int creerCommande(Commande c) throws Exception {
+        int ret = -1;
         try {
             c.setEstActive(1);
             c.setStatutCommande(1); 
@@ -64,14 +69,19 @@ public class CommandeResource {
             entityManager.flush();
             entityManager.refresh(c);   
 
-            return c;
+            ret = c.getIdCommande();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             Response.status(500).build();
-            return c;
         }
+        return ret;
     }
 
+    /**
+     * Modifie une commande.
+     * @param c La commande.
+     * @return La commande modifiee.
+     */
     @Path("/modify")
     @PATCH
     @Transactional
@@ -79,6 +89,11 @@ public class CommandeResource {
         return entityManager.merge(c);
     }
 
+    /**
+     * Supprime une commande.
+     * @param id L id de la commande.
+     * @return Le statut de la reponse.
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional

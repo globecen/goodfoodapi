@@ -3,20 +3,13 @@ package org.goodfood2.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
-
 /**
- * The persistent class for the Article database table.
- * 
+ * Represente un article.
  */
 @Entity
-@NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
-@JsonPropertyOrder({"idArticle", "idCategorieArticle", "idFranchise", "libelleArticle", "descriptionArticle", "urlImgArticle", "prixArticleHt", "tva", "estMenu", "estActif","stockArticle"})
 public class Article extends PanacheEntityBase {
 
 	@Id
@@ -41,6 +34,7 @@ public class Article extends PanacheEntityBase {
 	@Column(name="prix_article_ht")
 	private double prixArticleHt;
 
+	@Column(name="TVA")
 	private double tva;
 
 	@Column(name="est_menu")

@@ -5,29 +5,14 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-
 
 /**
- * The persistent class for the Commande database table.
- * 
+ * Represente une commande.
  */
 @Entity
-@NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c")
-@JsonPropertyOrder({"idCommande", "idUtilisateur", "id_adresse_facturation", "id_adresse_livraison", "dateCommande", "totalTtc", "statutCommande"})
 public class Commande{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_commande")
 	private int idCommande;
 
@@ -46,13 +31,8 @@ public class Commande{
 	@Column(name="id_adresse_livraison")
 	private Integer idAdresseLivraison;
 
-	@ManyToOne
-	@JoinColumn(name="id_utilisateur")
-	private Utilisateur utilisateur;
-
 	@Column(name="est_active")
 	private int estActive;
-
 
 	public Commande() {
 	}
@@ -103,14 +83,6 @@ public class Commande{
 
 	public void setIdAdresseLivraison(Integer idAdresseLivraison) {
 		this.idAdresseLivraison = idAdresseLivraison;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
 	}
 
 	public int getEstActive() {

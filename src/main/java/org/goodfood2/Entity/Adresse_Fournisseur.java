@@ -1,20 +1,17 @@
 package org.goodfood2.Entity;
 
-import javax.persistence.NamedQuery;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
 import javax.persistence.Column;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 /**
- * The persistent class for the Adresse_Fournisseur database table.
- * 
+ * Represente une adresse d'un fournisseur.
  */
 @Entity
-@NamedQuery(name="Adresse_Fournisseur.findAll", query="SELECT a FROM Adresse_Fournisseur a")
 public class Adresse_Fournisseur  extends PanacheEntityBase{
+
 	@Id
 	@Column(name="id_adresse")
 	private int idAdresse;
@@ -28,6 +25,7 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 	@Column(name="numero_adresse")
 	private int numeroAdresse;
 
+	@Column(name="pays")
 	private String pays;
 
 	@Column(name="supp_nom_adresse")
@@ -38,10 +36,6 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 
 	@Column(name="est_active")
 	private int estActive;
-	//bi-directional many-to-one association to Fournisseur
-	@ManyToOne
-	@JoinColumn(name="id_tiers")
-	private Fournisseur fournisseur;
 
 	public Adresse_Fournisseur() {
 	}
@@ -109,14 +103,4 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 	public void setEstActive(int estActive) {
 		this.estActive = estActive;
 	}
-
-
-	public Fournisseur getFournisseur() {
-		return this.fournisseur;
-	}
-
-	public void setFournisseur(Fournisseur fournisseur) {
-		this.fournisseur = fournisseur;
-	}
-
 }

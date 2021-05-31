@@ -2,33 +2,37 @@ package org.goodfood2.Resource;
 
 import java.util.List;
 
-import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import org.goodfood2.Entity.Allergene;
-import org.goodfood2.Entity.VoArtAllergene;
 import org.goodfood2.utils.QueryUtils;
 
+/**
+ * Route liees aux allergenes.
+ */
 @Path("/Allergene")
 @Tag(name = "Allergene Resource", description = "L'ensemble des routes pour la partie Allergene")
 public class AllergeneRessource {
 
+    // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
 
+    /**
+     * Recupere toutes les allergenes des utilisateurs.
+     * @return Les allergenes.
+     */
     @Path("/")
     @GET
     public List<Allergene> allergenes() {
@@ -37,6 +41,11 @@ public class AllergeneRessource {
                 .getResultList();
     }
 
+    /**
+     * Cree un allergene.
+     * @param a L allergene.
+     * @return Le statut de la reponse.
+     */
     @Path("/create")
     @POST
     @Transactional
@@ -45,6 +54,11 @@ public class AllergeneRessource {
         return Response.status(200).build();
     }
 
+    /**
+     * Modifie un allergene.
+     * @param a L allergene.
+     * @return L adresse fournisseur modifiee.
+     */
     @Path("/modify")
     @PATCH
     @Transactional
@@ -52,6 +66,11 @@ public class AllergeneRessource {
         return entityManager.merge(a);
     }
 
+    /**
+     * Supprime un allergene.
+     * @param id L id de l allergene.
+     * @return Le statut de la reponse.
+     */
     @Path("/delete/{id}")
     @DELETE
     @Transactional

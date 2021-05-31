@@ -3,14 +3,11 @@ package org.goodfood2.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 /**
- * The persistent class for the Groupe_Franchise database table.
- * 
+ * Represente un groupe de franchise
  */
 @Entity
-@NamedQuery(name="Groupe_Franchise.findAll", query="SELECT g FROM Groupe_Franchise g")
 public class Groupe_Franchise {
 
 	@Id
