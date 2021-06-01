@@ -7,6 +7,6 @@ public class MyQuarkusTestBeforeEachCallback implements QuarkusTestBeforeEachCal
 
     @Override
     public void beforeEach(QuarkusTestMethodContext context) {
-        System.out.println(context);
+        System.out.println(context.getTestMethod());
     }
 }
