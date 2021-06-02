@@ -20,7 +20,7 @@ public class Commande{
 	private int idCommande;
 
 	@Column(name="date_commande")
-	private Timestamp dateCommande;
+	private String dateCommande;
 
 	@Column(name="statut_commande")
 	private int statutCommande;
@@ -51,11 +51,11 @@ public class Commande{
 		this.idCommande = idCommande;
 	}
 
-	public Timestamp getDateCommande() {
+	public String getDateCommande() {
 		return this.dateCommande;
 	}
 
-	public void setDateCommande(Timestamp dateCommande) {
+	public void setDateCommande(String dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 
