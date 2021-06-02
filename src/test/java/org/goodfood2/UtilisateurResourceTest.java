@@ -1,8 +1,7 @@
 package org.goodfood2;
 import org.goodfood2.Entity.Utilisateur;
+
 import javax.ws.rs.core.MediaType;
-
-
 import javax.ws.rs.core.HttpHeaders;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -17,20 +16,21 @@ import static io.restassured.RestAssured.*;
 @DisplayName("Tests utilisateur")
 @TestMethodOrder(OrderAnnotation.class)
 public class UtilisateurResourceTest {
+
     public String token="";
+
     @Test
     @DisplayName("Liste des utilisateurs")
-    @Order(0)
+    @Order(1)
     public void testUtilisateurs() {
         given().when().get("/Utilisateur")
         
             .then()
             .statusCode(200);
-            // .body(is());
     }
     @Test
     @DisplayName("Creation d un utilisateur")
-    @Order(1)
+    @Order(2)
     public void testCreerUtilisateur() {
         Utilisateur u = new Utilisateur();
         u.setEmailUtilisateur("quentin.alegos@gmail.com");
@@ -53,7 +53,7 @@ public class UtilisateurResourceTest {
     } 
     @Test
     @DisplayName("Modification d un utilisateur")
-    @Order(2)
+    @Order(3)
     public void testModifUtilisateur() {
         Utilisateur u = new Utilisateur();
         u.setEmailUtilisateur("quentin.alegos@gmail.com");
@@ -75,7 +75,7 @@ public class UtilisateurResourceTest {
     }
     @Test   
     @DisplayName("Connexion")
-    @Order(3)
+    @Order(4)
     public void testConnexionUtilisateur() {
         Response r = 
         given()
@@ -92,7 +92,7 @@ public class UtilisateurResourceTest {
     }
     @Test
     @DisplayName("Suppression d un utilisateur")
-    @Order(4)
+    @Order(5)
     public void testSupprUtilisateur() {
         testConnexionUtilisateur();
         given()
