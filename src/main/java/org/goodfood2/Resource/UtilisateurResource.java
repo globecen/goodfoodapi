@@ -31,7 +31,7 @@ import io.quarkus.panache.common.Page;
 /**
  * Route liees aux utilisateurs.
  */
-@Path("/User")
+@Path("/Utilisateur")
 @Tag(name = "Utilisateur Resource", description = "L'ensemble des routes pour la partie Utilisateur")
 public class UtilisateurResource {
 

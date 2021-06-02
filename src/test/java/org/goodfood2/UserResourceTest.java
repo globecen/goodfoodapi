@@ -26,7 +26,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-@DisplayName("Cas de test Utilisateur")
+@DisplayName("Tests utilisateur")
 @TestMethodOrder(OrderAnnotation.class)
 public class UserResourceTest {
     
