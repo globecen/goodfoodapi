@@ -46,7 +46,7 @@ public class PromoResource {
      * @param p La promotion.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerPromo(Promo p) throws Exception {
@@ -59,7 +59,7 @@ public class PromoResource {
      * @param p La promotion.
      * @return La promotion modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Promo modifPromo(Promo p) throws Exception {
@@ -71,7 +71,7 @@ public class PromoResource {
      * @param id L id de la promotion.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprPromo(@PathParam("id") Long id){

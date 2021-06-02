@@ -46,7 +46,7 @@ public class Adresse_UtilisateurRessource {
      * @param aU L adresse utilisateur.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerAdresseUtilisateur(Adresse_Utilisateur aU) throws Exception {
@@ -59,7 +59,7 @@ public class Adresse_UtilisateurRessource {
      * @param aU L adresse utilisateur
      * @return L adresse utilisateur modifiee.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Adresse_Utilisateur modifAdresseUtilisateur(Adresse_Utilisateur aU) throws Exception {
@@ -71,7 +71,7 @@ public class Adresse_UtilisateurRessource {
      * @param id L id de l adresse.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprAdresseUtilisateur(@PathParam("id") Long id) throws Exception{

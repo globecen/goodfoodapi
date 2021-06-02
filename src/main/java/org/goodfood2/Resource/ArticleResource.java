@@ -42,33 +42,33 @@ public class ArticleResource {
     /**
      * @return Le nombre d articles.
      */
-    @Path("/count")
+    @Path("/nombre")
     @GET
     @Transactional
     @PermitAll
-    public long countArticle() throws Exception {
+    public long nombreArticle() throws Exception {
         return Article.count();
     }
 
     /**
      * @return Le nombre d ingredients.
      */
-    @Path("/Ingr/count")
+    @Path("/Ingr/nombre")
     @GET
     @Transactional
     @PermitAll
-    public long countIngr() throws Exception {
+    public long nombreIngr() throws Exception {
         return Article.count("from Article obj where estMenu = 0");
     }
 
     /**
      * @return Le nombre de menus.
      */
-    @Path("/Menu/count")
+    @Path("/Menu/nombre")
     @GET
     @Transactional
     @PermitAll
-    public long countMenu() throws Exception {
+    public long nombreMenu() throws Exception {
         return Article.count("from Article obj where estMenu = 1");
     }
 
@@ -93,7 +93,7 @@ public class ArticleResource {
      * @param id L id de l article.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     @RolesAllowed({ "admin" }) 
@@ -113,7 +113,7 @@ public class ArticleResource {
      * @param a L article.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     @RolesAllowed({ "admin" }) 
@@ -127,7 +127,7 @@ public class ArticleResource {
      * @param a L article.
      * @return L article modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     @RolesAllowed({ "admin" }) 

@@ -46,7 +46,7 @@ public class Categorie_ArticleRessource {
      * @param cA La categorie.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerCategorieArticle(Categorie_Article cA) throws Exception {
@@ -59,7 +59,7 @@ public class Categorie_ArticleRessource {
      * @param a L allergene.
      * @return L adresse fournisseur modifiee.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Categorie_Article modifCategorieArticle(Categorie_Article cA) throws Exception {
@@ -71,7 +71,7 @@ public class Categorie_ArticleRessource {
      * @param id L id de la categorie.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprCategorieArticle(@PathParam("id") Long id) throws Exception{

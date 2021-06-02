@@ -46,7 +46,7 @@ public class Adresse_FournisseurRessource {
      * @param aF L adresse fournisseur.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerAdresseFournisseur(Adresse_Fournisseur aF) throws Exception {
@@ -59,7 +59,7 @@ public class Adresse_FournisseurRessource {
      * @param aF L adresse fournisseur.
      * @return L adresse fournisseur modifiee.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Adresse_Fournisseur modifAdresseFournisseur(Adresse_Fournisseur aF) throws Exception {
@@ -71,7 +71,7 @@ public class Adresse_FournisseurRessource {
      * @param id L id de l adresse.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprAdresseFournisseur(@PathParam("id") Long id) throws Exception{

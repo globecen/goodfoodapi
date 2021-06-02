@@ -55,7 +55,7 @@ public class CommandeResource {
      * @param c La commande.
      * @return L id de la commande necessaire pour creer les lignes.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public int creerCommande(Commande c) throws Exception {
@@ -82,7 +82,7 @@ public class CommandeResource {
      * @param c La commande.
      * @return La commande modifiee.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Commande modifCommande(Commande c) throws Exception {
@@ -94,7 +94,7 @@ public class CommandeResource {
      * @param id L id de la commande.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprCommande(@PathParam("id") Long id) throws Exception{

@@ -46,7 +46,7 @@ public class FournisseurRessource {
      * @param f Le fournisseur.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerFournisseur(Fournisseur f) throws Exception {
@@ -59,7 +59,7 @@ public class FournisseurRessource {
      * @param f Le fournisseur.
      * @return Le fournisseur modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Fournisseur modifFournisseur(Fournisseur f) throws Exception {
@@ -71,7 +71,7 @@ public class FournisseurRessource {
      * @param id L id du fournisseur.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprFournisseur(@PathParam("id") Long id) throws Exception{

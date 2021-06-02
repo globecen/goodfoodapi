@@ -15,7 +15,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 /**
  * Classe permettant la verification des fonctionnalitees de la securite.
  */
-@Path("/secured")
+@Path("/secu")
 @RequestScoped
 public class TokenSecuredResource {
 
@@ -29,7 +29,7 @@ public class TokenSecuredResource {
      * @return
      */
     @GET()
-    @Path("infos")
+    @Path("info")
     @Produces(MediaType.TEXT_PLAIN)
     public String info(@Context SecurityContext ctx) {
         return getResponseString(ctx); 

@@ -60,7 +60,7 @@ public class FranchiseResource {
      * @param f La franchise.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerFranchise(Franchise f) throws Exception {
@@ -73,7 +73,7 @@ public class FranchiseResource {
      * @param f La franchise.
      * @return La franchise modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Franchise modifFranchise(Franchise f) throws Exception {
@@ -85,7 +85,7 @@ public class FranchiseResource {
      * @param id L id de la franchise.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprFranchise(@PathParam("id") Long id) throws Exception{

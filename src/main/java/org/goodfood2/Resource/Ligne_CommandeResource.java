@@ -50,7 +50,7 @@ public class Ligne_CommandeResource {
      */
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerLignesCommande(Ligne_Commande[] lC) throws Exception {

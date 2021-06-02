@@ -46,7 +46,7 @@ public class Groupe_FranchiseRessource {
      * @param gF Le groupe de franchise.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerGroupeFranchise(Groupe_Franchise gF) throws Exception {
@@ -59,7 +59,7 @@ public class Groupe_FranchiseRessource {
      * @param gf Le groupe de franchises.
      * @return Le groupe de franchises modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Groupe_Franchise modifGroupeFranchise(Groupe_Franchise gF) throws Exception {
@@ -71,7 +71,7 @@ public class Groupe_FranchiseRessource {
      * @param id L id du groupe de franchises.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprGroupeFranchise(@PathParam("id") Long id) throws Exception{

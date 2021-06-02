@@ -46,7 +46,7 @@ public class AllergeneRessource {
      * @param a L allergene.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerAllergene(Allergene a) throws Exception {
@@ -59,7 +59,7 @@ public class AllergeneRessource {
      * @param a L allergene.
      * @return L adresse fournisseur modifiee.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Allergene modifAllergene(Allergene a) throws Exception {
@@ -71,7 +71,7 @@ public class AllergeneRessource {
      * @param id L id de l allergene.
      * @return Le statut de la reponse.
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprAdresseUtilisateur(@PathParam("id") Long id) throws Exception{
