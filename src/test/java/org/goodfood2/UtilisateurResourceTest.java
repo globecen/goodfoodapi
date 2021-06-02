@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import io.restassured.response.Response;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
+
 import static io.restassured.RestAssured.*;
 
 @QuarkusTest
@@ -92,9 +94,9 @@ public class UtilisateurResourceTest {
     }
     @Test
     @DisplayName("Suppression d un utilisateur")
+    @TestSecurity(user = "testUser", roles = {"user"})
     @Order(4)
     public void testSupprUtilisateur() {
-        testConnexionUtilisateur();
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
@@ -106,7 +108,6 @@ public class UtilisateurResourceTest {
             .statusCode(405);
         given()
             .urlEncodingEnabled(false)
-            .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
         .log()
             .all()
         .when()
