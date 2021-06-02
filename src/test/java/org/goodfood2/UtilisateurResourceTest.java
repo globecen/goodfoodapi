@@ -94,7 +94,7 @@ public class UtilisateurResourceTest {
     }
     @Test
     @DisplayName("Suppression d un utilisateur")
-    @TestSecurity(user = "testUser", roles = {"user"})
+    @TestSecurity(user = "testUser", roles = {"user","admin"})
     @Order(4)
     public void testSupprUtilisateur() {
         given()
