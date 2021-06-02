@@ -2,6 +2,7 @@ package org.goodfood2.Resource;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
@@ -84,9 +86,12 @@ public class UtilisateurResource {
      * @param id L id de l utilisateur.
      * @return L utilisateur.
      */
+    @PermitAll
     @Path("/{id}")
     @GET
-    public Utilisateur utilisateurId(@PathParam("id") Long id) throws Exception{
+    public Utilisateur utilisateurId(@HeaderParam ("email") String email,
+                                    @HeaderParam ("password") String password,
+                                    @PathParam("id") Long id) throws Exception{
         Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryString("Utilisateur", "idUtilisateur", id.toString()))
                 .getResultList().get(0);
