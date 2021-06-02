@@ -34,13 +34,18 @@ public class CommandeResourceTest {
     @DisplayName("Creation d une commande")
     @Order(2)
     public void testCreerCommande() {
-        Commande cA = new Commande();
+        
+        Commande c = new Commande();
+        c.setIdAdresseFacturation(0);
+        c.setIdAdresseLivraison(0);
+        c.setIdUtilisateur(0);
+        c.setTotalTtc(-1);
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
         .log()
             .all()
-        .body(cA)
+        .body(c)
         .when()
             .post("/Commande/creer/" )
         .then()
@@ -50,10 +55,10 @@ public class CommandeResourceTest {
     @DisplayName("Modification d une commande")
     @Order(3)
     public void testModifCommande() {
-        Commande cA = new Commande();
+        Commande c = new Commande();
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-            .body(cA)
+            .body(c)
         .when()
             .patch("/Commande/modifier")
         .then()

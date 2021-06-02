@@ -84,7 +84,7 @@ public class Commande{
 	}
 
 	public int getIdAdresseLivraison() {
-		return this.idAdresseFacturation;
+		return this.idAdresseLivraison;
 	}
 
 	public void setIdAdresseLivraison(Integer idAdresseLivraison) {
@@ -92,7 +92,7 @@ public class Commande{
 	}	
 	
 	public int getIdUtilisateur() {
-		return this.idAdresseFacturation;
+		return this.idUtilisateur;
 	}
 
 	public void setIdUtilisateur(Integer idUtilisateur) {

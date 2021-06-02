@@ -58,7 +58,6 @@ public class UtilisateurResource {
     public List<Utilisateur> utilisateurs(
         @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
         @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-        @DefaultValue("") @QueryParam("adresseUtilisateur") String adresseUtilisateur,
         @DefaultValue("") @QueryParam("emailUtilisateur") String emailUtilisateur,
         @DefaultValue("") @QueryParam("nomUtilisateur") String nomUtilisateur,
         @DefaultValue("") @QueryParam("prenomUtilisateur") String prenomUtilisateur,
@@ -67,12 +66,10 @@ public class UtilisateurResource {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
         utilisateurs = Utilisateur.find(
-            "select adresseUtilisateur, emailUtilisateur, role, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where adresseUtilisateur like '%" + 
-            adresseUtilisateur + "%' and emailUtilisateur like '%" + 
-            emailUtilisateur + "%' and nomUtilisateur like '%" + 
-            nomUtilisateur + "%' and prenomUtilisateur like '%" +
-            prenomUtilisateur + "%' and numeroTelUtilisateur like '%" + 
-            numeroTelUtilisateur + "%'");
+            "select emailUtilisateur, role, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where emailUtilisateur like '%" + emailUtilisateur 
+            + "%' and nomUtilisateur like '%" + nomUtilisateur 
+            + "%' and prenomUtilisateur like '%" + prenomUtilisateur 
+            + "%' and numeroTelUtilisateur like '%" + numeroTelUtilisateur + "%'");
         utilisateurs.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++){
             utilisateurs.nextPage();
