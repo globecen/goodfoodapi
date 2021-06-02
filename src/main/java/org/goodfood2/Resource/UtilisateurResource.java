@@ -131,7 +131,7 @@ public class UtilisateurResource {
      */
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/connexion/{email}&{password}")
-    @GET
+    @POST
     public String connexionUtilisateur (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
         String ret = "";
         long tokenDuration = 3600;
