@@ -31,17 +31,17 @@ import static org.hamcrest.CoreMatchers.is;
 public class UserResourceTest {
     
     @Test
-    @DisplayName("Lister utilisateurs")
+    @DisplayName("Liste des utilisateurs")
     @Order(0)
     public void testgetAllUsersEndpoint() {
-        given().when().get("/User")
+        given().when().get("/Utilisateur")
         
             .then()
             .statusCode(200);
             // .body(is());
     }
     @Test
-    @DisplayName("Register")
+    @DisplayName("Creation d un utilisateur")
     @Order(1)
     public void testRegisterEndpoint() {
         Utilisateur u = new Utilisateur();
@@ -59,13 +59,13 @@ public class UserResourceTest {
             .all()
         .body(u)
         .when()
-            .post("/User/create/" )
+            .post("/Utilisateur/create/" )
         .then()
             .statusCode(200);
     }    
 
     @Test
-    @DisplayName("Login")
+    @DisplayName("Connexion")
     @Order(2)
     public void testLoginEndpoint() {
         given()
@@ -74,7 +74,7 @@ public class UserResourceTest {
         .log()
             .all()
         .when()
-            .get("/User/login/{email}&{password}", "quentin.alegos@gmail.com", "hHxL3zXapXz3JWW" )
+            .get("/Utilisateur/login/{email}&{password}", "quentin.alegos@gmail.com", "hHxL3zXapXz3JWW" )
         .then()
             .statusCode(200);
 
