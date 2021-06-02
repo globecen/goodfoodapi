@@ -114,6 +114,4 @@ public class UtilisateurResourceTest {
         .then()
             .statusCode(200);
     }
-
-    
 }
