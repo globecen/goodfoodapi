@@ -2,6 +2,7 @@ package org.goodfood2.Resource;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -27,6 +28,7 @@ import org.goodfood2.utils.SecurityUtils;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
+import io.quarkus.security.jpa.Roles;
 
 /**
  * Route liees aux utilisateurs.
@@ -128,9 +130,9 @@ public class UtilisateurResource {
      * @throws Exception
      */
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/login/{email}&{password}")
+    @Path("/connexion/{email}&{password}")
     @GET
-    public String val (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
+    public String connexionUtilisateur (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
         String ret = "";
         long tokenDuration = 3600;
         boolean test = false;
@@ -151,7 +153,7 @@ public class UtilisateurResource {
      * @param p L utilisateur.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {
@@ -165,10 +167,11 @@ public class UtilisateurResource {
      * @param p L utilisateur.
      * @return L utilisateur modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Utilisateur modifUtilisateur(Utilisateur u) throws Exception {
+        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.getMdpUtilisateur()));
         return entityManager.merge(u);
     }
 
@@ -178,7 +181,8 @@ public class UtilisateurResource {
      * @return Le statut de la reponse.
      * @throws Exception
      */
-    @Path("/delete/{id}")
+    @RolesAllowed({"admin"})
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprUtilisateur(@PathParam("id") Long id) throws Exception{
