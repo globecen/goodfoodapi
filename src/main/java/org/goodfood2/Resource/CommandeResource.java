@@ -59,22 +59,8 @@ public class CommandeResource {
     @POST
     @Transactional
     public int creerCommande(Commande c) throws Exception {
-        int ret = -1;
-        try {
-            c.setEstActive(1);
-            c.setStatutCommande(1); 
-            
-            entityManager.persist(c);
-            entityManager.getTransaction().commit();
-            entityManager.flush();
-            entityManager.refresh(c);   
-
-            ret = c.getIdCommande();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            Response.status(500).build();
-        }
-        return ret;
+        entityManager.persist(c);
+        return c.getIdCommande();
     }
 
     /**

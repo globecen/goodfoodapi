@@ -20,7 +20,7 @@ public class Commande{
 	private int idCommande;
 
 	@Column(name="date_commande")
-	private Timestamp dateCommande;
+	private String dateCommande;
 
 	@Column(name="statut_commande")
 	private int statutCommande;
@@ -29,13 +29,13 @@ public class Commande{
 	private double totalTtc;
 
 	@Column(name="id_adresse_facturation")
-	private Integer idAdresseFacturation;
+	private int idAdresseFacturation;
 
 	@Column(name="id_adresse_livraison")
-	private Integer idAdresseLivraison;
+	private int idAdresseLivraison;
 
 	@Column(name="id_utilisateur")
-	private Integer idUtilisateur;
+	private int idUtilisateur;
 
 	@Column(name="est_active")
 	private int estActive;
@@ -51,11 +51,11 @@ public class Commande{
 		this.idCommande = idCommande;
 	}
 
-	public Timestamp getDateCommande() {
+	public String getDateCommande() {
 		return this.dateCommande;
 	}
 
-	public void setDateCommande(Timestamp dateCommande) {
+	public void setDateCommande(String dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 
