@@ -29,13 +29,13 @@ public class Commande{
 	private double totalTtc;
 
 	@Column(name="id_adresse_facturation")
-	private Integer idAdresseFacturation;
+	private int idAdresseFacturation;
 
 	@Column(name="id_adresse_livraison")
-	private Integer idAdresseLivraison;
+	private int idAdresseLivraison;
 
 	@Column(name="id_utilisateur")
-	private Integer idUtilisateur;
+	private int idUtilisateur;
 
 	@Column(name="est_active")
 	private int estActive;
@@ -79,7 +79,7 @@ public class Commande{
 		return this.idAdresseFacturation;
 	}
 
-	public void setIdAdresseFacturation(Integer idAdresseFacturation) {
+	public void setIdAdresseFacturation(int idAdresseFacturation) {
 		this.idAdresseFacturation = idAdresseFacturation;
 	}
 
@@ -87,7 +87,7 @@ public class Commande{
 		return this.idAdresseLivraison;
 	}
 
-	public void setIdAdresseLivraison(Integer idAdresseLivraison) {
+	public void setIdAdresseLivraison(int idAdresseLivraison) {
 		this.idAdresseLivraison = idAdresseLivraison;
 	}	
 	
@@ -95,7 +95,7 @@ public class Commande{
 		return this.idUtilisateur;
 	}
 
-	public void setIdUtilisateur(Integer idUtilisateur) {
+	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 

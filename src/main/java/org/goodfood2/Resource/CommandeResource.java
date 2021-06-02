@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -57,16 +56,15 @@ public class CommandeResource {
      */
     @Path("/creer")
     @POST
-    @Transactional
     public int creerCommande(Commande c) throws Exception {
         int ret = -1;
         try {
             c.setEstActive(1);
             c.setStatutCommande(1); 
             
+            entityManager.getTransaction().begin();
             entityManager.persist(c);
             entityManager.getTransaction().commit();
-            entityManager.flush();
             entityManager.refresh(c);   
 
             ret = c.getIdCommande();
@@ -84,7 +82,6 @@ public class CommandeResource {
      */
     @Path("/modifier")
     @PATCH
-    @Transactional
     public Commande modifCommande(Commande c) throws Exception {
         return entityManager.merge(c);
     }
@@ -96,7 +93,6 @@ public class CommandeResource {
      */
     @Path("/supprimer/{id}")
     @DELETE
-    @Transactional
     public Response supprCommande(@PathParam("id") Long id) throws Exception{
         Commande c = (Commande)entityManager.createQuery(
             QueryUtils.makeFindByParamQueryInt("Commande", "id", id.toString()))
