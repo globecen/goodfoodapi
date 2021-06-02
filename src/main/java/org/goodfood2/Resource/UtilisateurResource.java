@@ -28,7 +28,6 @@ import org.goodfood2.utils.SecurityUtils;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-import io.quarkus.security.jpa.Roles;
 
 /**
  * Route liees aux utilisateurs.
@@ -131,7 +130,7 @@ public class UtilisateurResource {
      */
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/connexion/{email}&{password}")
-    @GET
+    @POST
     public String connexionUtilisateur (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
         String ret = "";
         long tokenDuration = 3600;

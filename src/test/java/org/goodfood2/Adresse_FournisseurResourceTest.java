@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
 
 import org.goodfood2.Entity.Adresse_Fournisseur;
 import org.junit.jupiter.api.DisplayName;
@@ -34,13 +35,6 @@ public class Adresse_FournisseurResourceTest {
     @Order(2)
     public void testCreerAdresseFournisseur() {
         Adresse_Fournisseur aF = new Adresse_Fournisseur();
-        aF.setCodePostal(00000);
-        aF.setNomAdresse("00000");
-        aF.setNumeroAdresse(00000);
-        aF.setPays("00000");
-        aF.setSuppNomAdresse("00000");
-        aF.setVilleAdresse("00000");
-        aF.setEstActive(1);
 
         given()
             .urlEncodingEnabled(false)
@@ -58,13 +52,6 @@ public class Adresse_FournisseurResourceTest {
     @Order(3)
     public void testModifAdresseFournisseur() {
         Adresse_Fournisseur aF = new Adresse_Fournisseur();
-        aF.setCodePostal(00001);
-        aF.setNomAdresse("00000");
-        aF.setNumeroAdresse(00000);
-        aF.setPays("00000");
-        aF.setSuppNomAdresse("00000");
-        aF.setVilleAdresse("00000");
-        aF.setEstActive(1);
 
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
@@ -78,6 +65,7 @@ public class Adresse_FournisseurResourceTest {
 
     @Test
     @DisplayName("Suppression d une adresse fournisseur")
+    @TestSecurity(user = "testUser", roles = {"user","admin"})
     @Order(4)
     public void testSupprAdresseFournisseur() {
         given()

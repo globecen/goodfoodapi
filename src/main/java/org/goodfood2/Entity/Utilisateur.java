@@ -13,8 +13,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
  */
 @Entity
 public class Utilisateur  extends PanacheEntityBase {
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_utilisateur")
 	private int idUtilisateur;
 

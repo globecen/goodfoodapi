@@ -9,32 +9,33 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
 
-import org.goodfood2.Entity.Commande;
+import org.goodfood2.Entity.Categorie_Article;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import static io.restassured.RestAssured.*;
 
 @QuarkusTest
-@DisplayName("Tests commandes")
+@DisplayName("Tests categories article")
 @TestMethodOrder(OrderAnnotation.class)
-public class CommandeResourceTest {
+public class Categorie_ArticleResourceTest {
     
     public String token="";
     
     @Test
-    @DisplayName("Liste des commandes")
+    @DisplayName("Liste des categories article")
     @Order(1)
-    public void testCommande() {
-        given().when().get("/Commande")
+    public void testCategoriesArticle() {
+        given().when().get("/Categorie_Article")
             .then()
             .statusCode(200);
     }
 
     @Test
-    @DisplayName("Creation d une commande")
+    @DisplayName("Creation d une categorie article")
     @Order(2)
-    public void testCreerCommande() {
-        Commande cA = new Commande();
+    public void testCreerCategorieArticle() {
+        Categorie_Article cA = new Categorie_Article();
+
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
@@ -42,37 +43,39 @@ public class CommandeResourceTest {
             .all()
         .body(cA)
         .when()
-            .post("/Commande/creer/" )
+            .post("/Categorie_Article/creer/" )
         .then()
             .statusCode(200);
     } 
     @Test
-    @DisplayName("Modification d une commande")
+    @DisplayName("Modification d une categorie article")
     @Order(3)
-    public void testModifCommande() {
-        Commande cA = new Commande();
+    public void testModifCategorieArticle() {
+        Categorie_Article cA = new Categorie_Article();
+
+
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
             .body(cA)
         .when()
-            .patch("/Commande/modifier")
+            .patch("/Categorie_Article/modifier")
         .then()
             .statusCode(200);
         
     }
 
     @Test
-    @DisplayName("Suppression d une commande")
+    @DisplayName("Suppression d une categorie article")
     @TestSecurity(user = "testUser", roles = {"user","admin"})
     @Order(4)
-    public void testSupprCommande() {
+    public void testSupprCategorieArticle() {
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
         .log()
             .all()
         .when()
-            .get("/Commande/supprimer/{id}","1")
+            .get("/Categorie_Article/supprimer/{id}","1")
         .then()
             .statusCode(405);
         given()
@@ -80,7 +83,7 @@ public class CommandeResourceTest {
         .log()
             .all()
         .when()
-            .delete("/Commande/supprimer/{id}","1")
+            .delete("/Categorie_Article/supprimer/{id}","1")
         .then()
             .statusCode(200);
     }

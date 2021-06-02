@@ -1,16 +1,22 @@
 package org.goodfood2;
 
 import javax.ws.rs.core.MediaType;
-
-
 import javax.ws.rs.core.HttpHeaders;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
+import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
+
 import org.goodfood2.Entity.Adresse_Utilisateur;
-import org.goodfood2.Entity.Utilisateur;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import static io.restassured.RestAssured.*;
 
+@QuarkusTest
+@DisplayName("Tests adresses utilisateur")
+@TestMethodOrder(OrderAnnotation.class)
 public class Adresse_UtilisateurResourceTest {
     
     public String token="";
@@ -28,16 +34,7 @@ public class Adresse_UtilisateurResourceTest {
     @DisplayName("Creation d une adresse utilisateur")
     @Order(2)
     public void testCreerAdresseUtilisateur() {
-        Utilisateur u = new Utilisateur();
         Adresse_Utilisateur aF = new Adresse_Utilisateur();
-        aF.setIdUtilisateur(u.getIdUtilisateur());;
-        aF.setCodePostal(00000);
-        aF.setNomAdresse("00000");
-        aF.setNumeroAdresse(00000);
-        aF.setPays("00000");
-        aF.setSuppNomAdresse("00000");
-        aF.setVilleAdresse("00000");
-        aF.setEstActive(1);
 
         given()
             .urlEncodingEnabled(false)
@@ -54,16 +51,7 @@ public class Adresse_UtilisateurResourceTest {
     @DisplayName("Modification d une adresse utilisateur")
     @Order(3)
     public void testModifAdresseUtilisateur() {
-        Utilisateur u = new Utilisateur();
         Adresse_Utilisateur aF = new Adresse_Utilisateur();
-        aF.setIdUtilisateur(u.getIdUtilisateur());;
-        aF.setCodePostal(00001);
-        aF.setNomAdresse("00000");
-        aF.setNumeroAdresse(00000);
-        aF.setPays("00000");
-        aF.setSuppNomAdresse("00000");
-        aF.setVilleAdresse("00000");
-        aF.setEstActive(1);
 
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
@@ -77,6 +65,7 @@ public class Adresse_UtilisateurResourceTest {
 
     @Test
     @DisplayName("Suppression d une adresse utilisateur")
+    @TestSecurity(user = "testUser", roles = {"user","admin"})
     @Order(4)
     public void testSupprAdresseUtilisateur() {
         given()

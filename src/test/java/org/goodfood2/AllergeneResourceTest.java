@@ -4,12 +4,18 @@ import org.goodfood2.Entity.Allergene;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
+import io.quarkus.test.junit.QuarkusTest;
+
 import static io.restassured.RestAssured.*;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
-
-
+@QuarkusTest
+@DisplayName("Tests allergenes")
+@TestMethodOrder(OrderAnnotation.class)
 public class AllergeneResourceTest {
     public String token="";
     
@@ -23,7 +29,7 @@ public class AllergeneResourceTest {
     }
 
     @Test
-    @DisplayName("Creation d une allergene")
+    @DisplayName("Creation d un allergene")
     @Order(2)
     public void testCreerAllergene() {
         Allergene a = new Allergene();
@@ -41,7 +47,7 @@ public class AllergeneResourceTest {
             .statusCode(200);
     } 
     @Test
-    @DisplayName("Modification d une allergene")
+    @DisplayName("Modification d un allergene")
     @Order(3)
     public void testModifAllergene() {
         Allergene a = new Allergene();       
@@ -58,7 +64,7 @@ public class AllergeneResourceTest {
     }
 
     @Test
-    @DisplayName("Suppression d une allergene")
+    @DisplayName("Suppression d un allergene")
     @Order(4)
     public void testSupprAllergene() {
         given()

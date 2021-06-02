@@ -9,70 +9,70 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
 
-import org.goodfood2.Entity.Commande;
+import org.goodfood2.Entity.Fournisseur;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import static io.restassured.RestAssured.*;
 
 @QuarkusTest
-@DisplayName("Tests commandes")
+@DisplayName("Tests fournisseurs")
 @TestMethodOrder(OrderAnnotation.class)
-public class CommandeResourceTest {
+public class FournisseurResourceTest {
     
     public String token="";
     
     @Test
-    @DisplayName("Liste des commandes")
+    @DisplayName("Liste des fournisseurs")
     @Order(1)
-    public void testCommande() {
-        given().when().get("/Commande")
+    public void testFournisseur() {
+        given().when().get("/Fournisseur")
             .then()
             .statusCode(200);
     }
 
     @Test
-    @DisplayName("Creation d une commande")
+    @DisplayName("Creation d une fournisseur")
     @Order(2)
-    public void testCreerCommande() {
-        Commande cA = new Commande();
+    public void testCreerFournisseur() {
+        Fournisseur f = new Fournisseur();
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
         .log()
             .all()
-        .body(cA)
+        .body(f)
         .when()
-            .post("/Commande/creer/" )
+            .post("/Fournisseur/creer/" )
         .then()
             .statusCode(200);
     } 
     @Test
-    @DisplayName("Modification d une commande")
+    @DisplayName("Modification d une fournisseur")
     @Order(3)
-    public void testModifCommande() {
-        Commande cA = new Commande();
+    public void testModifFournisseur() {
+        Fournisseur f = new Fournisseur();
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-            .body(cA)
+            .body(f)
         .when()
-            .patch("/Commande/modifier")
+            .patch("/Fournisseur/modifier")
         .then()
             .statusCode(200);
         
     }
 
     @Test
-    @DisplayName("Suppression d une commande")
+    @DisplayName("Suppression d une fournisseur")
     @TestSecurity(user = "testUser", roles = {"user","admin"})
     @Order(4)
-    public void testSupprCommande() {
+    public void testSupprFournisseur() {
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
         .log()
             .all()
         .when()
-            .get("/Commande/supprimer/{id}","1")
+            .get("/Fournisseur/supprimer/{id}","1")
         .then()
             .statusCode(405);
         given()
@@ -80,7 +80,7 @@ public class CommandeResourceTest {
         .log()
             .all()
         .when()
-            .delete("/Commande/supprimer/{id}","1")
+            .delete("/Fournisseur/supprimer/{id}","1")
         .then()
             .statusCode(200);
     }

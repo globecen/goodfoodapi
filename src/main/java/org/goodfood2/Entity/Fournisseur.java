@@ -2,6 +2,8 @@ package org.goodfood2.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 public class Fournisseur {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_fournisseur")
 	private int idFournisseur;
 

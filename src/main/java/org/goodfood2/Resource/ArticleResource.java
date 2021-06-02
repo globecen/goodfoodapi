@@ -175,11 +175,11 @@ public class ArticleResource {
      */
     @Path("/{id}/Categorie_Article")
     @GET
-    public Categorie_Article categorieArticleId(@PathParam("id") Long id) throws Exception{
-        Categorie_Article categorie_Article = (Categorie_Article)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryString("Categorie_Article", "idCategorieArticle", id.toString()))
-                .getResultList().get(0);
-        return categorie_Article;
+    public List<Categorie_Article> categorieArticleId(@PathParam("id") Long id) throws Exception{
+        Categorie_Article ret = null;
+        return entityManager.createNativeQuery(
+            "select id_categorie_article from Article where id_article = " + id)
+                .getResultList();
     }
 
 
