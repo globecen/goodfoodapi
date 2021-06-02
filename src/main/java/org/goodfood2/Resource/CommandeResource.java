@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -25,24 +26,23 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Path("/Commande")
 @Tag(name = "Commande Resource", description = "L'ensemble des routes pour la partie Commande")
 public class CommandeResource {
-    
+
     // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
-    
+
     /**
      * Recupere toutes les commandes d un utilisateur.
+     * 
      * @param idUtilisateur L id de l utilisateur.
      * @return Les commandes.
      */
     @Path("/")
     @GET
-    public List<Commande> articles(
-        @DefaultValue("-1") @QueryParam("idUtilisateur") Integer idUtilisateur
-    ) {
+    public List<Commande> articles(@DefaultValue("-1") @QueryParam("idUtilisateur") Integer idUtilisateur) {
         String query = "FROM Commande c";
-        
-        if(idUtilisateur > -1){
+
+        if (idUtilisateur > -1) {
             query += " WHERE c.idUtilisateur = " + idUtilisateur;
         }
 
@@ -51,11 +51,13 @@ public class CommandeResource {
 
     /**
      * Cree une commande .
+     * 
      * @param c La commande.
      * @return L id de la commande necessaire pour creer les lignes.
      */
     @Path("/creer")
     @POST
+    @Transactional
     public int creerCommande(Commande c) throws Exception {
         entityManager.persist(c);
         return c.getIdCommande();
@@ -63,26 +65,30 @@ public class CommandeResource {
 
     /**
      * Modifie une commande.
+     * 
      * @param c La commande.
      * @return La commande modifiee.
      */
     @Path("/modifier")
     @PATCH
+    @Transactional
     public Commande modifCommande(Commande c) throws Exception {
         return entityManager.merge(c);
     }
 
     /**
      * Supprime une commande.
+     * 
      * @param id L id de la commande.
      * @return Le statut de la reponse.
      */
     @Path("/supprimer/{id}")
     @DELETE
-    public Response supprCommande(@PathParam("id") Long id) throws Exception{
-        Commande c = (Commande)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryInt("Commande", "id", id.toString()))
-                .getResultList().get(0);
+    @Transactional
+    public Response supprCommande(@PathParam("id") Long id) throws Exception {
+        Commande c = (Commande) entityManager
+                .createQuery(QueryUtils.makeFindByParamQueryInt("Commande", "id", id.toString())).getResultList()
+                .get(0);
         if (c == null) {
             return Response.status(404).build();
         }

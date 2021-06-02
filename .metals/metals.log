@@ -1853,3 +1853,30 @@ Starting thread that pumps server stdout and redirects it to the client stdout..
 [0m2021.06.02 21:19:19 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
 [0m2021.06.02 21:19:19 INFO  time: compiled goodfoodapi-test in 0.96s[0m
 [0m2021.06.02 21:19:19 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.02 21:46:42 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.02 21:46:43 INFO  time: compiled goodfoodapi-test in 1.29s[0m
+[0m2021.06.02 21:46:43 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.02 21:46:45 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.02 21:46:46 INFO  time: compiled goodfoodapi-test in 1.17s[0m
+[0m2021.06.02 21:46:46 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.02 21:46:52 INFO  compiling goodfoodapi (2 java sources)[0m
+[0m2021.06.02 21:46:52 INFO  time: compiled goodfoodapi in 0.13s[0m
+[0m2021.06.02 21:46:54 INFO  compiling goodfoodapi (2 java sources)[0m
+[0m2021.06.02 21:46:54 INFO  time: compiled goodfoodapi in 0.11s[0m
+[0m2021.06.02 21:47:22 INFO  compiling goodfoodapi (2 java sources)[0m
+[0m2021.06.02 21:47:22 INFO  time: compiled goodfoodapi in 0.85s[0m
+[0m2021.06.02 21:51:16 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.02 21:51:18 INFO  time: compiled goodfoodapi-test in 1.19s[0m
+[0m2021.06.02 21:51:18 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+juin 02, 2021 9:52:39 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+juin 02, 2021 9:52:44 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+juin 02, 2021 9:52:50 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+juin 02, 2021 9:52:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+juin 02, 2021 9:52:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+juin 02, 2021 9:52:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
