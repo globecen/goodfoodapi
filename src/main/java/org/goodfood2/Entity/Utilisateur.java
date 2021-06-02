@@ -19,8 +19,11 @@ public class Utilisateur  extends PanacheEntityBase {
 	@Column(name="id_utilisateur")
 	private int idUtilisateur;
 
-	@Column(name="adresse_utilisateur")
-	private int adresseUtilisateur;
+	@Column(name="id_adresse_livraison")
+	private int idAdresseLivraison;
+
+	@Column(name="id_adresse_facturation")
+	private int idAdresseFacturation;
 
 	@Column(name="email_utilisateur")
 	private String emailUtilisateur;
@@ -50,13 +53,21 @@ public class Utilisateur  extends PanacheEntityBase {
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
-
-	public int getAdresseUtilisateur() {
-		return this.adresseUtilisateur;
+	
+	public int getIdAdresseLivraison() {
+		return idAdresseLivraison;
 	}
 
-	public void setAdresseUtilisateur(int adresseUtilisateur) {
-		this.adresseUtilisateur = adresseUtilisateur;
+	public void setIdAdresseLivraison(int idAdresseLivraison) {
+		this.idAdresseLivraison = idAdresseLivraison;
+	}
+
+	public int getIdAdresseFacturation() {
+		return idAdresseFacturation;
+	}
+
+	public void setIdAdresseFacturation(int idAdresseFacturation) {
+		this.idAdresseFacturation = idAdresseFacturation;
 	}
 
 	public String getEmailUtilisateur() {
