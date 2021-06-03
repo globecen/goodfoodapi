@@ -1880,3 +1880,22 @@ juin 02, 2021 9:52:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint noti
 INFO: Unsupported notification method: $/setTrace
 juin 02, 2021 9:52:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+[0m2021.06.02 21:58:23 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.02 21:58:23 INFO  time: compiled goodfoodapi in 0.67s[0m
+[0m2021.06.02 21:59:23 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.02 21:59:23 INFO  time: compiled goodfoodapi in 0.71s[0m
+[0m2021.06.02 21:59:33 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.02 21:59:33 INFO  time: compiled goodfoodapi in 0.57s[0m
+[0m2021.06.02 21:59:37 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.02 21:59:37 INFO  time: compiled goodfoodapi in 0.6s[0m
+[0m2021.06.02 21:59:41 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.02 21:59:41 INFO  time: compiled goodfoodapi in 0.58s[0m
+[0m2021.06.02 22:15:11 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.02 22:15:13 INFO  time: compiled goodfoodapi-test in 2s[0m
+[0m2021.06.02 22:15:13 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.02 22:16:45 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.02 22:16:46 INFO  time: compiled goodfoodapi-test in 1.14s[0m
+[0m2021.06.02 22:16:46 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.02 22:16:48 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.02 22:16:49 INFO  time: compiled goodfoodapi-test in 1.06s[0m
+[0m2021.06.02 22:16:49 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m

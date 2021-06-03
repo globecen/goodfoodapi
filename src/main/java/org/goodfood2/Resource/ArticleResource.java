@@ -74,6 +74,7 @@ public class ArticleResource {
 
     /**
      * Recupere un article.
+     * 
      * @param id L id de l article.
      * @return L article.
      */
@@ -81,26 +82,25 @@ public class ArticleResource {
     @GET
     @Transactional
     @PermitAll
-    public Article articleId(@PathParam("id") Long id) throws Exception{
-        Article article = (Article)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
-                .getResultList().get(0);
+    public Article articleId(@PathParam("id") Long id) throws Exception {
+        Article article = (Article) entityManager
+                .createQuery(QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString())).getResultList().get(0);
         return article;
     }
 
     /**
      * Supprime un article.
+     * 
      * @param id L id de l article.
      * @return Le statut de la reponse.
      */
     @Path("/supprimer/{id}")
     @DELETE
     @Transactional
-    @RolesAllowed({ "admin" }) 
-    public Response supprArticle(@PathParam("id") Long id) throws Exception{
-        Article article = (Article)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString()))
-                .getResultList().get(0);
+    @RolesAllowed({ "admin" })
+    public Response supprArticle(@PathParam("id") Long id) throws Exception {
+        Article article = (Article) entityManager
+                .createQuery(QueryUtils.makeFindByParamQueryInt("Article", "id", id.toString())).getResultList().get(0);
         if (article == null) {
             return Response.status(404).build();
         }
@@ -110,13 +110,14 @@ public class ArticleResource {
 
     /**
      * Cree un article.
+     * 
      * @param a L article.
      * @return Le statut de la reponse.
      */
     @Path("/creer")
     @POST
     @Transactional
-    @RolesAllowed({ "admin" }) 
+    @RolesAllowed({ "admin" })
     public Response creerArticle(Article a) throws Exception {
         entityManager.persist(a);
         return Response.status(200).build();
@@ -124,19 +125,21 @@ public class ArticleResource {
 
     /**
      * Modifie un article.
+     * 
      * @param a L article.
      * @return L article modifie.
      */
     @Path("/modifier")
     @PATCH
     @Transactional
-    @RolesAllowed({ "admin" }) 
+    @RolesAllowed({ "admin" })
     public Article modifArticle(Article a) throws Exception {
         return entityManager.merge(a);
     }
 
     /**
      * Recupere les allergenes liees a un article.
+     * 
      * @param id L id de l article.
      * @return La liste des allergenes.
      * @throws Exception
@@ -145,14 +148,16 @@ public class ArticleResource {
     @GET
     @Transactional
     @PermitAll
-    public List<VoArtAllergene> artAllergene(@PathParam("id") Long id) throws Exception{
-        return entityManager.createNativeQuery(
-            "select distinct(libelle_allergene) from Vo_Full_Art_Allergenes where id_article = " + id)
+    public List<VoArtAllergene> artAllergene(@PathParam("id") Long id) throws Exception {
+        return entityManager
+                .createNativeQuery(
+                        "select distinct(libelle_allergene) from Vo_Full_Art_Allergenes where id_article = " + id)
                 .getResultList();
     }
 
     /**
      * Recupere les promotions liees a un article.
+     * 
      * @param id L id de l article.
      * @return La liste des promotions.
      * @throws Exception
@@ -161,34 +166,34 @@ public class ArticleResource {
     @GET
     @Transactional
     @PermitAll
-    public List<VoArtPromo> artPromo(@PathParam("id") Long id) throws Exception{
-        return entityManager.createNativeQuery(
-            "select distinct(reduction) from Vo_Art_Promo where id_article = " + id)
+    public List<VoArtPromo> artPromo(@PathParam("id") Long id) throws Exception {
+        return entityManager.createNativeQuery("select distinct(reduction) from Vo_Art_Promo where id_article = " + id)
                 .getResultList();
     }
 
-     /**
+    /**
      * Recupere les categories liees a un article.
+     * 
      * @param id L id de l article.
      * @return La categorie.
      * @throws Exception
      */
     @Path("/{id}/Categorie_Article")
     @GET
-    public List<Categorie_Article> categorieArticleId(@PathParam("id") Long id) throws Exception{
+    public List<Categorie_Article> categorieArticleId(@PathParam("id") Long id) throws Exception {
         Categorie_Article ret = null;
-        return entityManager.createNativeQuery(
-            "select id_categorie_article from Article where id_article = " + id)
+        return entityManager.createNativeQuery("select id_categorie_article from Article where id_article = " + id)
                 .getResultList();
     }
 
-
     /**
      * Recupere la liste des articles en fonctions de plusieurs parametres.
-     * @param pageSize Le nombre d articles par page.
-     * @param pageNumber Le numero de page.
-     * @param estMenu Choix pour recuperer les ingredients, les menus ou tous les articles.
-     * @param libelleArticle Une partie d'un libelle.
+     * 
+     * @param pageSize           Le nombre d articles par page.
+     * @param pageNumber         Le numero de page.
+     * @param estMenu            Choix pour recuperer les ingredients, les menus ou
+     *                           tous les articles.
+     * @param libelleArticle     Une partie d'un libelle.
      * @param descriptionArticle Une partie de la description.
      * @param idCategorieArticle Une categorie specifique d articles.
      * @return La liste d articles.
@@ -197,38 +202,36 @@ public class ArticleResource {
     @GET
     @Transactional
     @PermitAll
-    public List<Article> articles(
-        @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
-        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-        @DefaultValue("") @QueryParam("estMenu") String estMenu,
-        @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
-        @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
-        @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle
-    ) { 
+    public List<Article> articles(@DefaultValue("25") @QueryParam("pageSize") Integer pageSize,
+            @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+            @DefaultValue("") @QueryParam("estMenu") String estMenu,
+            @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
+            @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
+            @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle) {
         PanacheQuery<Article> articles = null;
-        //String query = String.format("FROM Article WHERE estMenu = '%s' AND libelleArticle LIKE '%s' AND LIKE '%s'", estMenu);
+        // String query = String.format("FROM Article WHERE estMenu = '%s' AND
+        // libelleArticle LIKE '%s' AND LIKE '%s'", estMenu);
         String query = "from Article" + " ";
-        query += String.format("where libelleArticle like '%s'","%" + libelleArticle + "%") + " "; 
-        query += String.format("and descriptionArticle like '%s'","%" + descriptionArticle + "%") + " "; 
+        query += String.format("where libelleArticle like '%s'", "%" + libelleArticle + "%") + " ";
+        query += String.format("and descriptionArticle like '%s'", "%" + descriptionArticle + "%") + " ";
 
-        if(!estMenu.isEmpty())
-        {
-            query += String.format("and estMenu = '%s'",estMenu) + " "; 
+        if (!estMenu.isEmpty()) {
+            query += String.format("and estMenu = '%s'", estMenu) + " ";
         }
 
         if (idCategorieArticle > -1) {
-            query += String.format("and idCategorieArticle = %d",idCategorieArticle) + " "; 
+            query += String.format("and idCategorieArticle = %d", idCategorieArticle) + " ";
         }
 
-        query += "and estActive = 1"; 
+        query += "and estActive = 1";
 
         articles = Article.find(query);
-        System.out.print(query);
+        // System.out.print(query);
         articles.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
+        for (int i = 0; i < pageNumber - 1; i++) {
             articles.nextPage();
         }
         return articles.list();
     }
-    
+
 }

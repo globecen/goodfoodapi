@@ -6,10 +6,10 @@ import scala.concurrent.duration._
 import java.util.concurrent.{ ThreadLocalRandom, TimeUnit }
 class ApiGatlingSimulationTest extends Simulation {
 
-    var scn = scenario("AddAndFindPersons").repeat(1, "n"){
+    var scn = scenario("AddAndFindPersons").repeat(2, "n"){
           exec(
             http("AddPerson-API")
-              .get("http://localhost:8080/Article")
+              .get("http://localhost:8080/Article?estMenu=0&idCategorieArticle=-1&pageNumber=1&pageSize=25")
               .header("Content-Type", "application/json")
               .check(status.is(200))
           ).pause(Duration.apply(5, TimeUnit.MILLISECONDS))
