@@ -45,12 +45,12 @@ public class FranchiseResource {
             return entityManager.createQuery("from Franchise").getResultList();
         else {
             String emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise;
-            emailFranchise = "emailFranchise like '" + search + "' OR ";
-            idFranchise = "idFranchise like '" + search + "' OR ";
-            idGroupeFranchise = "idGroupeFranchise like '" + search + "' OR ";
-            nomFranchise = "nomFranchise like '%" + search + "%' OR ";
-            numeroSiretFranchise = "numeroSiretFranchise like '" + search + "' OR ";
-            numeroTelFranchise = "numeroTelFranchise like '" + search + "'";
+            emailFranchise = "b_emailFranchise like '" + search + "' or ";
+            idFranchise = "a_idFranchise like '" + search + "' or ";
+            idGroupeFranchise = "c_idGroupeFranchise like '" + search + "' or ";
+            nomFranchise = "d_nomFranchise like '%" + search + "%' or ";
+            numeroSiretFranchise = "e_numeroSiretFranchise like '" + search + "' or ";
+            numeroTelFranchise = "f_numeroTelFranchise like '" + search + "'";
             return entityManager.createQuery("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise).getResultList();
         }
     }

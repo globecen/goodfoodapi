@@ -40,10 +40,10 @@ public class CommandeResource {
     @Path("/")
     @GET
     public List<Commande> articles(@DefaultValue("-1") @QueryParam("idUtilisateur") Integer idUtilisateur) {
-        String query = "FROM Commande c";
+        String query = "from Commande c";
 
         if (idUtilisateur > -1) {
-            query += " WHERE c.idUtilisateur = " + idUtilisateur;
+            query += " where c.b_idUtilisateur = " + idUtilisateur;
         }
 
         return entityManager.createQuery(query).getResultList();

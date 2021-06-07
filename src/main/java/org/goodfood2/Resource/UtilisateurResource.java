@@ -66,10 +66,10 @@ public class UtilisateurResource {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
         utilisateurs = Utilisateur.find(
-            "select emailUtilisateur, role, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where emailUtilisateur like '%" + emailUtilisateur 
-            + "%' and nomUtilisateur like '%" + nomUtilisateur 
-            + "%' and prenomUtilisateur like '%" + prenomUtilisateur 
-            + "%' and numeroTelUtilisateur like '%" + numeroTelUtilisateur + "%'");
+            "select emailUtilisateur, role, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where d_emailUtilisateur like '%" + emailUtilisateur 
+            + "%' and f_nomUtilisateur like '%" + nomUtilisateur 
+            + "%' and h_prenomUtilisateur like '%" + prenomUtilisateur 
+            + "%' and g_numeroTelUtilisateur like '%" + numeroTelUtilisateur + "%'");
         utilisateurs.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++){
             utilisateurs.nextPage();
@@ -106,7 +106,7 @@ public class UtilisateurResource {
     @Path("/{id}/Adresse_Utilisateur")
     @GET
     public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
-        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.idAdresse, a.numeroAdresse, a.suppNomAdresse, a.villeAdresse, a.codePostal, a.pays from Adresse_Utilisateur a where a.utilisateur = " + id);
+        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.a_idAdresse, a.e_numeroAdresse, a.g_suppNomAdresse, a.h_villeAdresse, a.c_codePostal, a.f_pays from Adresse_Utilisateur a where a.b_idUtilisateur = " + id);
         return adressesU.list();
     }
 

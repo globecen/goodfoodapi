@@ -58,7 +58,7 @@ public class ArticleResource {
     @Transactional
     @PermitAll
     public long nombreIngr() throws Exception {
-        return Article.count("from Article obj where estMenu = 0");
+        return Article.count("from Article obj where i_estMenu = 0");
     }
 
     /**
@@ -69,7 +69,7 @@ public class ArticleResource {
     @Transactional
     @PermitAll
     public long nombreMenu() throws Exception {
-        return Article.count("from Article obj where estMenu = 1");
+        return Article.count("from Article obj where i_estMenu = 1");
     }
 
     /**
@@ -212,18 +212,18 @@ public class ArticleResource {
         // String query = String.format("FROM Article WHERE estMenu = '%s' AND
         // libelleArticle LIKE '%s' AND LIKE '%s'", estMenu);
         String query = "from Article" + " ";
-        query += String.format("where libelleArticle like '%s'", "%" + libelleArticle + "%") + " ";
-        query += String.format("and descriptionArticle like '%s'", "%" + descriptionArticle + "%") + " ";
+        query += String.format("where d_libelleArticle like '%s'", "%" + libelleArticle + "%") + " ";
+        query += String.format("and e_descriptionArticle like '%s'", "%" + descriptionArticle + "%") + " ";
 
         if (!estMenu.isEmpty()) {
-            query += String.format("and estMenu = '%s'", estMenu) + " ";
+            query += String.format("and i_estMenu = '%s'", estMenu) + " ";
         }
 
         if (idCategorieArticle > -1) {
-            query += String.format("and idCategorieArticle = %d", idCategorieArticle) + " ";
+            query += String.format("and b_idCategorieArticle = %d", idCategorieArticle) + " ";
         }
 
-        query += "and estActive = 1";
+        query += "and j_estActive = 1";
 
         articles = Article.find(query);
         // System.out.print(query);
