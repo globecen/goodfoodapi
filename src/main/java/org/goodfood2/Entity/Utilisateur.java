@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
@@ -12,35 +15,35 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
  * Represente un utilisateur.
  */
 @Entity
-public class Utilisateur  extends PanacheEntityBase {
-	
+public class Utilisateur extends PanacheEntityBase {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_utilisateur")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_utilisateur")
 	private int idUtilisateur;
 
-	@Column(name="id_adresse_livraison")
+	@Column(name = "id_adresse_livraison")
 	private int idAdresseLivraison;
 
-	@Column(name="id_adresse_facturation")
+	@Column(name = "id_adresse_facturation")
 	private int idAdresseFacturation;
 
-	@Column(name="email_utilisateur")
+	@Column(name = "email_utilisateur")
 	private String emailUtilisateur;
 
-	@Column(name="mdp_utilisateur")
+	@Column(name = "mdp_utilisateur")
 	private String mdpUtilisateur;
 
-	@Column(name="nom_utilisateur")
+	@Column(name = "nom_utilisateur")
 	private String nomUtilisateur;
 
-	@Column(name="numero_tel_utilisateur")
+	@Column(name = "numero_tel_utilisateur")
 	private String numeroTelUtilisateur;
 
-	@Column(name="prenom_utilisateur")
+	@Column(name = "prenom_utilisateur")
 	private String prenomUtilisateur;
 
-	@Column(name="role")
+	@Column(name = "role")
 	private String role;
 
 	public Utilisateur() {
@@ -53,7 +56,7 @@ public class Utilisateur  extends PanacheEntityBase {
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
-	
+
 	public int getIdAdresseLivraison() {
 		return idAdresseLivraison;
 	}
@@ -86,7 +89,12 @@ public class Utilisateur  extends PanacheEntityBase {
 		this.role = role;
 	}
 
-	public String getMdpUtilisateur() {
+	@Transient
+	private String getMdpUtilisateur() {
+		return this.mdpUtilisateur;
+	}
+
+	public String retrieveEncryptPassword() {
 		return this.mdpUtilisateur;
 	}
 
@@ -116,6 +124,6 @@ public class Utilisateur  extends PanacheEntityBase {
 
 	public void setPrenomUtilisateur(String prenomUtilisateur) {
 		this.prenomUtilisateur = prenomUtilisateur;
-	}	
+	}
 
 }

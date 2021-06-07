@@ -9,7 +9,7 @@ class ApiGatlingSimulationTest extends Simulation {
     var scn = scenario("AddAndFindPersons").repeat(2, "n"){
           exec(
             http("AddPerson-API")
-              .get("http://localhost:8080/Article?estMenu=0&idCategorieArticle=-1&pageNumber=1&pageSize=25")
+              .get("http://82.64.74.202:32733/Allergene")
               .header("Content-Type", "application/json")
               .check(status.is(200))
           ).pause(Duration.apply(5, TimeUnit.MILLISECONDS))
