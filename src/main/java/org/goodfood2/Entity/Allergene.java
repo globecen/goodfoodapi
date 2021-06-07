@@ -20,6 +20,9 @@ public class Allergene{
 	@Column(name="libelle_allergene")
 	private String libelleAllergene;
 
+	@Column(name="est_active")
+	private int estActive;
+
 	public Allergene() {
 	}
 
@@ -37,6 +40,14 @@ public class Allergene{
 
 	public void setLibelleAllergene(String libelleAllergene) {
 		this.libelleAllergene = libelleAllergene;
+	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 
 }

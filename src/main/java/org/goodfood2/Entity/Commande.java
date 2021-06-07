@@ -19,14 +19,8 @@ public class Commande{
 	@Column(name="id_commande")
 	private int idCommande;
 
-	@Column(name="date_commande")
-	private String dateCommande;
-
-	@Column(name="statut_commande")
-	private int statutCommande;
-
-	@Column(name="total_ttc")
-	private double totalTtc;
+	@Column(name="id_utilisateur")
+	private int idUtilisateur;
 
 	@Column(name="id_adresse_facturation")
 	private int idAdresseFacturation;
@@ -34,8 +28,17 @@ public class Commande{
 	@Column(name="id_adresse_livraison")
 	private int idAdresseLivraison;
 
-	@Column(name="id_utilisateur")
-	private int idUtilisateur;
+	@Column(name="date_commande")
+	private String dateCommande;
+
+	@Column(name="total_ttc")
+	private double totalTtc;
+
+	@Column(name="statut_commande")
+	private int statutCommande;
+
+	@Column(name="id_franchise")
+	private int idFranchise;
 
 	@Column(name="est_active")
 	private int estActive;
@@ -97,6 +100,14 @@ public class Commande{
 
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
+	}
+
+	public int getIdFranchise() {
+		return this.idFranchise;
+	}
+
+	public void setIdFranchise(int idFranchise) {
+		this.idFranchise = idFranchise;
 	}
 
 	public int getEstActive() {

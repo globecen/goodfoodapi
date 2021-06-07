@@ -17,11 +17,8 @@ public class Fournisseur {
 	@Column(name="id_fournisseur")
 	private int idFournisseur;
 
-	@Column(name="adresse_fournisseur")
-	private int adresseFournisseur;
-
-	@Column(name="email_fournisseur")
-	private String emailFournisseur;
+	@Column(name="id_franchise")
+	private int idFranchise;
 
 	@Column(name="nom_fournisseur")
 	private String nomFournisseur;
@@ -29,8 +26,17 @@ public class Fournisseur {
 	@Column(name="numero_siret_fournisseur")
 	private int numeroSiretFournisseur;
 
+	@Column(name="email_fournisseur")
+	private String emailFournisseur;
+
 	@Column(name="numero_tel_fourniseur")
 	private int numeroTelFourniseur;
+
+	@Column(name="adresse_fournisseur")
+	private int adresseFournisseur;
+
+	@Column(name="est_active")
+	private int estActive;
 
 	public Fournisseur() {
 	}
@@ -81,5 +87,21 @@ public class Fournisseur {
 
 	public void setNumeroTelFourniseur(int numeroTelFourniseur) {
 		this.numeroTelFourniseur = numeroTelFourniseur;
+	}
+
+	public int getIdFranchise() {
+		return this.idFranchise;
+	}
+
+	public void setIdFranchise(int idFranchise) {
+		this.idFranchise = idFranchise;
+	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 }

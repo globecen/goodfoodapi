@@ -20,7 +20,7 @@ public class Promo extends PanacheEntityBase{
 	private int idPromo;
 
 	@Column(name="est_active")
-	private byte estActive;
+	private int estActive;
 
 	@Column(name="id_article")
 	private int idArticle;
@@ -42,7 +42,7 @@ public class Promo extends PanacheEntityBase{
 		this.idPromo = idPromo;
 	}
 
-	public byte getEstActive() {
+	public int getEstActive() {
 		return this.estActive;
 	}
 

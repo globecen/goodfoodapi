@@ -20,6 +20,9 @@ public class Categorie_Article {
 	@Column(name="libelle_categorie_article")
 	private String libelleCategorieArticle;
 
+	@Column(name="est_active")
+	private int estActive;
+
 	public Categorie_Article() {
 	}
 
@@ -37,6 +40,14 @@ public class Categorie_Article {
 
 	public void setLibelleCategorieArticle(String libelleCategorieArticle) {
 		this.libelleCategorieArticle = libelleCategorieArticle;
+	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 
 }

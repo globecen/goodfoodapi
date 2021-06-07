@@ -32,6 +32,9 @@ public class Franchise {
 	@Column(name="numero_tel_franchise")
 	private int numeroTelFranchise;
 
+	@Column(name="est_active")
+	private int estActive;
+
 	public Franchise() {
 	}
 
@@ -81,5 +84,13 @@ public class Franchise {
 
 	public void setNumeroTelFranchise(int numeroTelFranchise) {
 		this.numeroTelFranchise = numeroTelFranchise;
+	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 }
