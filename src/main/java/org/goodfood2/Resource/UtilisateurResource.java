@@ -44,29 +44,27 @@ public class UtilisateurResource {
      * 
      * @param pageSize             Le nombre d utilisateurs par page.
      * @param pageNumber           Le numero de page.
-     * @param adresseUtilisateur   L adresse de l utilisateur.
-     * @param emailUtilisateur     Le mail de l utilisateur.
-     * @param nomUtilisateur       Le nom de l utilisateur.
-     * @param prenomUtilisateur    Le prenom de l utilisateur.
-     * @param numeroTelUtilisateur Le numero de telephone de l utilisateur.
+     * @param d_emailUtilisateur     Le mail de l utilisateur.
+     * @param f_nomUtilisateur       Le nom de l utilisateur.
+     * @param h_prenomUtilisateur    Le prenom de l utilisateur.
+     * @param g_numeroTelUtilisateur Le numero de telephone de l utilisateur.
      * @return La liste d utilisateurs.
      */
     @Path("/")
     @GET
     public List<Utilisateur> utilisateurs(@DefaultValue("25") @QueryParam("pageSize") Integer pageSize,
             @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-            @DefaultValue("") @QueryParam("adresseUtilisateur") String adresseUtilisateur,
-            @DefaultValue("") @QueryParam("emailUtilisateur") String emailUtilisateur,
-            @DefaultValue("") @QueryParam("nomUtilisateur") String nomUtilisateur,
-            @DefaultValue("") @QueryParam("prenomUtilisateur") String prenomUtilisateur,
-            @DefaultValue("") @QueryParam("numeroTelUtilisateur") String numeroTelUtilisateur) {
+            @DefaultValue("") @QueryParam("d_emailUtilisateur") String d_emailUtilisateur,
+            @DefaultValue("") @QueryParam("f_nomUtilisateur") String f_nomUtilisateur,
+            @DefaultValue("") @QueryParam("h_prenomUtilisateur") String h_prenomUtilisateur,
+            @DefaultValue("") @QueryParam("g_numeroTelUtilisateur") String g_numeroTelUtilisateur) {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
         utilisateurs = Utilisateur.find(
-            "select emailUtilisateur, role, idUtilisateur, nomUtilisateur, numeroTelUtilisateur, prenomUtilisateur from Utilisateur where d_emailUtilisateur like '%" + emailUtilisateur 
-            + "%' and f_nomUtilisateur like '%" + nomUtilisateur 
-            + "%' and h_prenomUtilisateur like '%" + prenomUtilisateur 
-            + "%' and g_numeroTelUtilisateur like '%" + numeroTelUtilisateur + "%'");
+            "select d_emailUtilisateur, i_role, a_idUtilisateur, f_nomUtilisateur, g_numeroTelUtilisateur, h_prenomUtilisateur from Utilisateur where d_emailUtilisateur like '%" + d_emailUtilisateur 
+            + "%' and f_nomUtilisateur like '%" + f_nomUtilisateur 
+            + "%' and h_prenomUtilisateur like '%" + h_prenomUtilisateur 
+            + "%' and g_numeroTelUtilisateur like '%" + g_numeroTelUtilisateur + "%'");
         utilisateurs.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++) {
             utilisateurs.nextPage();

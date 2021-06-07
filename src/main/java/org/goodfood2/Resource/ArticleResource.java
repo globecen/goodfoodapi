@@ -189,13 +189,13 @@ public class ArticleResource {
     /**
      * Recupere la liste des articles en fonctions de plusieurs parametres.
      * 
-     * @param pageSize           Le nombre d articles par page.
-     * @param pageNumber         Le numero de page.
-     * @param estMenu            Choix pour recuperer les ingredients, les menus ou
-     *                           tous les articles.
-     * @param libelleArticle     Une partie d'un libelle.
-     * @param descriptionArticle Une partie de la description.
-     * @param idCategorieArticle Une categorie specifique d articles.
+     * @param pageSize               Le nombre d articles par page.
+     * @param pageNumber             Le numero de page.
+     * @param i_estMenu              Choix pour recuperer les ingredients, les menus ou
+     *                               tous les articles.
+     * @param d_libelleArticle       Une partie d'un libelle.
+     * @param e_descriptionArticle   Une partie de la description.
+     * @param b_idCategorieArticle   Une categorie specifique d articles.
      * @return La liste d articles.
      */
     @Path("/")
@@ -204,29 +204,26 @@ public class ArticleResource {
     @PermitAll
     public List<Article> articles(@DefaultValue("25") @QueryParam("pageSize") Integer pageSize,
             @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-            @DefaultValue("") @QueryParam("estMenu") String estMenu,
-            @DefaultValue("") @QueryParam("libelleArticle") String libelleArticle,
-            @DefaultValue("") @QueryParam("descriptionArticle") String descriptionArticle,
-            @DefaultValue("-1") @QueryParam("idCategorieArticle") int idCategorieArticle) {
+            @DefaultValue("") @QueryParam("i_estMenu") String i_estMenu,
+            @DefaultValue("") @QueryParam("d_libelleArticle") String d_libelleArticle,
+            @DefaultValue("") @QueryParam("e_descriptionArticle") String e_descriptionArticle,
+            @DefaultValue("-1") @QueryParam("b_idCategorieArticle") int b_idCategorieArticle) {
         PanacheQuery<Article> articles = null;
-        // String query = String.format("FROM Article WHERE estMenu = '%s' AND
-        // libelleArticle LIKE '%s' AND LIKE '%s'", estMenu);
         String query = "from Article" + " ";
-        query += String.format("where d_libelleArticle like '%s'", "%" + libelleArticle + "%") + " ";
-        query += String.format("and e_descriptionArticle like '%s'", "%" + descriptionArticle + "%") + " ";
+        query += String.format("where d_libelleArticle like '%s'", "%" + d_libelleArticle + "%") + " ";
+        query += String.format("and e_descriptionArticle like '%s'", "%" + e_descriptionArticle + "%") + " ";
 
-        if (!estMenu.isEmpty()) {
-            query += String.format("and i_estMenu = '%s'", estMenu) + " ";
+        if (!i_estMenu.isEmpty()) {
+            query += String.format("and i_estMenu = '%s'", i_estMenu) + " ";
         }
 
-        if (idCategorieArticle > -1) {
-            query += String.format("and b_idCategorieArticle = %d", idCategorieArticle) + " ";
+        if (b_idCategorieArticle > -1) {
+            query += String.format("and b_idCategorieArticle = %d", b_idCategorieArticle) + " ";
         }
 
         query += "and j_estActive = 1";
 
         articles = Article.find(query);
-        // System.out.print(query);
         articles.page(Page.ofSize(pageSize));
         for (int i = 0; i < pageNumber - 1; i++) {
             articles.nextPage();

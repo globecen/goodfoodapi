@@ -44,14 +44,14 @@ public class FranchiseResource {
         if(search.isEmpty())
             return entityManager.createQuery("from Franchise").getResultList();
         else {
-            String emailFranchise, idFranchise, idGroupeFranchise, nomFranchise, numeroSiretFranchise, numeroTelFranchise;
-            emailFranchise = "b_emailFranchise like '" + search + "' or ";
-            idFranchise = "a_idFranchise like '" + search + "' or ";
-            idGroupeFranchise = "c_idGroupeFranchise like '" + search + "' or ";
-            nomFranchise = "d_nomFranchise like '%" + search + "%' or ";
-            numeroSiretFranchise = "e_numeroSiretFranchise like '" + search + "' or ";
-            numeroTelFranchise = "f_numeroTelFranchise like '" + search + "'";
-            return entityManager.createQuery("from Franchise  where " + emailFranchise + idFranchise + idGroupeFranchise + nomFranchise + numeroSiretFranchise + numeroTelFranchise).getResultList();
+            String b_emailFranchise, a_idFranchise, c_idGroupeFranchise, d_nomFranchise, e_numeroSiretFranchise, f_numeroTelFranchise;
+            b_emailFranchise = "b_emailFranchise like '" + search + "' or ";
+            a_idFranchise = "a_idFranchise like '" + search + "' or ";
+            c_idGroupeFranchise = "c_idGroupeFranchise like '" + search + "' or ";
+            d_nomFranchise = "d_nomFranchise like '%" + search + "%' or ";
+            e_numeroSiretFranchise = "e_numeroSiretFranchise like '" + search + "' or ";
+            f_numeroTelFranchise = "f_numeroTelFranchise like '" + search + "'";
+            return entityManager.createQuery("from Franchise  where " + b_emailFranchise + a_idFranchise + c_idGroupeFranchise + d_nomFranchise + e_numeroSiretFranchise + f_numeroTelFranchise).getResultList();
         }
     }
 
