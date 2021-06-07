@@ -155,7 +155,7 @@ public class UtilisateurResource {
      * @param p L utilisateur.
      * @return Le statut de la reponse.
      */
-    @Path("/create")
+    @Path("/creer")
     @POST
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {

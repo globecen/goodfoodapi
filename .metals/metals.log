@@ -2092,3 +2092,5 @@ Starting thread that pumps server stdout and redirects it to the client stdout..
 [0m2021.06.03 23:20:46 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
 [0m2021.06.03 23:20:47 INFO  time: compiled goodfoodapi-test in 1.06s[0m
 [0m2021.06.03 23:20:47 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+juin 07, 2021 10:50:13 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
