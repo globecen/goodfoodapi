@@ -15,82 +15,82 @@ public class Franchise {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_franchise")
-	private int idFranchise;
+	private int a_idFranchise;
 
 	@Column(name="email_franchise")
-	private String emailFranchise;
+	private String b_emailFranchise;
 
 	@Column(name="id_groupe_franchise")
-	private int idGroupeFranchise;
+	private int c_idGroupeFranchise;
 
 	@Column(name="nom_franchise")
-	private String nomFranchise;
+	private String d_nomFranchise;
 
 	@Column(name="numero_siret_franchise")
-	private int numeroSiretFranchise;
+	private int e_numeroSiretFranchise;
 
 	@Column(name="numero_tel_franchise")
-	private int numeroTelFranchise;
+	private int f_numeroTelFranchise;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int g_estActive;
 
 	public Franchise() {
 	}
 
 	public int getIdFranchise() {
-		return this.idFranchise;
+		return this.a_idFranchise;
 	}
 
 	public void setIdFranchise(int idFranchise) {
-		this.idFranchise = idFranchise;
+		this.a_idFranchise = idFranchise;
 	}
 
 	public String getEmailFranchise() {
-		return this.emailFranchise;
+		return this.b_emailFranchise;
 	}
 
 	public void setEmailFranchise(String emailFranchise) {
-		this.emailFranchise = emailFranchise;
+		this.b_emailFranchise = emailFranchise;
 	}
 
 	public int getIdGroupeFranchise() {
-		return this.idGroupeFranchise;
+		return this.c_idGroupeFranchise;
 	}
 
 	public void setIdGroupeFranchise(int idGroupeFranchise) {
-		this.idGroupeFranchise = idGroupeFranchise;
+		this.c_idGroupeFranchise = idGroupeFranchise;
 	}
 
 	public String getNomFranchise() {
-		return this.nomFranchise;
+		return this.d_nomFranchise;
 	}
 
 	public void setNomFranchise(String nomFranchise) {
-		this.nomFranchise = nomFranchise;
+		this.d_nomFranchise = nomFranchise;
 	}
 
 	public int getNumeroSiretFranchise() {
-		return this.numeroSiretFranchise;
+		return this.e_numeroSiretFranchise;
 	}
 
 	public void setNumeroSiretFranchise(int numeroSiretFranchise) {
-		this.numeroSiretFranchise = numeroSiretFranchise;
+		this.e_numeroSiretFranchise = numeroSiretFranchise;
 	}
 
 	public int getNumeroTelFranchise() {
-		return this.numeroTelFranchise;
+		return this.f_numeroTelFranchise;
 	}
 
 	public void setNumeroTelFranchise(int numeroTelFranchise) {
-		this.numeroTelFranchise = numeroTelFranchise;
+		this.f_numeroTelFranchise = numeroTelFranchise;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.g_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.g_estActive = estActive;
 	}
 }

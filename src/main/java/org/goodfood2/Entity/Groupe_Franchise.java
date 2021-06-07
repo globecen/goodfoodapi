@@ -15,39 +15,39 @@ public class Groupe_Franchise {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_groupe_franchise")
-	private int idGroupeFranchise;
+	private int a_idGroupeFranchise;
 
 	@Column(name="nom_groupe_franchise")
-	private String nomGroupeFranchise;
+	private String b_nomGroupeFranchise;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int c_estActive;
 
 	public Groupe_Franchise() {
 	}
 
 	public int getIdGroupeFranchise() {
-		return this.idGroupeFranchise;
+		return this.a_idGroupeFranchise;
 	}
 
 	public void setIdGroupeFranchise(int idGroupeFranchise) {
-		this.idGroupeFranchise = idGroupeFranchise;
+		this.a_idGroupeFranchise = idGroupeFranchise;
 	}
 
 	public String getNomGroupeFranchise() {
-		return this.nomGroupeFranchise;
+		return this.b_nomGroupeFranchise;
 	}
 
 	public void setNomGroupeFranchise(String nomGroupeFranchise) {
-		this.nomGroupeFranchise = nomGroupeFranchise;
+		this.b_nomGroupeFranchise = nomGroupeFranchise;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.c_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.c_estActive = estActive;
 	}
 
 }

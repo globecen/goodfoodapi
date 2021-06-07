@@ -15,39 +15,39 @@ public class Categorie_Article {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_categorie_article")
-	private int idCategorieArticle;
+	private int a_idCategorieArticle;
 
 	@Column(name="libelle_categorie_article")
-	private String libelleCategorieArticle;
+	private String b_libelleCategorieArticle;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int c_estActive;
 
 	public Categorie_Article() {
 	}
 
 	public int getIdCategorieArticle() {
-		return this.idCategorieArticle;
+		return this.a_idCategorieArticle;
 	}
 
 	public void setIdCategorieArticle(int idCategorieArticle) {
-		this.idCategorieArticle = idCategorieArticle;
+		this.a_idCategorieArticle = idCategorieArticle;
 	}
 
 	public String getLibelleCategorieArticle() {
-		return this.libelleCategorieArticle;
+		return this.b_libelleCategorieArticle;
 	}
 
 	public void setLibelleCategorieArticle(String libelleCategorieArticle) {
-		this.libelleCategorieArticle = libelleCategorieArticle;
+		this.b_libelleCategorieArticle = libelleCategorieArticle;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.c_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.c_estActive = estActive;
 	}
 
 }

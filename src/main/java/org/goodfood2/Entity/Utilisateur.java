@@ -17,128 +17,128 @@ public class Utilisateur  extends PanacheEntityBase {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_utilisateur")
-	private int idUtilisateur;
+	private int a_idUtilisateur;
 
 	@Column(name="id_adresse_livraison")
-	private int idAdresseLivraison;
+	private int b_idAdresseLivraison;
 
 	@Column(name="id_adresse_facturation")
-	private int idAdresseFacturation;
+	private int c_idAdresseFacturation;
 
 	@Column(name="email_utilisateur")
-	private String emailUtilisateur;
+	private String d_emailUtilisateur;
 
 	@Column(name="mdp_utilisateur")
-	private String mdpUtilisateur;
+	private String e_mdpUtilisateur;
 
 	@Column(name="nom_utilisateur")
-	private String nomUtilisateur;
+	private String f_nomUtilisateur;
 
 	@Column(name="numero_tel_utilisateur")
-	private String numeroTelUtilisateur;
+	private String g_numeroTelUtilisateur;
 
 	@Column(name="prenom_utilisateur")
-	private String prenomUtilisateur;
+	private String h_prenomUtilisateur;
 
 	@Column(name="role")
-	private String role;
+	private String g_role;
 
 	@Column(name="id_franchise")
-	private int idFranchise;
+	private int i_idFranchise;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int j_estActive;
 	
 
 	public Utilisateur() {
 	}
 
 	public int getIdUtilisateur() {
-		return this.idUtilisateur;
+		return this.a_idUtilisateur;
 	}
 
 	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+		this.a_idUtilisateur = idUtilisateur;
 	}
 	
 	public int getIdAdresseLivraison() {
-		return idAdresseLivraison;
+		return b_idAdresseLivraison;
 	}
 
 	public void setIdAdresseLivraison(int idAdresseLivraison) {
-		this.idAdresseLivraison = idAdresseLivraison;
+		this.b_idAdresseLivraison = idAdresseLivraison;
 	}
 
 	public int getIdAdresseFacturation() {
-		return idAdresseFacturation;
+		return c_idAdresseFacturation;
 	}
 
 	public void setIdAdresseFacturation(int idAdresseFacturation) {
-		this.idAdresseFacturation = idAdresseFacturation;
+		this.c_idAdresseFacturation = idAdresseFacturation;
 	}
 
 	public String getEmailUtilisateur() {
-		return this.emailUtilisateur;
+		return this.d_emailUtilisateur;
 	}
 
 	public void setEmailUtilisateur(String emailUtilisateur) {
-		this.emailUtilisateur = emailUtilisateur;
+		this.d_emailUtilisateur = emailUtilisateur;
 	}
 
 	public String getRole() {
-		return this.role;
+		return this.g_role;
 	}
 
 	public void setRole(String role) {
-		this.role = role;
+		this.g_role = role;
 	}
 
 	public String getMdpUtilisateur() {
-		return this.mdpUtilisateur;
+		return this.e_mdpUtilisateur;
 	}
 
 	public void setMdpUtilisateur(String mdpUtilisateur) {
-		this.mdpUtilisateur = mdpUtilisateur;
+		this.e_mdpUtilisateur = mdpUtilisateur;
 	}
 
 	public String getNomUtilisateur() {
-		return this.nomUtilisateur;
+		return this.f_nomUtilisateur;
 	}
 
 	public void setNomUtilisateur(String nomUtilisateur) {
-		this.nomUtilisateur = nomUtilisateur;
+		this.f_nomUtilisateur = nomUtilisateur;
 	}
 
 	public String getNumeroTelUtilisateur() {
-		return this.numeroTelUtilisateur;
+		return this.g_numeroTelUtilisateur;
 	}
 
 	public void setNumeroTelUtilisateur(String numeroTelUtilisateur) {
-		this.numeroTelUtilisateur = numeroTelUtilisateur;
+		this.g_numeroTelUtilisateur = numeroTelUtilisateur;
 	}
 
 	public String getPrenomUtilisateur() {
-		return this.prenomUtilisateur;
+		return this.h_prenomUtilisateur;
 	}
 
 	public void setPrenomUtilisateur(String prenomUtilisateur) {
-		this.prenomUtilisateur = prenomUtilisateur;
+		this.h_prenomUtilisateur = prenomUtilisateur;
 	}	
 
 	public int getIdFranchise() {
-		return this.idFranchise;
+		return this.i_idFranchise;
 	}
 
 	public void setIdFranchise(int idFranchise) {
-		this.idFranchise = idFranchise;
+		this.i_idFranchise = idFranchise;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.j_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.j_estActive = estActive;
 	}
 
 }

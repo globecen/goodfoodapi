@@ -17,28 +17,28 @@ public class VoArtAllergene extends PanacheEntityBase{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_article")
-	private int idArticle;
+	private int a_idArticle;
 
 	@Column(name="libelle_allergene")
-	private String libelleAllergene;
+	private String b_libelleAllergene;
 
 	public VoArtAllergene() {
 	}
 
 	public int getIdArticle() {
-		return this.idArticle;
+		return this.a_idArticle;
 	}
 
 	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
+		this.a_idArticle = idArticle;
 	}
 
 	public String getLibelleAllergene() {
-		return this.libelleAllergene;
+		return this.b_libelleAllergene;
 	}
 
 	public void setLibelleAllergene(String libelleAllergene) {
-		this.libelleAllergene = libelleAllergene;
+		this.b_libelleAllergene = libelleAllergene;
 	}
 
 }

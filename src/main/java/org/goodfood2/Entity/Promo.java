@@ -17,60 +17,60 @@ public class Promo extends PanacheEntityBase{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_promo")
-	private int idPromo;
+	private int a_idPromo;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int b_estActive;
 
 	@Column(name="id_article")
-	private int idArticle;
+	private int c_idArticle;
 
 	@Column(name="libelle_promo")
-	private String libellePromo;
+	private String d_libellePromo;
 
 	@Column(name="reduction")
-	private int reduction;
+	private int e_reduction;
 
 	public Promo() {
 	}
 
 	public int getIdPromo() {
-		return this.idPromo;
+		return this.a_idPromo;
 	}
 
 	public void setIdPromo(int idPromo) {
-		this.idPromo = idPromo;
+		this.a_idPromo = idPromo;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.b_estActive;
 	}
 
 	public void setEstActive(byte estActive) {
-		this.estActive = estActive;
+		this.b_estActive = estActive;
 	}
 
 	public int getIdArticle() {
-		return this.idArticle;
+		return this.c_idArticle;
 	}
 
 	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
+		this.c_idArticle = idArticle;
 	}
 
 	public String getLibellePromo() {
-		return this.libellePromo;
+		return this.d_libellePromo;
 	}
 
 	public void setLibellePromo(String libellePromo) {
-		this.libellePromo = libellePromo;
+		this.d_libellePromo = libellePromo;
 	}
 
 	public int getReduction() {
-		return this.reduction;
+		return this.e_reduction;
 	}
 
 	public void setReduction(int reduction) {
-		this.reduction = reduction;
+		this.e_reduction = reduction;
 	}
 }
