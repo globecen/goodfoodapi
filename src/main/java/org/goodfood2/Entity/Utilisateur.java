@@ -41,13 +41,13 @@ public class Utilisateur  extends PanacheEntityBase {
 	private String h_prenomUtilisateur;
 
 	@Column(name="role")
-	private String g_role;
+	private String i_role;
 
 	@Column(name="id_franchise")
-	private int i_idFranchise;
+	private int j_idFranchise;
 
 	@Column(name="est_active")
-	private int j_estActive;
+	private int k_estActive;
 	
 
 	public Utilisateur() {
@@ -86,11 +86,11 @@ public class Utilisateur  extends PanacheEntityBase {
 	}
 
 	public String getRole() {
-		return this.g_role;
+		return this.i_role;
 	}
 
 	public void setRole(String role) {
-		this.g_role = role;
+		this.i_role = role;
 	}
 
 	public String getMdpUtilisateur() {
@@ -126,19 +126,19 @@ public class Utilisateur  extends PanacheEntityBase {
 	}	
 
 	public int getIdFranchise() {
-		return this.i_idFranchise;
+		return this.j_idFranchise;
 	}
 
 	public void setIdFranchise(int idFranchise) {
-		this.i_idFranchise = idFranchise;
+		this.j_idFranchise = idFranchise;
 	}
 
 	public int getEstActive() {
-		return this.j_estActive;
+		return this.k_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.j_estActive = estActive;
+		this.k_estActive = estActive;
 	}
 
 }
