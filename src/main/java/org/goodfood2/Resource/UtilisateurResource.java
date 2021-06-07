@@ -3,7 +3,6 @@ package org.goodfood2.Resource;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -14,12 +13,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Utilisateur;
@@ -41,28 +38,28 @@ public class UtilisateurResource {
     // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
-    
+
     /**
      * Recupere la liste des utilisateurs en fonctions de plusieurs parametres.
-     * @param pageSize Le nombre d utilisateurs par page.
-     * @param pageNumber Le numero de page.
-     * @param adresseUtilisateur L adresse de l utilisateur.
-     * @param emailUtilisateur Le mail de l utilisateur.
-     * @param nomUtilisateur Le nom de l utilisateur.
-     * @param prenomUtilisateur Le prenom de l utilisateur.
+     * 
+     * @param pageSize             Le nombre d utilisateurs par page.
+     * @param pageNumber           Le numero de page.
+     * @param adresseUtilisateur   L adresse de l utilisateur.
+     * @param emailUtilisateur     Le mail de l utilisateur.
+     * @param nomUtilisateur       Le nom de l utilisateur.
+     * @param prenomUtilisateur    Le prenom de l utilisateur.
      * @param numeroTelUtilisateur Le numero de telephone de l utilisateur.
      * @return La liste d utilisateurs.
      */
     @Path("/")
     @GET
-    public List<Utilisateur> utilisateurs(
-        @DefaultValue("25") @QueryParam("pageSize") Integer pageSize, 
-        @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-        @DefaultValue("") @QueryParam("emailUtilisateur") String emailUtilisateur,
-        @DefaultValue("") @QueryParam("nomUtilisateur") String nomUtilisateur,
-        @DefaultValue("") @QueryParam("prenomUtilisateur") String prenomUtilisateur,
-        @DefaultValue("") @QueryParam("numeroTelUtilisateur") String numeroTelUtilisateur
-        ) {
+    public List<Utilisateur> utilisateurs(@DefaultValue("25") @QueryParam("pageSize") Integer pageSize,
+            @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
+            @DefaultValue("") @QueryParam("adresseUtilisateur") String adresseUtilisateur,
+            @DefaultValue("") @QueryParam("emailUtilisateur") String emailUtilisateur,
+            @DefaultValue("") @QueryParam("nomUtilisateur") String nomUtilisateur,
+            @DefaultValue("") @QueryParam("prenomUtilisateur") String prenomUtilisateur,
+            @DefaultValue("") @QueryParam("numeroTelUtilisateur") String numeroTelUtilisateur) {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
         utilisateurs = Utilisateur.find(
@@ -71,34 +68,34 @@ public class UtilisateurResource {
             + "%' and h_prenomUtilisateur like '%" + prenomUtilisateur 
             + "%' and g_numeroTelUtilisateur like '%" + numeroTelUtilisateur + "%'");
         utilisateurs.page(Page.ofSize(pageSize));
-        for (int i = 0; i < pageNumber - 1; i++){
+        for (int i = 0; i < pageNumber - 1; i++) {
             utilisateurs.nextPage();
         }
+
         return utilisateurs.list();
     }
 
     /**
      * Recupere un utilisateur.
+     * 
      * @param id L id de l utilisateur.
      * @return L utilisateur.
      */
-    @PermitAll
     @Path("/{id}")
     @GET
-    public Utilisateur utilisateurId(@HeaderParam ("email") String email,
-                                    @HeaderParam ("password") String password,
-                                    @PathParam("id") Long id) throws Exception{
-        Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryString("Utilisateur", "idUtilisateur", id.toString()))
+    public Utilisateur utilisateurId(@PathParam("id") Long id) throws Exception {
+        Utilisateur utilisateur = (Utilisateur) entityManager
+                .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "idUtilisateur", id.toString()))
                 .getResultList().get(0);
         if (utilisateur == null) {
             throw new Exception("L'utilisateur " + id + " n'existe pas.");
-        }    
+        }
         return utilisateur;
     }
 
     /**
      * Recupere les adresses liees a un utilisateur.
+     * 
      * @param id L id de l utilisateur.
      * @return La liste des adresses.
      * @throws Exception
@@ -112,20 +109,22 @@ public class UtilisateurResource {
 
     /**
      * Recupere l utilisateur a partir d un mail.
+     * 
      * @param email Le mail de l utilisateur.
      * @return L utilisateur.
      * @throws Exception
      */
-    private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception{
-        Utilisateur utilisateur = (Utilisateur)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryString("Utilisateur", "emailUtilisateur", email))
+    private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception {
+        Utilisateur utilisateur = (Utilisateur) entityManager
+                .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "emailUtilisateur", email))
                 .getResultList().get(0);
         return utilisateur;
     }
-    
+
     /**
      * Tentative de connexion a partir d un mail et d un mot de passe.
-     * @param email Le mail de l utilisateur.
+     * 
+     * @param email    Le mail de l utilisateur.
      * @param password Le mot de passe de l utilisateur.
      * @return val Le token de connexion.
      * @throws Exception
@@ -133,24 +132,26 @@ public class UtilisateurResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/connexion/{email}&{password}")
     @POST
-    public String connexionUtilisateur (@PathParam ("email") String email,  @PathParam ("password") String password) throws Exception {
+    public String connexionUtilisateur(@PathParam("email") String email, @PathParam("password") String password)
+            throws Exception {
         String ret = "";
         long tokenDuration = 3600;
         boolean test = false;
         Utilisateur userFound = this.utilisateurEmail(email);
         if (userFound != null) {
-            test = SecurityUtils.verifyPassword(password, userFound.getMdpUtilisateur());
+            test = SecurityUtils.verifyPassword(password, userFound.retrieveEncryptPassword());
             if (test)
-                ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(), userFound.getRole());
-        }
-        else 
-            throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");   
+                ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(),
+                        userFound.getRole());
+        } else
+            throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
 
         return ret;
     }
 
     /**
      * Cree un utilisateur.
+     * 
      * @param p L utilisateur.
      * @return Le statut de la reponse.
      */
@@ -159,42 +160,42 @@ public class UtilisateurResource {
     @POST
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {
-        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.getMdpUtilisateur()));
+        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.retrieveEncryptPassword()));
         entityManager.persist(u);
         return Response.status(200).build();
     }
 
     /**
      * Modifie un utilisateur.
+     * 
      * @param p L utilisateur.
      * @return L utilisateur modifie.
      */
-    @Path("/modifier")
+    @Path("/modify")
     @PATCH
     @Transactional
     public Utilisateur modifUtilisateur(Utilisateur u) throws Exception {
-        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.getMdpUtilisateur()));
         return entityManager.merge(u);
     }
 
     /**
      * Supprime un utilisateur.
+     * 
      * @param id L id de l utilisateur.
      * @return Le statut de la reponse.
      * @throws Exception
      */
-    @RolesAllowed({"admin"})
-    @Path("/supprimer/{id}")
+    @Path("/delete/{id}")
     @DELETE
     @Transactional
-    public Response supprUtilisateur(@PathParam("id") Long id) throws Exception{
-        Utilisateur u = (Utilisateur)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryInt("Utilisateur", "id", id.toString()))
-                .getResultList().get(0);
+    public Response supprUtilisateur(@PathParam("id") Long id) throws Exception {
+        Utilisateur u = (Utilisateur) entityManager
+                .createQuery(QueryUtils.makeFindByParamQueryInt("Utilisateur", "id", id.toString())).getResultList()
+                .get(0);
         if (u == null) {
             return Response.status(404).build();
         }
         entityManager.remove(u);
         return Response.status(200).build();
     }
-}    
+}

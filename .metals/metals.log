@@ -1899,3 +1899,198 @@ INFO: Unsupported notification method: $/setTrace
 [0m2021.06.02 22:16:48 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
 [0m2021.06.02 22:16:49 INFO  time: compiled goodfoodapi-test in 1.06s[0m
 [0m2021.06.02 22:16:49 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 08:59:11 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 08:59:14 INFO  time: compiled goodfoodapi-test in 2.36s[0m
+[0m2021.06.03 08:59:14 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 09:07:41 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 09:07:41 INFO  time: compiled goodfoodapi in 0.63s[0m
+[0m2021.06.03 10:12:22 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 10:12:24 INFO  time: compiled goodfoodapi-test in 1.82s[0m
+[0m2021.06.03 10:12:24 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 10:12:26 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 10:12:27 INFO  time: compiled goodfoodapi-test in 1.43s[0m
+[0m2021.06.03 10:12:27 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 10:13:30 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 10:13:31 INFO  time: compiled goodfoodapi-test in 1.06s[0m
+[0m2021.06.03 10:13:31 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 12:05:24 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:05:24 INFO  time: compiled goodfoodapi in 0.89s[0m
+[0m2021.06.03 12:06:02 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:06:02 INFO  time: compiled goodfoodapi in 0.47s[0m
+[0m2021.06.03 12:06:05 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:06:05 INFO  time: compiled goodfoodapi in 0.51s[0m
+[0m2021.06.03 12:06:28 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:06:28 INFO  time: compiled goodfoodapi in 0.63s[0m
+[0m2021.06.03 12:07:08 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:07:08 INFO  time: compiled goodfoodapi in 0.55s[0m
+[0m2021.06.03 12:07:12 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:07:12 INFO  time: compiled goodfoodapi in 0.5s[0m
+[0m2021.06.03 12:07:28 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:07:28 INFO  time: compiled goodfoodapi in 0.56s[0m
+juin 03, 2021 12:08:33 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "jdt://contents/jakarta.persistence-api-2.2.3.jar/javax.persistence.criteria/CriteriaBuilder.class?%3Dgoodfoodapi%2FC%3A%5C%2FUsers%5C%2Fquent%5C%2F.m2%5C%2Frepository%5C%2Fjakarta%5C%2Fpersistence%5C%2Fjakarta.persistence-api%5C%2F2.2.3%5C%2Fjakarta.persistence-api-2.2.3.jar%3D%2Fmaven.pomderived%3D%2Ftrue%3D%2F%3D%2Fmaven.pomderived%3D%2Ftrue%3D%2F%3D%2Fjavadoc_location%3D%2Fjar%3Afile%3A%5C%2FC%3A%5C%2FUsers%5C%2Fquent%5C%2F.m2%5C%2Frepository%5C%2Fjakarta%5C%2Fpersistence%5C%2Fjakarta.persistence-api%5C%2F2.2.3%5C%2Fjakarta.persistence-api-2.2.3-javadoc.jar%5C%21%5C%2F%3D%2F%3D%2Fmaven.groupId%3D%2Fjakarta.persistence%3D%2F%3D%2Fmaven.artifactId%3D%2Fjakarta.persistence-api%3D%2F%3D%2Fmaven.version%3D%2F2.2.3%3D%2F%3D%2Fmaven.scope%3D%2Fcompile%3D%2F%3Cjavax.persistence.criteria%28CriteriaBuilder.class"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedMethodAccessor8.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "jdt" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:478)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:475)
+	at scala.meta.internal.metals.MetalsLanguageServer.didFocus(MetalsLanguageServer.scala:1010)
+	... 15 more
+
+[0m2021.06.03 12:10:37 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:10:37 INFO  time: compiled goodfoodapi in 0.57s[0m
+[0m2021.06.03 12:11:17 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:11:17 INFO  time: compiled goodfoodapi in 0.86s[0m
+[0m2021.06.03 12:11:33 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:11:33 INFO  time: compiled goodfoodapi in 0.54s[0m
+[0m2021.06.03 12:14:50 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:14:50 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 12:15:04 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:15:04 INFO  time: compiled goodfoodapi in 0.54s[0m
+[0m2021.06.03 12:15:43 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:15:43 INFO  time: compiled goodfoodapi in 0.55s[0m
+[0m2021.06.03 12:16:15 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:16:15 INFO  time: compiled goodfoodapi in 0.56s[0m
+[0m2021.06.03 12:16:38 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:16:38 INFO  time: compiled goodfoodapi in 0.72s[0m
+[0m2021.06.03 12:17:25 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:17:25 INFO  time: compiled goodfoodapi in 0.57s[0m
+[0m2021.06.03 12:17:47 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:17:47 INFO  time: compiled goodfoodapi in 0.55s[0m
+[0m2021.06.03 12:17:59 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:17:59 INFO  time: compiled goodfoodapi in 0.61s[0m
+[0m2021.06.03 12:18:34 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:18:34 INFO  time: compiled goodfoodapi in 0.8s[0m
+[0m2021.06.03 12:18:52 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:18:52 INFO  time: compiled goodfoodapi in 0.56s[0m
+[0m2021.06.03 12:19:30 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:19:30 INFO  time: compiled goodfoodapi in 0.5s[0m
+[0m2021.06.03 12:19:32 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:19:32 INFO  time: compiled goodfoodapi in 0.57s[0m
+[0m2021.06.03 12:19:35 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:19:35 INFO  time: compiled goodfoodapi in 0.56s[0m
+[0m2021.06.03 12:21:44 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:21:44 INFO  time: compiled goodfoodapi in 0.57s[0m
+[0m2021.06.03 12:21:58 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:21:58 INFO  time: compiled goodfoodapi in 0.59s[0m
+[0m2021.06.03 12:29:27 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:29:27 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 12:29:41 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:29:41 INFO  time: compiled goodfoodapi in 0.58s[0m
+[0m2021.06.03 12:30:42 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:30:42 INFO  time: compiled goodfoodapi in 0.52s[0m
+[0m2021.06.03 12:30:56 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:30:56 INFO  time: compiled goodfoodapi in 0.65s[0m
+[0m2021.06.03 12:31:51 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:31:51 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 12:35:10 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:35:10 INFO  time: compiled goodfoodapi in 0.5s[0m
+[0m2021.06.03 12:35:10 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:35:11 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 12:36:49 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:36:49 INFO  time: compiled goodfoodapi in 0.68s[0m
+[0m2021.06.03 12:36:49 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:36:50 INFO  time: compiled goodfoodapi in 0.66s[0m
+[0m2021.06.03 12:37:12 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:12 INFO  time: compiled goodfoodapi in 0.51s[0m
+[0m2021.06.03 12:37:12 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:13 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 12:37:17 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:17 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 12:37:17 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:18 INFO  time: compiled goodfoodapi in 0.49s[0m
+[0m2021.06.03 12:37:25 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:25 INFO  time: compiled goodfoodapi in 0.58s[0m
+[0m2021.06.03 12:37:25 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:26 INFO  time: compiled goodfoodapi in 0.64s[0m
+[0m2021.06.03 12:37:27 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:27 INFO  time: compiled goodfoodapi in 0.63s[0m
+[0m2021.06.03 12:37:27 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:29 INFO  time: compiled goodfoodapi in 0.55s[0m
+[0m2021.06.03 12:37:30 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:30 INFO  time: compiled goodfoodapi in 0.5s[0m
+[0m2021.06.03 12:37:30 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:30 INFO  Deduplicating compilation of goodfoodapi from bsp client 'Metals 0.10.4' (since 15h 56m 27.563s)[0m
+[0m2021.06.03 12:37:30 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:30 INFO  time: compiled goodfoodapi in 1ms[0m
+[0m2021.06.03 12:37:30 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.03 12:37:31 INFO  time: compiled goodfoodapi in 0.46s[0m
+[0m2021.06.03 12:38:23 INFO  compiling goodfoodapi (2 java sources)[0m
+[0m2021.06.03 12:38:23 INFO  time: compiled goodfoodapi in 0.49s[0m
+[0m2021.06.03 12:38:25 INFO  compiling goodfoodapi (2 java sources)[0m
+[0m2021.06.03 12:38:25 INFO  time: compiled goodfoodapi in 0.53s[0m
+[0m2021.06.03 15:09:55 INFO  shutting down Metals[0m
+[0m2021.06.03 15:09:55 INFO  Shut down connection with build server.[0m
+No more data in the client stdin, exiting...
+No more data in the server stdin, exiting...
+[0m2021.06.03 23:16:27 INFO  Started: Metals version 0.10.4 in workspace 'C:\Users\quent\Documents\GoodFood\goodfoodapi2' for client Visual Studio Code 1.56.2.[0m
+[0m2021.06.03 23:16:29 INFO  time: initialize in 1.69s[0m
+[0m2021.06.03 23:16:29 INFO  Attempting to connect to the build server...[0m
+[0m2021.06.03 23:16:29 WARN  no build target for: C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala[0m
+Starting the bsp launcher for bloop...
+Opening a bsp server connection with 'bsp --protocol tcp --port 40659'...
+Waiting for the bsp connection to come up...
+[0m2021.06.03 23:16:29 INFO  skipping build import with status 'Installed'[0m
+[0m[32m[D][0m Loading workspace settings from bloop.settings.json
+[0m[32m[D][0m Waiting for a connection at 127.0.0.1:40659...
+The server is listening for incoming connections at tcp://127.0.0.1:40659...
+Starting thread that pumps stdin and redirects it to the bsp server...
+Starting thread that pumps server stdout and redirects it to the client stdout...
+[0m2021.06.03 23:16:29 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\quent\AppData\Local\scalameta\metals\cache\bsp.trace.json[0m
+[0m2021.06.03 23:16:29 INFO  time: Connected to build server in 1.01s[0m
+[0m2021.06.03 23:16:29 INFO  Connected to Build server: Bloop v1.4.8-19-4d9f966b[0m
+[0m2021.06.03 23:16:33 INFO  no build target: using presentation compiler with only scala-library: 2.12.14[0m
+[0m2021.06.03 23:16:33 INFO  time: Imported build in 0.59s[0m
+[0m2021.06.03 23:16:34 INFO  no build target: using presentation compiler with only scala-library: 2.12.14[0m
+[0m2021.06.03 23:16:34 INFO  time: code lens generation in 1.79s[0m
+[0m2021.06.03 23:16:34 INFO  time: code lens generation in 5.58s[0m
+[0m2021.06.03 23:16:34 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:16:34 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:16:34 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:16:35 INFO  time: indexed workspace in 1.79s[0m
+[0m2021.06.03 23:16:35 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 23:16:38 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:16:38 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:16:38 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 23:16:38 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:16:39 INFO  time: compiled goodfoodapi-test in 1.36s[0m
+[0m2021.06.03 23:16:39 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 23:16:39 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 23:16:46 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 23:16:48 INFO  time: compiled goodfoodapi-test in 1.09s[0m
+[0m2021.06.03 23:16:48 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 23:20:34 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:20:34 WARN  code navigation does not work for the file 'C:\Users\quent\Documents\GoodFood\goodfoodapi2\src\test\scala\ApiGatlingSimulationTest.scala' because it doesn't belong to a build target.[0m
+[0m2021.06.03 23:20:43 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 23:20:44 INFO  time: compiled goodfoodapi-test in 1.15s[0m
+[0m2021.06.03 23:20:44 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.03 23:20:46 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
+[0m2021.06.03 23:20:47 INFO  time: compiled goodfoodapi-test in 1.06s[0m
+[0m2021.06.03 23:20:47 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+juin 07, 2021 10:50:13 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace

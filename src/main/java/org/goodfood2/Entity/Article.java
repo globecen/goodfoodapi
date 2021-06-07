@@ -5,53 +5,59 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 /**
  * Represente un article.
  */
-@Entity
+@Entity(name = "Article")
+@Table(name = "Article")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public class Article extends PanacheEntityBase {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_article")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_article")
 	private int a_idArticle;
 
-	@Column(name="id_categorie_article")
+	@Column(name = "id_categorie_article")
 	private int b_idCategorieArticle;
 
-	@Column(name="id_franchise")
+	@Column(name = "id_franchise")
 	private int c_idFranchise;
 
-	@Column(name="libelle_article")
+	@Column(name = "libelle_article")
 	private String d_libelleArticle;
 
-	@Column(name="description_article")
+	@Column(name = "description_article")
 	private String e_descriptionArticle;
 
-	@Column(name="url_img_article")
+	@Column(name = "url_img_article")
 	private String f_urlImgArticle;
 
-	@Column(name="prix_article_ht")
+	@Column(name = "prix_article_ht")
 	private double g_prixArticleHt;
 
-	@Column(name="TVA")
+	@Column(name = "TVA")
 	private double h_tva;
 
-	@Column(name="est_menu")
+	@Column(name = "est_menu")
 	private String i_estMenu;
 
-	@Column(name="est_active")
+	@Column(name = "est_active")
 	private int j_estActive;
 
-	@Column(name="stock_article")
+	@Column(name = "stock_article")
 	private double k_stockArticle;
 
-	public Article(){
+	public Article() {
 	}
-	
+
 	public int getIdArticle() {
 		return this.a_idArticle;
 	}
