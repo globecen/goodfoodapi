@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
@@ -93,6 +94,7 @@ public class Utilisateur  extends PanacheEntityBase {
 		this.i_role = role;
 	}
 
+	@Transient
 	public String getMdpUtilisateur() {
 		return this.e_mdpUtilisateur;
 	}

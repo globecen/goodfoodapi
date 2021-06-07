@@ -139,7 +139,7 @@ public class UtilisateurResource {
         boolean test = false;
         Utilisateur userFound = this.utilisateurEmail(email);
         if (userFound != null) {
-            test = SecurityUtils.verifyPassword(password, userFound.retrieveEncryptPassword());
+            test = SecurityUtils.verifyPassword(password, userFound.getMdpUtilisateur());
             if (test)
                 ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(),
                         userFound.getRole());
@@ -160,7 +160,7 @@ public class UtilisateurResource {
     @POST
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {
-        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.retrieveEncryptPassword()));
+        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.getMdpUtilisateur()));
         entityManager.persist(u);
         return Response.status(200).build();
     }
