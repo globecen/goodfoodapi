@@ -15,71 +15,71 @@ public class Ligne_Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_ligneCommande")
-	private int idLigneCommande;
+	private int a_idLigneCommande;
 	
 	@Column(name="id_commande")
-	private int idCommande;
+	private int b_idCommande;
 
 	@Column(name="id_article")
-	private int idArticle;
+	private int c_idArticle;
 
 	@Column(name="quantite_article")
-	private double quantiteArticle;
+	private double d_quantiteArticle;
 
 	@Column(name="sous_total_ttc")
-	private double sousTotalTtc;
+	private double e_sousTotalTtc;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int f_estActive;
 
 	public Ligne_Commande() {
 	}
 
 	public int getIdLigneCommande() {
-		return this.idLigneCommande;
+		return this.a_idLigneCommande;
 	}
 
 	public void setIdLigneCommande(int idLigneCommande) {
-		this.idLigneCommande = idLigneCommande;
+		this.a_idLigneCommande = idLigneCommande;
 	}
 
 	public int getIdCommande() {
-		return this.idCommande;
+		return this.b_idCommande;
 	}
 
 	public void setIdCommande(int idCommande) {
-		this.idCommande = idCommande;
+		this.c_idArticle = idCommande;
 	}
 
 	public int getIdArticle() {
-		return this.idArticle;
+		return this.c_idArticle;
 	}
 
 	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
+		this.c_idArticle = idArticle;
 	}
 
 	public double getQuantiteArticle() {
-		return this.quantiteArticle;
+		return this.d_quantiteArticle;
 	}
 
 	public void setQuantiteArticle(double quantiteArticle) {
-		this.quantiteArticle = quantiteArticle;
+		this.d_quantiteArticle = quantiteArticle;
 	}
 
 	public double getSousTotalTtc() {
-		return this.sousTotalTtc;
+		return this.e_sousTotalTtc;
 	}
 
 	public void setSousTotalTtc(double sousTotalTtc) {
-		this.sousTotalTtc = sousTotalTtc;
+		this.e_sousTotalTtc = sousTotalTtc;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.f_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.f_estActive = estActive;
 	}
 }

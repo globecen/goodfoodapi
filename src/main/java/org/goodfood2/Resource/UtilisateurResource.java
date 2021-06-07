@@ -155,6 +155,7 @@ public class UtilisateurResource {
      * @param p L utilisateur.
      * @return Le statut de la reponse.
      */
+    @PermitAll
     @Path("/creer")
     @POST
     @Transactional

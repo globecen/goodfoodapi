@@ -17,104 +17,104 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_adresse")
-	private int idAdresse;
+	private int a_idAdresse;
 
 	@Column(name="id_tiers")
-	private int idTiers;
+	private int b_idTiers;
 
 	@Column(name="code_postal")
-	private int codePostal;
+	private int c_codePostal;
 
 	@Column(name="nom_adresse")
-	private String nomAdresse;
+	private String d_nomAdresse;
 
 	@Column(name="numero_adresse")
-	private int numeroAdresse;
+	private int e_numeroAdresse;
 
 	@Column(name="pays")
-	private String pays;
+	private String f_pays;
 
 	@Column(name="supp_nom_adresse")
-	private String suppNomAdresse;
+	private String g_suppNomAdresse;
 
 	@Column(name="ville_adresse")
-	private String villeAdresse;
+	private String h_villeAdresse;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int i_estActive;
 
 	public Adresse_Fournisseur() {
 	}
 
 	public int getIdAdresse() {
-		return this.idAdresse;
+		return this.a_idAdresse;
 	}
 
 	public void setIdAdresse(int idAdresse) {
-		this.idAdresse = idAdresse;
+		this.a_idAdresse = idAdresse;
 	}
 
 	public int getIdTiers() {
-		return this.idTiers;
+		return this.b_idTiers;
 	}
 
 	public void setIdTiers(int idTiers) {
-		this.idTiers = idTiers;
+		this.b_idTiers = idTiers;
 	}
 
 	public int getCodePostal() {
-		return this.codePostal;
+		return this.c_codePostal;
 	}
 
 	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
+		this.c_codePostal = codePostal;
 	}
 
 	public String getNomAdresse() {
-		return this.nomAdresse;
+		return this.d_nomAdresse;
 	}
 
 	public void setNomAdresse(String nomAdresse) {
-		this.nomAdresse = nomAdresse;
+		this.d_nomAdresse = nomAdresse;
 	}
 
 	public int getNumeroAdresse() {
-		return this.numeroAdresse;
+		return this.e_numeroAdresse;
 	}
 
 	public void setNumeroAdresse(int numeroAdresse) {
-		this.numeroAdresse = numeroAdresse;
+		this.e_numeroAdresse = numeroAdresse;
 	}
 
 	public String getPays() {
-		return this.pays;
+		return this.f_pays;
 	}
 
 	public void setPays(String pays) {
-		this.pays = pays;
+		this.f_pays = pays;
 	}
 
 	public String getSuppNomAdresse() {
-		return this.suppNomAdresse;
+		return this.g_suppNomAdresse;
 	}
 
 	public void setSuppNomAdresse(String suppNomAdresse) {
-		this.suppNomAdresse = suppNomAdresse;
+		this.g_suppNomAdresse = suppNomAdresse;
 	}
 
 	public String getVilleAdresse() {
-		return this.villeAdresse;
+		return this.h_villeAdresse;
 	}
 
 	public void setVilleAdresse(String villeAdresse) {
-		this.villeAdresse = villeAdresse;
+		this.h_villeAdresse = villeAdresse;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.i_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.i_estActive = estActive;
 	}
 }

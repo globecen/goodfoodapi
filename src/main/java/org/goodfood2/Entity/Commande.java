@@ -17,105 +17,105 @@ public class Commande{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_commande")
-	private int idCommande;
+	private int a_idCommande;
 
 	@Column(name="id_utilisateur")
-	private int idUtilisateur;
+	private int b_idUtilisateur;
 
 	@Column(name="id_adresse_facturation")
-	private int idAdresseFacturation;
+	private int c_idAdresseFacturation;
 
 	@Column(name="id_adresse_livraison")
-	private int idAdresseLivraison;
+	private int d_idAdresseLivraison;
 
 	@Column(name="date_commande")
-	private String dateCommande;
+	private String e_dateCommande;
 
 	@Column(name="total_ttc")
-	private double totalTtc;
+	private double f_totalTtc;
 
 	@Column(name="statut_commande")
-	private int statutCommande;
+	private int g_statutCommande;
 
 	@Column(name="id_franchise")
-	private int idFranchise;
+	private int h_idFranchise;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int i_estActive;
 
 	public Commande() {
 	}
 
 	public int getIdCommande() {
-		return this.idCommande;
+		return this.a_idCommande;
 	}
 
 	public void setIdCommande(int idCommande) {
-		this.idCommande = idCommande;
+		this.a_idCommande = idCommande;
 	}
 
 	public String getDateCommande() {
-		return this.dateCommande;
+		return this.e_dateCommande;
 	}
 
 	public void setDateCommande(String dateCommande) {
-		this.dateCommande = dateCommande;
+		this.e_dateCommande = dateCommande;
 	}
 
 	public int getStatutCommande() {
-		return this.statutCommande;
+		return this.g_statutCommande;
 	}
 
 	public void setStatutCommande(int statutCommande) {
-		this.statutCommande = statutCommande;
+		this.g_statutCommande = statutCommande;
 	}
 
 	public double getTotalTtc() {
-		return this.totalTtc;
+		return this.f_totalTtc;
 	}
 
 	public void setTotalTtc(double totalTtc) {
-		this.totalTtc = totalTtc;
+		this.f_totalTtc = totalTtc;
 	}
 
 	public int getIdAdresseFacturation() {
-		return this.idAdresseFacturation;
+		return this.c_idAdresseFacturation;
 	}
 
 	public void setIdAdresseFacturation(int idAdresseFacturation) {
-		this.idAdresseFacturation = idAdresseFacturation;
+		this.c_idAdresseFacturation = idAdresseFacturation;
 	}
 
 	public int getIdAdresseLivraison() {
-		return this.idAdresseLivraison;
+		return this.d_idAdresseLivraison;
 	}
 
 	public void setIdAdresseLivraison(int idAdresseLivraison) {
-		this.idAdresseLivraison = idAdresseLivraison;
+		this.d_idAdresseLivraison = idAdresseLivraison;
 	}	
 	
 	public int getIdUtilisateur() {
-		return this.idUtilisateur;
+		return this.b_idUtilisateur;
 	}
 
 	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+		this.b_idUtilisateur = idUtilisateur;
 	}
 
 	public int getIdFranchise() {
-		return this.idFranchise;
+		return this.h_idFranchise;
 	}
 
 	public void setIdFranchise(int idFranchise) {
-		this.idFranchise = idFranchise;
+		this.h_idFranchise = idFranchise;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.i_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.i_estActive = estActive;
 	}
 
 }

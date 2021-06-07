@@ -23,127 +23,127 @@ public class Article extends PanacheEntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_article")
-	private int idArticle;
+	private int a_idArticle;
 
 	@Column(name = "id_categorie_article")
-	private int idCategorieArticle;
+	private int b_idCategorieArticle;
 
 	@Column(name = "id_franchise")
-	private int idFranchise;
+	private int c_idFranchise;
 
 	@Column(name = "libelle_article")
-	private String libelleArticle;
+	private String d_libelleArticle;
 
 	@Column(name = "description_article")
-	private String descriptionArticle;
+	private String e_descriptionArticle;
 
 	@Column(name = "url_img_article")
-	private String urlImgArticle;
+	private String f_urlImgArticle;
 
 	@Column(name = "prix_article_ht")
-	private double prixArticleHt;
+	private double g_prixArticleHt;
 
 	@Column(name = "TVA")
-	private double tva;
+	private double h_tva;
 
 	@Column(name = "est_menu")
-	private String estMenu;
+	private String i_estMenu;
 
 	@Column(name = "est_active")
-	private int estActive;
+	private int j_estActive;
 
 	@Column(name = "stock_article")
-	private double stockArticle;
+	private double k_stockArticle;
 
 	public Article() {
 	}
 
 	public int getIdArticle() {
-		return this.idArticle;
+		return this.a_idArticle;
 	}
 
 	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
+		this.a_idArticle = idArticle;
 	}
 
 	public String getDescriptionArticle() {
-		return this.descriptionArticle;
+		return this.e_descriptionArticle;
 	}
 
 	public void setDescriptionArticle(String descriptionArticle) {
-		this.descriptionArticle = descriptionArticle;
+		this.e_descriptionArticle = descriptionArticle;
 	}
 
 	public String getEstMenu() {
-		return this.estMenu;
+		return this.i_estMenu;
 	}
 
 	public void setEstMenu(String estMenu) {
-		this.estMenu = estMenu;
+		this.i_estMenu = estMenu;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.j_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.j_estActive = estActive;
 	}
 
 	public int getIdCategorieArticle() {
-		return this.idCategorieArticle;
+		return this.b_idCategorieArticle;
 	}
 
 	public void setIdCategorieArticle(int idCategorieArticle) {
-		this.idCategorieArticle = idCategorieArticle;
+		this.b_idCategorieArticle = idCategorieArticle;
 	}
 
 	public int getIdFranchise() {
-		return this.idFranchise;
+		return this.c_idFranchise;
 	}
 
 	public void setIdFranchise(int idFranchise) {
-		this.idFranchise = idFranchise;
+		this.c_idFranchise = idFranchise;
 	}
 
 	public String getLibelleArticle() {
-		return this.libelleArticle;
+		return this.d_libelleArticle;
 	}
 
 	public void setLibelleArticle(String libelleArticle) {
-		this.libelleArticle = libelleArticle;
+		this.d_libelleArticle = libelleArticle;
 	}
 
 	public double getPrixArticleHt() {
-		return this.prixArticleHt;
+		return this.g_prixArticleHt;
 	}
 
 	public void setPrixArticleHt(double prixArticleHt) {
-		this.prixArticleHt = prixArticleHt;
+		this.g_prixArticleHt = prixArticleHt;
 	}
 
 	public double getStockArticle() {
-		return this.stockArticle;
+		return this.k_stockArticle;
 	}
 
 	public void setStockArticle(double stockArticle) {
-		this.stockArticle = stockArticle;
+		this.k_stockArticle = stockArticle;
 	}
 
 	public double getTva() {
-		return this.tva;
+		return this.h_tva;
 	}
 
 	public void setTva(double tva) {
-		this.tva = tva;
+		this.h_tva = tva;
 	}
 
 	public String getUrlImgArticle() {
-		return this.urlImgArticle;
+		return this.f_urlImgArticle;
 	}
 
 	public void setUrlImgArticle(String urlImgArticle) {
-		this.urlImgArticle = urlImgArticle;
+		this.f_urlImgArticle = urlImgArticle;
 	}
 
 }

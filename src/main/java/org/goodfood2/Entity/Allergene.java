@@ -15,39 +15,39 @@ public class Allergene{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_allergene")
-	private int idAllergene;
+	private int a_idAllergene;
 
 	@Column(name="libelle_allergene")
-	private String libelleAllergene;
+	private String b_libelleAllergene;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int c_estActive;
 
 	public Allergene() {
 	}
 
 	public int getIdAllergene() {
-		return this.idAllergene;
+		return this.a_idAllergene;
 	}
 
 	public void setIdAllergene(int idAllergene) {
-		this.idAllergene = idAllergene;
+		this.a_idAllergene = idAllergene;
 	}
 
 	public String getLibelleAllergene() {
-		return this.libelleAllergene;
+		return this.b_libelleAllergene;
 	}
 
 	public void setLibelleAllergene(String libelleAllergene) {
-		this.libelleAllergene = libelleAllergene;
+		this.b_libelleAllergene = libelleAllergene;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.c_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.c_estActive = estActive;
 	}
 
 }

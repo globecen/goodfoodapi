@@ -15,93 +15,93 @@ public class Fournisseur {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_fournisseur")
-	private int idFournisseur;
+	private int a_idFournisseur;
 
 	@Column(name="id_franchise")
-	private int idFranchise;
+	private int b_idFranchise;
 
 	@Column(name="nom_fournisseur")
-	private String nomFournisseur;
+	private String c_nomFournisseur;
 
 	@Column(name="numero_siret_fournisseur")
-	private int numeroSiretFournisseur;
+	private int d_numeroSiretFournisseur;
 
 	@Column(name="email_fournisseur")
-	private String emailFournisseur;
+	private String e_emailFournisseur;
 
 	@Column(name="numero_tel_fourniseur")
-	private int numeroTelFourniseur;
+	private int f_numeroTelFourniseur;
 
 	@Column(name="adresse_fournisseur")
-	private int adresseFournisseur;
+	private int g_adresseFournisseur;
 
 	@Column(name="est_active")
-	private int estActive;
+	private int h_estActive;
 
 	public Fournisseur() {
 	}
 
 	public int getIdFournisseur() {
-		return this.idFournisseur;
+		return this.a_idFournisseur;
 	}
 
 	public void setIdFournisseur(int idFournisseur) {
-		this.idFournisseur = idFournisseur;
+		this.a_idFournisseur = idFournisseur;
 	}
 
 	public int getAdresseFournisseur() {
-		return this.adresseFournisseur;
+		return this.g_adresseFournisseur;
 	}
 
 	public void setAdresseFournisseur(int adresseFournisseur) {
-		this.adresseFournisseur = adresseFournisseur;
+		this.g_adresseFournisseur = adresseFournisseur;
 	}
 
 	public String getEmailFournisseur() {
-		return this.emailFournisseur;
+		return this.e_emailFournisseur;
 	}
 
 	public void setEmailFournisseur(String emailFournisseur) {
-		this.emailFournisseur = emailFournisseur;
+		this.e_emailFournisseur = emailFournisseur;
 	}
 
 	public String getNomFournisseur() {
-		return this.nomFournisseur;
+		return this.c_nomFournisseur;
 	}
 
 	public void setNomFournisseur(String nomFournisseur) {
-		this.nomFournisseur = nomFournisseur;
+		this.c_nomFournisseur = nomFournisseur;
 	}
 
 	public int getNumeroSiretFournisseur() {
-		return this.numeroSiretFournisseur;
+		return this.d_numeroSiretFournisseur;
 	}
 
 	public void setNumeroSiretFournisseur(int numeroSiretFournisseur) {
-		this.numeroSiretFournisseur = numeroSiretFournisseur;
+		this.d_numeroSiretFournisseur = numeroSiretFournisseur;
 	}
 
 	public int getNumeroTelFourniseur() {
-		return this.numeroTelFourniseur;
+		return this.f_numeroTelFourniseur;
 	}
 
 	public void setNumeroTelFourniseur(int numeroTelFourniseur) {
-		this.numeroTelFourniseur = numeroTelFourniseur;
+		this.f_numeroTelFourniseur = numeroTelFourniseur;
 	}
 
 	public int getIdFranchise() {
-		return this.idFranchise;
+		return this.b_idFranchise;
 	}
 
 	public void setIdFranchise(int idFranchise) {
-		this.idFranchise = idFranchise;
+		this.b_idFranchise = idFranchise;
 	}
 
 	public int getEstActive() {
-		return this.estActive;
+		return this.h_estActive;
 	}
 
 	public void setEstActive(int estActive) {
-		this.estActive = estActive;
+		this.h_estActive = estActive;
 	}
 }
