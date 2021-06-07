@@ -19,6 +19,9 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 	@Column(name="id_adresse")
 	private int idAdresse;
 
+	@Column(name="id_tiers")
+	private int idTiers;
+
 	@Column(name="code_postal")
 	private int codePostal;
 
@@ -49,6 +52,14 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 
 	public void setIdAdresse(int idAdresse) {
 		this.idAdresse = idAdresse;
+	}
+
+	public int getIdTiers() {
+		return this.idTiers;
+	}
+
+	public void setIdTiers(int idTiers) {
+		this.idTiers = idTiers;
 	}
 
 	public int getCodePostal() {

@@ -20,6 +20,9 @@ public class Groupe_Franchise {
 	@Column(name="nom_groupe_franchise")
 	private String nomGroupeFranchise;
 
+	@Column(name="est_active")
+	private int estActive;
+
 	public Groupe_Franchise() {
 	}
 
@@ -37,6 +40,14 @@ public class Groupe_Franchise {
 
 	public void setNomGroupeFranchise(String nomGroupeFranchise) {
 		this.nomGroupeFranchise = nomGroupeFranchise;
+	}
+
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
 	}
 
 }
