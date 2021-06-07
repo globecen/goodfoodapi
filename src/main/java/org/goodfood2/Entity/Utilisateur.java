@@ -43,6 +43,9 @@ public class Utilisateur  extends PanacheEntityBase {
 	@Column(name="role")
 	private String role;
 
+	@Column(name="id_franchise")
+	private int idFranchise;
+
 	@Column(name="est_active")
 	private int estActive;
 	
@@ -122,7 +125,15 @@ public class Utilisateur  extends PanacheEntityBase {
 		this.prenomUtilisateur = prenomUtilisateur;
 	}	
 
-		public int getEstActive() {
+	public int getIdFranchise() {
+		return this.idFranchise;
+	}
+
+	public void setIdFranchise(int idFranchise) {
+		this.idFranchise = idFranchise;
+	}
+
+	public int getEstActive() {
 		return this.estActive;
 	}
 
