@@ -29,6 +29,9 @@ public class Ligne_Commande {
 	@Column(name="sous_total_ttc")
 	private double sousTotalTtc;
 
+	@Column(name="est_active")
+	private int estActive;
+
 	public Ligne_Commande() {
 	}
 
@@ -72,4 +75,11 @@ public class Ligne_Commande {
 		this.sousTotalTtc = sousTotalTtc;
 	}
 
+	public int getEstActive() {
+		return this.estActive;
+	}
+
+	public void setEstActive(int estActive) {
+		this.estActive = estActive;
+	}
 }
