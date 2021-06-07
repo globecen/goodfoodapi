@@ -38,8 +38,8 @@ public class UtilisateurResourceTest {
     @Order(2)
     public void testCreerUtilisateur() {
         Utilisateur u = new Utilisateur();
-        u.setEmailUtilisateur("quentin.alegos@gmail.com");
-        u.setMdpUtilisateur(BcryptUtil.bcryptHash("test"));
+        u.setD_emailUtilisateur("quentin.alegos@gmail.com");
+        u.setE_mdpUtilisateur(BcryptUtil.bcryptHash("test"));
 
         given()
             .urlEncodingEnabled(false)
@@ -57,8 +57,8 @@ public class UtilisateurResourceTest {
     @Order(3)
     public void testModifUtilisateur() {
         Utilisateur u = new Utilisateur();
-        u.setEmailUtilisateur("quentin.alegos@gmail.com");
-        u.setMdpUtilisateur(BcryptUtil.bcryptHash("test2"));
+        u.setD_emailUtilisateur("quentin.alegos@gmail.com");
+        u.setE_mdpUtilisateur(BcryptUtil.bcryptHash("test2"));
 
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)

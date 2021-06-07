@@ -33,7 +33,7 @@ public class AllergeneResourceTest {
     @Order(2)
     public void testCreerAllergene() {
         Allergene a = new Allergene();
-        a.setLibelleAllergene("00000");
+        a.setB_libelleAllergene("00000");
 
         given()
             .urlEncodingEnabled(false)
@@ -51,7 +51,7 @@ public class AllergeneResourceTest {
     @Order(3)
     public void testModifAllergene() {
         Allergene a = new Allergene();       
-        a.setLibelleAllergene("00000");
+        a.setB_libelleAllergene("00000");
 
         given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)

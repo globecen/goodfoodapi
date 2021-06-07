@@ -61,7 +61,7 @@ public class UtilisateurResource {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
         utilisateurs = Utilisateur.find(
-            "select d_emailUtilisateur, i_role, a_idUtilisateur, f_nomUtilisateur, g_numeroTelUtilisateur, h_prenomUtilisateur from Utilisateur where d_emailUtilisateur like '%" + d_emailUtilisateur 
+            "from Utilisateur where d_emailUtilisateur like '%" + d_emailUtilisateur 
             + "%' and f_nomUtilisateur like '%" + f_nomUtilisateur 
             + "%' and h_prenomUtilisateur like '%" + h_prenomUtilisateur 
             + "%' and g_numeroTelUtilisateur like '%" + g_numeroTelUtilisateur + "%'");
@@ -101,7 +101,7 @@ public class UtilisateurResource {
     @Path("/{id}/Adresse_Utilisateur")
     @GET
     public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
-        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("select a.a_idAdresse, a.e_numeroAdresse, a.g_suppNomAdresse, a.h_villeAdresse, a.c_codePostal, a.f_pays from Adresse_Utilisateur a where a.b_idUtilisateur = " + id);
+        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("from Adresse_Utilisateur a where a.b_idUtilisateur = " + id);
         return adressesU.list();
     }
 

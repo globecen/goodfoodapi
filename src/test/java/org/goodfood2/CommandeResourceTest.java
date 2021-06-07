@@ -36,10 +36,10 @@ public class CommandeResourceTest {
     public void testCreerCommande() {
         
         Commande c = new Commande();
-        c.setIdAdresseFacturation(0);
-        c.setIdAdresseLivraison(0);
-        c.setIdUtilisateur(0);
-        c.setTotalTtc(-1);
+        c.setC_idAdresseFacturation(0);
+        c.setD_idAdresseLivraison(0);
+        c.setB_idUtilisateur(0);
+        c.setF_totalTtc(-1);
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
