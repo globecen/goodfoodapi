@@ -44,76 +44,77 @@ public class Commande{
 	public Commande() {
 	}
 
-	public int getIdCommande() {
-		return this.a_idCommande;
+	public int getA_idCommande() {
+		return a_idCommande;
 	}
 
-	public void setIdCommande(int idCommande) {
-		this.a_idCommande = idCommande;
+	public void setA_idCommande(int a_idCommande) {
+		this.a_idCommande = a_idCommande;
 	}
 
-	public String getDateCommande() {
-		return this.e_dateCommande;
+	public int getB_idUtilisateur() {
+		return b_idUtilisateur;
 	}
 
-	public void setDateCommande(String dateCommande) {
-		this.e_dateCommande = dateCommande;
+	public void setB_idUtilisateur(int b_idUtilisateur) {
+		this.b_idUtilisateur = b_idUtilisateur;
 	}
 
-	public int getStatutCommande() {
-		return this.g_statutCommande;
+	public int getC_idAdresseFacturation() {
+		return c_idAdresseFacturation;
 	}
 
-	public void setStatutCommande(int statutCommande) {
-		this.g_statutCommande = statutCommande;
+	public void setC_idAdresseFacturation(int c_idAdresseFacturation) {
+		this.c_idAdresseFacturation = c_idAdresseFacturation;
 	}
 
-	public double getTotalTtc() {
-		return this.f_totalTtc;
+	public int getD_idAdresseLivraison() {
+		return d_idAdresseLivraison;
 	}
 
-	public void setTotalTtc(double totalTtc) {
-		this.f_totalTtc = totalTtc;
+	public void setD_idAdresseLivraison(int d_idAdresseLivraison) {
+		this.d_idAdresseLivraison = d_idAdresseLivraison;
 	}
 
-	public int getIdAdresseFacturation() {
-		return this.c_idAdresseFacturation;
+	public String getE_dateCommande() {
+		return e_dateCommande;
 	}
 
-	public void setIdAdresseFacturation(int idAdresseFacturation) {
-		this.c_idAdresseFacturation = idAdresseFacturation;
+	public void setE_dateCommande(String e_dateCommande) {
+		this.e_dateCommande = e_dateCommande;
 	}
 
-	public int getIdAdresseLivraison() {
-		return this.d_idAdresseLivraison;
+	public double getF_totalTtc() {
+		return f_totalTtc;
 	}
 
-	public void setIdAdresseLivraison(int idAdresseLivraison) {
-		this.d_idAdresseLivraison = idAdresseLivraison;
-	}	
+	public void setF_totalTtc(double f_totalTtc) {
+		this.f_totalTtc = f_totalTtc;
+	}
+
+	public int getG_statutCommande() {
+		return g_statutCommande;
+	}
+
+	public void setG_statutCommande(int g_statutCommande) {
+		this.g_statutCommande = g_statutCommande;
+	}
+
+	public int getH_idFranchise() {
+		return h_idFranchise;
+	}
+
+	public void setH_idFranchise(int h_idFranchise) {
+		this.h_idFranchise = h_idFranchise;
+	}
+
+	public int getI_estActive() {
+		return i_estActive;
+	}
+
+	public void setI_estActive(int i_estActive) {
+		this.i_estActive = i_estActive;
+	}
+
 	
-	public int getIdUtilisateur() {
-		return this.b_idUtilisateur;
-	}
-
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.b_idUtilisateur = idUtilisateur;
-	}
-
-	public int getIdFranchise() {
-		return this.h_idFranchise;
-	}
-
-	public void setIdFranchise(int idFranchise) {
-		this.h_idFranchise = idFranchise;
-	}
-
-	public int getEstActive() {
-		return this.i_estActive;
-	}
-
-	public void setEstActive(int estActive) {
-		this.i_estActive = estActive;
-	}
-
 }

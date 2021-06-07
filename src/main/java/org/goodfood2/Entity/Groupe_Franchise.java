@@ -26,28 +26,29 @@ public class Groupe_Franchise {
 	public Groupe_Franchise() {
 	}
 
-	public int getIdGroupeFranchise() {
-		return this.a_idGroupeFranchise;
+	public int getA_idGroupeFranchise() {
+		return a_idGroupeFranchise;
 	}
 
-	public void setIdGroupeFranchise(int idGroupeFranchise) {
-		this.a_idGroupeFranchise = idGroupeFranchise;
+	public void setA_idGroupeFranchise(int a_idGroupeFranchise) {
+		this.a_idGroupeFranchise = a_idGroupeFranchise;
 	}
 
-	public String getNomGroupeFranchise() {
-		return this.b_nomGroupeFranchise;
+	public String getB_nomGroupeFranchise() {
+		return b_nomGroupeFranchise;
 	}
 
-	public void setNomGroupeFranchise(String nomGroupeFranchise) {
-		this.b_nomGroupeFranchise = nomGroupeFranchise;
+	public void setB_nomGroupeFranchise(String b_nomGroupeFranchise) {
+		this.b_nomGroupeFranchise = b_nomGroupeFranchise;
 	}
 
-	public int getEstActive() {
-		return this.c_estActive;
+	public int getC_estActive() {
+		return c_estActive;
 	}
 
-	public void setEstActive(int estActive) {
-		this.c_estActive = estActive;
+	public void setC_estActive(int c_estActive) {
+		this.c_estActive = c_estActive;
 	}
 
+	
 }

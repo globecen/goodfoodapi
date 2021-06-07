@@ -26,28 +26,27 @@ public class Categorie_Article {
 	public Categorie_Article() {
 	}
 
-	public int getIdCategorieArticle() {
-		return this.a_idCategorieArticle;
+	public int getA_idCategorieArticle() {
+		return a_idCategorieArticle;
 	}
 
-	public void setIdCategorieArticle(int idCategorieArticle) {
-		this.a_idCategorieArticle = idCategorieArticle;
+	public void setA_idCategorieArticle(int a_idCategorieArticle) {
+		this.a_idCategorieArticle = a_idCategorieArticle;
 	}
 
-	public String getLibelleCategorieArticle() {
-		return this.b_libelleCategorieArticle;
+	public String getB_libelleCategorieArticle() {
+		return b_libelleCategorieArticle;
 	}
 
-	public void setLibelleCategorieArticle(String libelleCategorieArticle) {
-		this.b_libelleCategorieArticle = libelleCategorieArticle;
+	public void setB_libelleCategorieArticle(String b_libelleCategorieArticle) {
+		this.b_libelleCategorieArticle = b_libelleCategorieArticle;
 	}
 
-	public int getEstActive() {
-		return this.c_estActive;
+	public int getC_estActive() {
+		return c_estActive;
 	}
 
-	public void setEstActive(int estActive) {
-		this.c_estActive = estActive;
+	public void setC_estActive(int c_estActive) {
+		this.c_estActive = c_estActive;
 	}
-
 }

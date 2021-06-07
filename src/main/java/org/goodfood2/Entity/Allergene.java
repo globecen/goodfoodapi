@@ -26,28 +26,27 @@ public class Allergene{
 	public Allergene() {
 	}
 
-	public int getIdAllergene() {
-		return this.a_idAllergene;
+	public int getA_idAllergene() {
+		return a_idAllergene;
 	}
 
-	public void setIdAllergene(int idAllergene) {
-		this.a_idAllergene = idAllergene;
+	public void setA_idAllergene(int a_idAllergene) {
+		this.a_idAllergene = a_idAllergene;
 	}
 
-	public String getLibelleAllergene() {
-		return this.b_libelleAllergene;
+	public String getB_libelleAllergene() {
+		return b_libelleAllergene;
 	}
 
-	public void setLibelleAllergene(String libelleAllergene) {
-		this.b_libelleAllergene = libelleAllergene;
+	public void setB_libelleAllergene(String b_libelleAllergene) {
+		this.b_libelleAllergene = b_libelleAllergene;
 	}
 
-	public int getEstActive() {
-		return this.c_estActive;
+	public int getC_estActive() {
+		return c_estActive;
 	}
 
-	public void setEstActive(int estActive) {
-		this.c_estActive = estActive;
+	public void setC_estActive(int c_estActive) {
+		this.c_estActive = c_estActive;
 	}
-
 }

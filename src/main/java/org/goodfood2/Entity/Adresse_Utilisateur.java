@@ -46,76 +46,77 @@ public class Adresse_Utilisateur extends PanacheEntityBase{
 	public Adresse_Utilisateur() {
 	}
 
-	public int getIdAdresse() {
-		return this.a_idAdresse;
+	public int getA_idAdresse() {
+		return a_idAdresse;
 	}
 
-	public void setIdAdresse(int idAdresse) {
-		this.a_idAdresse = idAdresse;
+	public void setA_idAdresse(int a_idAdresse) {
+		this.a_idAdresse = a_idAdresse;
 	}
 
-	public int getIdUtilisateur() {
-		return this.b_idUtilisateur;
+	public int getB_idUtilisateur() {
+		return b_idUtilisateur;
 	}
 
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.b_idUtilisateur = idUtilisateur;
+	public void setB_idUtilisateur(int b_idUtilisateur) {
+		this.b_idUtilisateur = b_idUtilisateur;
 	}
 
-	public int getCodePostal() {
-		return this.c_codePostal;
+	public int getC_codePostal() {
+		return c_codePostal;
 	}
 
-	public void setCodePostal(int codePostal) {
-		this.c_codePostal = codePostal;
+	public void setC_codePostal(int c_codePostal) {
+		this.c_codePostal = c_codePostal;
 	}
 
-	public String getNomAdresse() {
-		return this.d_nomAdresse;
+	public String getD_nomAdresse() {
+		return d_nomAdresse;
 	}
 
-	public void setNomAdresse(String nomAdresse) {
-		this.d_nomAdresse = nomAdresse;
+	public void setD_nomAdresse(String d_nomAdresse) {
+		this.d_nomAdresse = d_nomAdresse;
 	}
 
-	public int getNumeroAdresse() {
-		return this.e_numeroAdresse;
+	public int getE_numeroAdresse() {
+		return e_numeroAdresse;
 	}
 
-	public void setNumeroAdresse(int numeroAdresse) {
-		this.e_numeroAdresse = numeroAdresse;
+	public void setE_numeroAdresse(int e_numeroAdresse) {
+		this.e_numeroAdresse = e_numeroAdresse;
 	}
 
-	public String getPays() {
-		return this.f_pays;
+	public String getF_pays() {
+		return f_pays;
 	}
 
-	public void setPays(String pays) {
-		this.f_pays = pays;
+	public void setF_pays(String f_pays) {
+		this.f_pays = f_pays;
 	}
 
-	public String getSuppNomAdresse() {
-		return this.g_suppNomAdresse;
+	public String getG_suppNomAdresse() {
+		return g_suppNomAdresse;
 	}
 
-	public void setSuppNomAdresse(String suppNomAdresse) {
-		this.g_suppNomAdresse = suppNomAdresse;
+	public void setG_suppNomAdresse(String g_suppNomAdresse) {
+		this.g_suppNomAdresse = g_suppNomAdresse;
 	}
 
-	public String getVilleAdresse() {
-		return this.h_villeAdresse;
+	public String getH_villeAdresse() {
+		return h_villeAdresse;
 	}
 
-	public void setVilleAdresse(String villeAdresse) {
-		this.h_villeAdresse = villeAdresse;
+	public void setH_villeAdresse(String h_villeAdresse) {
+		this.h_villeAdresse = h_villeAdresse;
 	}
+
+	public int getI_estActive() {
+		return i_estActive;
+	}
+
+	public void setI_estActive(int i_estActive) {
+		this.i_estActive = i_estActive;
+	}
+
 	
-	public int getEstActive() {
-		return this.i_estActive;
-	}
-
-	public void setEstActive(int estActive) {
-		this.i_estActive = estActive;
-	}
-
 }

@@ -36,7 +36,7 @@ public class ArticleResourceTest {
     @Order(2)
     public void testCreerArticle() {
         Article a = new Article();
-        a.setIdCategorieArticle(0);
+        a.setB_idCategorieArticle(0);
         given()
             .urlEncodingEnabled(false)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)

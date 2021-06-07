@@ -54,93 +54,114 @@ public class Utilisateur  extends PanacheEntityBase {
 	public Utilisateur() {
 	}
 
-	public int getIdUtilisateur() {
-		return this.a_idUtilisateur;
+
+	public int getA_idUtilisateur() {
+		return a_idUtilisateur;
 	}
 
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.a_idUtilisateur = idUtilisateur;
+
+	public void setA_idUtilisateur(int a_idUtilisateur) {
+		this.a_idUtilisateur = a_idUtilisateur;
 	}
-	
-	public int getIdAdresseLivraison() {
+
+
+	public int getB_idAdresseLivraison() {
 		return b_idAdresseLivraison;
 	}
 
-	public void setIdAdresseLivraison(int idAdresseLivraison) {
-		this.b_idAdresseLivraison = idAdresseLivraison;
+
+	public void setB_idAdresseLivraison(int b_idAdresseLivraison) {
+		this.b_idAdresseLivraison = b_idAdresseLivraison;
 	}
 
-	public int getIdAdresseFacturation() {
+
+	public int getC_idAdresseFacturation() {
 		return c_idAdresseFacturation;
 	}
 
-	public void setIdAdresseFacturation(int idAdresseFacturation) {
-		this.c_idAdresseFacturation = idAdresseFacturation;
+
+	public void setC_idAdresseFacturation(int c_idAdresseFacturation) {
+		this.c_idAdresseFacturation = c_idAdresseFacturation;
 	}
 
-	public String getEmailUtilisateur() {
-		return this.d_emailUtilisateur;
+
+	public String getD_emailUtilisateur() {
+		return d_emailUtilisateur;
 	}
 
-	public void setEmailUtilisateur(String emailUtilisateur) {
-		this.d_emailUtilisateur = emailUtilisateur;
-	}
 
-	public String getRole() {
-		return this.i_role;
-	}
-
-	public void setRole(String role) {
-		this.i_role = role;
+	public void setD_emailUtilisateur(String d_emailUtilisateur) {
+		this.d_emailUtilisateur = d_emailUtilisateur;
 	}
 
 	@Transient
-	public String getMdpUtilisateur() {
-		return this.e_mdpUtilisateur;
+	public String getE_mdpUtilisateur() {
+		return e_mdpUtilisateur;
 	}
 
-	public void setMdpUtilisateur(String mdpUtilisateur) {
-		this.e_mdpUtilisateur = mdpUtilisateur;
+
+	public void setE_mdpUtilisateur(String e_mdpUtilisateur) {
+		this.e_mdpUtilisateur = e_mdpUtilisateur;
 	}
 
-	public String getNomUtilisateur() {
-		return this.f_nomUtilisateur;
+
+	public String getF_nomUtilisateur() {
+		return f_nomUtilisateur;
 	}
 
-	public void setNomUtilisateur(String nomUtilisateur) {
-		this.f_nomUtilisateur = nomUtilisateur;
+
+	public void setF_nomUtilisateur(String f_nomUtilisateur) {
+		this.f_nomUtilisateur = f_nomUtilisateur;
 	}
 
-	public String getNumeroTelUtilisateur() {
-		return this.g_numeroTelUtilisateur;
+
+	public String getG_numeroTelUtilisateur() {
+		return g_numeroTelUtilisateur;
 	}
 
-	public void setNumeroTelUtilisateur(String numeroTelUtilisateur) {
-		this.g_numeroTelUtilisateur = numeroTelUtilisateur;
+
+	public void setG_numeroTelUtilisateur(String g_numeroTelUtilisateur) {
+		this.g_numeroTelUtilisateur = g_numeroTelUtilisateur;
 	}
 
-	public String getPrenomUtilisateur() {
-		return this.h_prenomUtilisateur;
+
+	public String getH_prenomUtilisateur() {
+		return h_prenomUtilisateur;
 	}
 
-	public void setPrenomUtilisateur(String prenomUtilisateur) {
-		this.h_prenomUtilisateur = prenomUtilisateur;
-	}	
 
-	public int getIdFranchise() {
-		return this.j_idFranchise;
+	public void setH_prenomUtilisateur(String h_prenomUtilisateur) {
+		this.h_prenomUtilisateur = h_prenomUtilisateur;
 	}
 
-	public void setIdFranchise(int idFranchise) {
-		this.j_idFranchise = idFranchise;
+
+	public String getI_role() {
+		return i_role;
 	}
 
-	public int getEstActive() {
-		return this.k_estActive;
+
+	public void setI_role(String i_role) {
+		this.i_role = i_role;
 	}
 
-	public void setEstActive(int estActive) {
-		this.k_estActive = estActive;
+
+	public int getJ_idFranchise() {
+		return j_idFranchise;
+	}
+
+
+	public void setJ_idFranchise(int j_idFranchise) {
+		this.j_idFranchise = j_idFranchise;
+	}
+
+
+	public int getK_estActive() {
+		return k_estActive;
+	}
+
+
+	public void setK_estActive(int k_estActive) {
+		this.k_estActive = k_estActive;
 	}
 
 }

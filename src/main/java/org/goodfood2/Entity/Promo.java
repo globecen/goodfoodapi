@@ -34,43 +34,45 @@ public class Promo extends PanacheEntityBase{
 	public Promo() {
 	}
 
-	public int getIdPromo() {
-		return this.a_idPromo;
+	public int getA_idPromo() {
+		return a_idPromo;
 	}
 
-	public void setIdPromo(int idPromo) {
-		this.a_idPromo = idPromo;
+	public void setA_idPromo(int a_idPromo) {
+		this.a_idPromo = a_idPromo;
 	}
 
-	public int getEstActive() {
-		return this.b_estActive;
+	public int getB_estActive() {
+		return b_estActive;
 	}
 
-	public void setEstActive(byte estActive) {
-		this.b_estActive = estActive;
+	public void setB_estActive(int b_estActive) {
+		this.b_estActive = b_estActive;
 	}
 
-	public int getIdArticle() {
-		return this.c_idArticle;
+	public int getC_idArticle() {
+		return c_idArticle;
 	}
 
-	public void setIdArticle(int idArticle) {
-		this.c_idArticle = idArticle;
+	public void setC_idArticle(int c_idArticle) {
+		this.c_idArticle = c_idArticle;
 	}
 
-	public String getLibellePromo() {
-		return this.d_libellePromo;
+	public String getD_libellePromo() {
+		return d_libellePromo;
 	}
 
-	public void setLibellePromo(String libellePromo) {
-		this.d_libellePromo = libellePromo;
+	public void setD_libellePromo(String d_libellePromo) {
+		this.d_libellePromo = d_libellePromo;
 	}
 
-	public int getReduction() {
-		return this.e_reduction;
+	public int getE_reduction() {
+		return e_reduction;
 	}
 
-	public void setReduction(int reduction) {
-		this.e_reduction = reduction;
+	public void setE_reduction(int e_reduction) {
+		this.e_reduction = e_reduction;
 	}
+
+	
 }

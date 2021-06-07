@@ -35,51 +35,53 @@ public class Ligne_Commande {
 	public Ligne_Commande() {
 	}
 
-	public int getIdLigneCommande() {
-		return this.a_idLigneCommande;
+	public int getA_idLigneCommande() {
+		return a_idLigneCommande;
 	}
 
-	public void setIdLigneCommande(int idLigneCommande) {
-		this.a_idLigneCommande = idLigneCommande;
+	public void setA_idLigneCommande(int a_idLigneCommande) {
+		this.a_idLigneCommande = a_idLigneCommande;
 	}
 
-	public int getIdCommande() {
-		return this.b_idCommande;
+	public int getB_idCommande() {
+		return b_idCommande;
 	}
 
-	public void setIdCommande(int idCommande) {
-		this.c_idArticle = idCommande;
+	public void setB_idCommande(int b_idCommande) {
+		this.b_idCommande = b_idCommande;
 	}
 
-	public int getIdArticle() {
-		return this.c_idArticle;
+	public int getC_idArticle() {
+		return c_idArticle;
 	}
 
-	public void setIdArticle(int idArticle) {
-		this.c_idArticle = idArticle;
+	public void setC_idArticle(int c_idArticle) {
+		this.c_idArticle = c_idArticle;
 	}
 
-	public double getQuantiteArticle() {
-		return this.d_quantiteArticle;
+	public double getD_quantiteArticle() {
+		return d_quantiteArticle;
 	}
 
-	public void setQuantiteArticle(double quantiteArticle) {
-		this.d_quantiteArticle = quantiteArticle;
+	public void setD_quantiteArticle(double d_quantiteArticle) {
+		this.d_quantiteArticle = d_quantiteArticle;
 	}
 
-	public double getSousTotalTtc() {
-		return this.e_sousTotalTtc;
+	public double getE_sousTotalTtc() {
+		return e_sousTotalTtc;
 	}
 
-	public void setSousTotalTtc(double sousTotalTtc) {
-		this.e_sousTotalTtc = sousTotalTtc;
+	public void setE_sousTotalTtc(double e_sousTotalTtc) {
+		this.e_sousTotalTtc = e_sousTotalTtc;
 	}
 
-	public int getEstActive() {
-		return this.f_estActive;
+	public int getF_estActive() {
+		return f_estActive;
 	}
 
-	public void setEstActive(int estActive) {
-		this.f_estActive = estActive;
+	public void setF_estActive(int f_estActive) {
+		this.f_estActive = f_estActive;
 	}
+
+	
 }

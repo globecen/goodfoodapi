@@ -41,67 +41,69 @@ public class Fournisseur {
 	public Fournisseur() {
 	}
 
-	public int getIdFournisseur() {
-		return this.a_idFournisseur;
+	public int getA_idFournisseur() {
+		return a_idFournisseur;
 	}
 
-	public void setIdFournisseur(int idFournisseur) {
-		this.a_idFournisseur = idFournisseur;
+	public void setA_idFournisseur(int a_idFournisseur) {
+		this.a_idFournisseur = a_idFournisseur;
 	}
 
-	public int getAdresseFournisseur() {
-		return this.g_adresseFournisseur;
+	public int getB_idFranchise() {
+		return b_idFranchise;
 	}
 
-	public void setAdresseFournisseur(int adresseFournisseur) {
-		this.g_adresseFournisseur = adresseFournisseur;
+	public void setB_idFranchise(int b_idFranchise) {
+		this.b_idFranchise = b_idFranchise;
 	}
 
-	public String getEmailFournisseur() {
-		return this.e_emailFournisseur;
+	public String getC_nomFournisseur() {
+		return c_nomFournisseur;
 	}
 
-	public void setEmailFournisseur(String emailFournisseur) {
-		this.e_emailFournisseur = emailFournisseur;
+	public void setC_nomFournisseur(String c_nomFournisseur) {
+		this.c_nomFournisseur = c_nomFournisseur;
 	}
 
-	public String getNomFournisseur() {
-		return this.c_nomFournisseur;
+	public int getD_numeroSiretFournisseur() {
+		return d_numeroSiretFournisseur;
 	}
 
-	public void setNomFournisseur(String nomFournisseur) {
-		this.c_nomFournisseur = nomFournisseur;
+	public void setD_numeroSiretFournisseur(int d_numeroSiretFournisseur) {
+		this.d_numeroSiretFournisseur = d_numeroSiretFournisseur;
 	}
 
-	public int getNumeroSiretFournisseur() {
-		return this.d_numeroSiretFournisseur;
+	public String getE_emailFournisseur() {
+		return e_emailFournisseur;
 	}
 
-	public void setNumeroSiretFournisseur(int numeroSiretFournisseur) {
-		this.d_numeroSiretFournisseur = numeroSiretFournisseur;
+	public void setE_emailFournisseur(String e_emailFournisseur) {
+		this.e_emailFournisseur = e_emailFournisseur;
 	}
 
-	public int getNumeroTelFourniseur() {
-		return this.f_numeroTelFourniseur;
+	public int getF_numeroTelFourniseur() {
+		return f_numeroTelFourniseur;
 	}
 
-	public void setNumeroTelFourniseur(int numeroTelFourniseur) {
-		this.f_numeroTelFourniseur = numeroTelFourniseur;
+	public void setF_numeroTelFourniseur(int f_numeroTelFourniseur) {
+		this.f_numeroTelFourniseur = f_numeroTelFourniseur;
 	}
 
-	public int getIdFranchise() {
-		return this.b_idFranchise;
+	public int getG_adresseFournisseur() {
+		return g_adresseFournisseur;
 	}
 
-	public void setIdFranchise(int idFranchise) {
-		this.b_idFranchise = idFranchise;
+	public void setG_adresseFournisseur(int g_adresseFournisseur) {
+		this.g_adresseFournisseur = g_adresseFournisseur;
 	}
 
-	public int getEstActive() {
-		return this.h_estActive;
+	public int getH_estActive() {
+		return h_estActive;
 	}
 
-	public void setEstActive(int estActive) {
-		this.h_estActive = estActive;
+	public void setH_estActive(int h_estActive) {
+		this.h_estActive = h_estActive;
 	}
+
+	
 }

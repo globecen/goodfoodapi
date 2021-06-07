@@ -137,10 +137,10 @@ public class UtilisateurResource {
         boolean test = false;
         Utilisateur userFound = this.utilisateurEmail(email);
         if (userFound != null) {
-            test = SecurityUtils.verifyPassword(password, userFound.getMdpUtilisateur());
+            test = SecurityUtils.verifyPassword(password, userFound.getE_mdpUtilisateur());
             if (test)
-                ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getIdUtilisateur(),
-                        userFound.getRole());
+                ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getA_idUtilisateur(),
+                        userFound.getI_role());
         } else
             throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
 
@@ -158,7 +158,7 @@ public class UtilisateurResource {
     @POST
     @Transactional
     public Response creerUtilisateur(Utilisateur u) throws Exception {
-        u.setMdpUtilisateur(BcryptUtil.bcryptHash(u.getMdpUtilisateur()));
+        u.setE_mdpUtilisateur(BcryptUtil.bcryptHash(u.getE_mdpUtilisateur()));
         entityManager.persist(u);
         return Response.status(200).build();
     }

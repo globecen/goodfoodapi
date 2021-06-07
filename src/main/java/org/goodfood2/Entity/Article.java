@@ -58,92 +58,93 @@ public class Article extends PanacheEntityBase {
 	public Article() {
 	}
 
-	public int getIdArticle() {
-		return this.a_idArticle;
+	public int getA_idArticle() {
+		return a_idArticle;
 	}
 
-	public void setIdArticle(int idArticle) {
-		this.a_idArticle = idArticle;
+	public void setA_idArticle(int a_idArticle) {
+		this.a_idArticle = a_idArticle;
 	}
 
-	public String getDescriptionArticle() {
-		return this.e_descriptionArticle;
+	public int getB_idCategorieArticle() {
+		return b_idCategorieArticle;
 	}
 
-	public void setDescriptionArticle(String descriptionArticle) {
-		this.e_descriptionArticle = descriptionArticle;
+	public void setB_idCategorieArticle(int b_idCategorieArticle) {
+		this.b_idCategorieArticle = b_idCategorieArticle;
 	}
 
-	public String getEstMenu() {
-		return this.i_estMenu;
+	public int getC_idFranchise() {
+		return c_idFranchise;
 	}
 
-	public void setEstMenu(String estMenu) {
-		this.i_estMenu = estMenu;
+	public void setC_idFranchise(int c_idFranchise) {
+		this.c_idFranchise = c_idFranchise;
 	}
 
-	public int getEstActive() {
-		return this.j_estActive;
+	public String getD_libelleArticle() {
+		return d_libelleArticle;
 	}
 
-	public void setEstActive(int estActive) {
-		this.j_estActive = estActive;
+	public void setD_libelleArticle(String d_libelleArticle) {
+		this.d_libelleArticle = d_libelleArticle;
 	}
 
-	public int getIdCategorieArticle() {
-		return this.b_idCategorieArticle;
+	public String getE_descriptionArticle() {
+		return e_descriptionArticle;
 	}
 
-	public void setIdCategorieArticle(int idCategorieArticle) {
-		this.b_idCategorieArticle = idCategorieArticle;
+	public void setE_descriptionArticle(String e_descriptionArticle) {
+		this.e_descriptionArticle = e_descriptionArticle;
 	}
 
-	public int getIdFranchise() {
-		return this.c_idFranchise;
+	public String getF_urlImgArticle() {
+		return f_urlImgArticle;
 	}
 
-	public void setIdFranchise(int idFranchise) {
-		this.c_idFranchise = idFranchise;
+	public void setF_urlImgArticle(String f_urlImgArticle) {
+		this.f_urlImgArticle = f_urlImgArticle;
 	}
 
-	public String getLibelleArticle() {
-		return this.d_libelleArticle;
+	public double getG_prixArticleHt() {
+		return g_prixArticleHt;
 	}
 
-	public void setLibelleArticle(String libelleArticle) {
-		this.d_libelleArticle = libelleArticle;
+	public void setG_prixArticleHt(double g_prixArticleHt) {
+		this.g_prixArticleHt = g_prixArticleHt;
 	}
 
-	public double getPrixArticleHt() {
-		return this.g_prixArticleHt;
+	public double getH_tva() {
+		return h_tva;
 	}
 
-	public void setPrixArticleHt(double prixArticleHt) {
-		this.g_prixArticleHt = prixArticleHt;
+	public void setH_tva(double h_tva) {
+		this.h_tva = h_tva;
 	}
 
-	public double getStockArticle() {
-		return this.k_stockArticle;
+	public String getI_estMenu() {
+		return i_estMenu;
 	}
 
-	public void setStockArticle(double stockArticle) {
-		this.k_stockArticle = stockArticle;
+	public void setI_estMenu(String i_estMenu) {
+		this.i_estMenu = i_estMenu;
 	}
 
-	public double getTva() {
-		return this.h_tva;
+	public int getJ_estActive() {
+		return j_estActive;
 	}
 
-	public void setTva(double tva) {
-		this.h_tva = tva;
+	public void setJ_estActive(int j_estActive) {
+		this.j_estActive = j_estActive;
 	}
 
-	public String getUrlImgArticle() {
-		return this.f_urlImgArticle;
+	public double getK_stockArticle() {
+		return k_stockArticle;
 	}
 
-	public void setUrlImgArticle(String urlImgArticle) {
-		this.f_urlImgArticle = urlImgArticle;
+	public void setK_stockArticle(double k_stockArticle) {
+		this.k_stockArticle = k_stockArticle;
 	}
 
+	
 }

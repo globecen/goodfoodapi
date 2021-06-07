@@ -60,7 +60,7 @@ public class CommandeResource {
     @Transactional
     public int creerCommande(Commande c) throws Exception {
         entityManager.persist(c);
-        return c.getIdCommande();
+        return c.getA_idCommande();
     }
 
     /**

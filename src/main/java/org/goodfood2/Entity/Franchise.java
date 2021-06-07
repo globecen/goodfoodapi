@@ -38,59 +38,59 @@ public class Franchise {
 	public Franchise() {
 	}
 
-	public int getIdFranchise() {
-		return this.a_idFranchise;
+	public int getA_idFranchise() {
+		return a_idFranchise;
 	}
 
-	public void setIdFranchise(int idFranchise) {
-		this.a_idFranchise = idFranchise;
+	public void setA_idFranchise(int a_idFranchise) {
+		this.a_idFranchise = a_idFranchise;
 	}
 
-	public String getEmailFranchise() {
-		return this.b_emailFranchise;
+	public String getB_emailFranchise() {
+		return b_emailFranchise;
 	}
 
-	public void setEmailFranchise(String emailFranchise) {
-		this.b_emailFranchise = emailFranchise;
+	public void setB_emailFranchise(String b_emailFranchise) {
+		this.b_emailFranchise = b_emailFranchise;
 	}
 
-	public int getIdGroupeFranchise() {
-		return this.c_idGroupeFranchise;
+	public int getC_idGroupeFranchise() {
+		return c_idGroupeFranchise;
 	}
 
-	public void setIdGroupeFranchise(int idGroupeFranchise) {
-		this.c_idGroupeFranchise = idGroupeFranchise;
+	public void setC_idGroupeFranchise(int c_idGroupeFranchise) {
+		this.c_idGroupeFranchise = c_idGroupeFranchise;
 	}
 
-	public String getNomFranchise() {
-		return this.d_nomFranchise;
+	public String getD_nomFranchise() {
+		return d_nomFranchise;
 	}
 
-	public void setNomFranchise(String nomFranchise) {
-		this.d_nomFranchise = nomFranchise;
+	public void setD_nomFranchise(String d_nomFranchise) {
+		this.d_nomFranchise = d_nomFranchise;
 	}
 
-	public int getNumeroSiretFranchise() {
-		return this.e_numeroSiretFranchise;
+	public int getE_numeroSiretFranchise() {
+		return e_numeroSiretFranchise;
 	}
 
-	public void setNumeroSiretFranchise(int numeroSiretFranchise) {
-		this.e_numeroSiretFranchise = numeroSiretFranchise;
+	public void setE_numeroSiretFranchise(int e_numeroSiretFranchise) {
+		this.e_numeroSiretFranchise = e_numeroSiretFranchise;
 	}
 
-	public int getNumeroTelFranchise() {
-		return this.f_numeroTelFranchise;
+	public int getF_numeroTelFranchise() {
+		return f_numeroTelFranchise;
 	}
 
-	public void setNumeroTelFranchise(int numeroTelFranchise) {
-		this.f_numeroTelFranchise = numeroTelFranchise;
+	public void setF_numeroTelFranchise(int f_numeroTelFranchise) {
+		this.f_numeroTelFranchise = f_numeroTelFranchise;
 	}
 
-	public int getEstActive() {
-		return this.g_estActive;
+	public int getG_estActive() {
+		return g_estActive;
 	}
 
-	public void setEstActive(int estActive) {
-		this.g_estActive = estActive;
+	public void setG_estActive(int g_estActive) {
+		this.g_estActive = g_estActive;
 	}
 }
