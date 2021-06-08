@@ -15,4 +15,4 @@ class ApiGatlingSimulationTest extends Simulation {
           ).pause(Duration.apply(5, TimeUnit.MILLISECONDS))
     }
     setUp(scn.inject(atOnceUsers(2000))).maxDuration(FiniteDuration.apply(60, "seconds"))
-}
+} 
