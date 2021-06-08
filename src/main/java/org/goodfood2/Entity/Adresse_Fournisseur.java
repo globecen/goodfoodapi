@@ -18,6 +18,7 @@ public class Adresse_Fournisseur  extends PanacheEntityBase{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_adresse")
 	private int a_idAdresse;
+	//
 
 	@Column(name="id_tiers")
 	private int b_idTiers;
