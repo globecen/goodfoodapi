@@ -42,8 +42,8 @@ public class UtilisateurResource {
     /**
      * Recupere la liste des utilisateurs en fonctions de plusieurs parametres.
      * 
-     * @param pageSize             Le nombre d utilisateurs par page.
-     * @param pageNumber           Le numero de page.
+     * @param pageSize               Le nombre d utilisateurs par page.
+     * @param pageNumber             Le numero de page.
      * @param d_emailUtilisateur     Le mail de l utilisateur.
      * @param f_nomUtilisateur       Le nom de l utilisateur.
      * @param h_prenomUtilisateur    Le prenom de l utilisateur.
@@ -60,12 +60,11 @@ public class UtilisateurResource {
             @DefaultValue("") @QueryParam("g_numeroTelUtilisateur") String g_numeroTelUtilisateur) {
 
         PanacheQuery<Utilisateur> utilisateurs = null;
-        utilisateurs = Utilisateur.find(
-            "from Utilisateur where d_emailUtilisateur like '%" + d_emailUtilisateur 
-            + "%' and f_nomUtilisateur like '%" + f_nomUtilisateur 
-            + "%' and h_prenomUtilisateur like '%" + h_prenomUtilisateur 
-            + "%' and g_numeroTelUtilisateur like '%" + g_numeroTelUtilisateur + "%'");
+        utilisateurs = Utilisateur.find("from Utilisateur where d_emailUtilisateur like '%" + d_emailUtilisateur
+                + "%' and f_nomUtilisateur like '%" + f_nomUtilisateur + "%' and h_prenomUtilisateur like '%"
+                + h_prenomUtilisateur + "%' and g_numeroTelUtilisateur like '%" + g_numeroTelUtilisateur + "%'");
         utilisateurs.page(Page.ofSize(pageSize));
+
         for (int i = 0; i < pageNumber - 1; i++) {
             utilisateurs.nextPage();
         }
@@ -83,7 +82,7 @@ public class UtilisateurResource {
     @GET
     public Utilisateur utilisateurId(@PathParam("id") Long id) throws Exception {
         Utilisateur utilisateur = (Utilisateur) entityManager
-                .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "idUtilisateur", id.toString()))
+                .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "a_idUtilisateur", id.toString()))
                 .getResultList().get(0);
         if (utilisateur == null) {
             throw new Exception("L'utilisateur " + id + " n'existe pas.");
@@ -100,8 +99,9 @@ public class UtilisateurResource {
      */
     @Path("/{id}/Adresse_Utilisateur")
     @GET
-    public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception{
-        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur.find("from Adresse_Utilisateur a where a.b_idUtilisateur = " + id);
+    public List<Adresse_Utilisateur> utilisateurIdAdresse(@PathParam("id") Long id) throws Exception {
+        PanacheQuery<Adresse_Utilisateur> adressesU = Adresse_Utilisateur
+                .find("from Adresse_Utilisateur a where a.b_idUtilisateur = " + id);
         return adressesU.list();
     }
 
@@ -114,7 +114,7 @@ public class UtilisateurResource {
      */
     private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception {
         Utilisateur utilisateur = (Utilisateur) entityManager
-                .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "emailUtilisateur", email))
+                .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "d_emailUtilisateur", email))
                 .getResultList().get(0);
         return utilisateur;
     }
@@ -137,7 +137,7 @@ public class UtilisateurResource {
         boolean test = false;
         Utilisateur userFound = this.utilisateurEmail(email);
         if (userFound != null) {
-            test = SecurityUtils.verifyPassword(password, userFound.getE_mdpUtilisateur());
+            test = SecurityUtils.verifyPassword(password, userFound.retrieveCryptedPwd());
             if (test)
                 ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getA_idUtilisateur(),
                         userFound.getI_role());

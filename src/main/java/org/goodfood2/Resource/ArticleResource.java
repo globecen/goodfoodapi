@@ -117,7 +117,7 @@ public class ArticleResource {
     @Path("/creer")
     @POST
     @Transactional
-    @RolesAllowed({ "admin" })
+    // @RolesAllowed({ "admin" })
     public Response creerArticle(Article a) throws Exception {
         entityManager.persist(a);
         return Response.status(200).build();
@@ -189,13 +189,13 @@ public class ArticleResource {
     /**
      * Recupere la liste des articles en fonctions de plusieurs parametres.
      * 
-     * @param pageSize               Le nombre d articles par page.
-     * @param pageNumber             Le numero de page.
-     * @param i_estMenu              Choix pour recuperer les ingredients, les menus ou
-     *                               tous les articles.
-     * @param d_libelleArticle       Une partie d'un libelle.
-     * @param e_descriptionArticle   Une partie de la description.
-     * @param b_idCategorieArticle   Une categorie specifique d articles.
+     * @param pageSize             Le nombre d articles par page.
+     * @param pageNumber           Le numero de page.
+     * @param i_estMenu            Choix pour recuperer les ingredients, les menus
+     *                             ou tous les articles.
+     * @param d_libelleArticle     Une partie d'un libelle.
+     * @param e_descriptionArticle Une partie de la description.
+     * @param b_idCategorieArticle Une categorie specifique d articles.
      * @return La liste d articles.
      */
     @Path("/")
@@ -207,7 +207,7 @@ public class ArticleResource {
             @DefaultValue("") @QueryParam("i_estMenu") String i_estMenu,
             @DefaultValue("") @QueryParam("d_libelleArticle") String d_libelleArticle,
             @DefaultValue("") @QueryParam("e_descriptionArticle") String e_descriptionArticle,
-            @DefaultValue("-1") @QueryParam("b_idCategorieArticle") int b_idCategorieArticle) {
+            @DefaultValue("") @QueryParam("b_idCategorieArticle") String b_idCategorieArticle) {
         PanacheQuery<Article> articles = null;
         String query = "from Article" + " ";
         query += String.format("where d_libelleArticle like '%s'", "%" + d_libelleArticle + "%") + " ";
@@ -217,7 +217,7 @@ public class ArticleResource {
             query += String.format("and i_estMenu = '%s'", i_estMenu) + " ";
         }
 
-        if (b_idCategorieArticle > -1) {
+        if (!b_idCategorieArticle.isEmpty()) {
             query += String.format("and b_idCategorieArticle = %d", b_idCategorieArticle) + " ";
         }
 

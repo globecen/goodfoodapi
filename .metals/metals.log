@@ -2094,3 +2094,23 @@ Starting thread that pumps server stdout and redirects it to the client stdout..
 [0m2021.06.03 23:20:47 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
 juin 07, 2021 10:50:13 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+[0m2021.06.07 10:52:34 INFO  compiling goodfoodapi (10 java sources)[0m
+[0m2021.06.07 10:52:35 INFO  time: compiled goodfoodapi in 1.34s[0m
+[0m2021.06.07 10:52:35 INFO  compiling goodfoodapi (10 java sources)[0m
+[0m2021.06.07 10:52:35 INFO  time: compiled goodfoodapi in 0.91s[0m
+[0m2021.06.07 10:55:56 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 10:55:56 INFO  time: compiled goodfoodapi in 0.55s[0m
+[0m2021.06.07 11:08:04 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 11:08:05 INFO  time: compiled goodfoodapi in 1.16s[0m
+[0m2021.06.07 11:57:55 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 11:57:55 INFO  time: compiled goodfoodapi in 0.88s[0m
+[0m2021.06.07 11:58:27 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 11:58:27 INFO  time: compiled goodfoodapi in 0.72s[0m
+[0m2021.06.07 11:58:34 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 11:58:34 INFO  time: compiled goodfoodapi in 0.62s[0m
+[0m2021.06.07 12:01:03 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 12:01:03 INFO  time: compiled goodfoodapi in 0.62s[0m
+[0m2021.06.07 12:01:21 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 12:01:21 INFO  time: compiled goodfoodapi in 0.67s[0m
+[0m2021.06.07 15:11:58 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.07 15:11:59 INFO  time: compiled goodfoodapi in 1.08s[0m
