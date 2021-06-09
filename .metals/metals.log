@@ -2252,3 +2252,19 @@ Caused by: java.nio.file.FileSystemNotFoundException: Provider "git" not install
 [0m2021.06.08 16:37:06 INFO  compiling goodfoodapi-test (1 scala source and 13 java sources)[0m
 [0m2021.06.08 16:37:07 INFO  time: compiled goodfoodapi-test in 1.64s[0m
 [0m2021.06.08 16:37:07 ERROR Unexpected error when compiling goodfoodapi-test: 'null'[0m
+[0m2021.06.08 16:37:18 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.08 16:37:18 INFO  time: compiled goodfoodapi in 0.54s[0m
+[0m2021.06.08 16:37:18 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.08 16:37:19 INFO  time: compiled goodfoodapi in 0.56s[0m
+[0m2021.06.09 09:44:23 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.09 09:44:23 INFO  time: compiled goodfoodapi in 0.95s[0m
+[0m2021.06.09 09:44:26 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.09 09:44:26 INFO  time: compiled goodfoodapi in 0.94s[0m
+[0m2021.06.09 09:45:21 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.09 09:45:21 INFO  time: compiled goodfoodapi in 0.56s[0m
+[0m2021.06.09 09:45:52 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.09 09:45:52 INFO  time: compiled goodfoodapi in 0.55s[0m
+[0m2021.06.09 09:46:28 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.09 09:46:28 INFO  time: compiled goodfoodapi in 0.6s[0m
+[0m2021.06.09 09:46:36 INFO  compiling goodfoodapi (1 java source)[0m
+[0m2021.06.09 09:46:36 INFO  time: compiled goodfoodapi in 0.54s[0m
