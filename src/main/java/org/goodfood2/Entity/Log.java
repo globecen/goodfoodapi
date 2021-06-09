@@ -15,17 +15,17 @@ public class Log extends PanacheEntityBase {
 	@Column(name="id_log")
     private int a_IdLog;
     @Column(name="libelle")
-    private int b_Lbelle;
+    private String b_Lbelle;
     public int getA_IdLog() {
         return a_IdLog;
     }
     public void setA_IdLog(int a_IdLog) {
         this.a_IdLog = a_IdLog;
     }
-    public int getB_Lbelle() {
+    public String getB_Lbelle() {
         return b_Lbelle;
     }
-    public void setB_Lbelle(int b_Lbelle) {
+    public void setB_Lbelle(String b_Lbelle) {
         this.b_Lbelle = b_Lbelle;
     }
     public Log() {
