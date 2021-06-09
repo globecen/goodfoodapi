@@ -3,6 +3,7 @@ package org.goodfood2.Resource;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -17,6 +18,8 @@ import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.arjuna.ats.internal.arjuna.recovery.PeriodicRecovery.Status;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Utilisateur;
@@ -113,10 +116,18 @@ public class UtilisateurResource {
      * @throws Exception
      */
     private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception {
-        Utilisateur utilisateur = (Utilisateur) entityManager
+        var userList = entityManager
                 .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "d_emailUtilisateur", email))
-                .getResultList().get(0);
-        return utilisateur;
+                .getResultList();
+        if (userList.size() > 0) {
+            Utilisateur utilisateur = (Utilisateur) entityManager
+                    .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "d_emailUtilisateur", email))
+                    .getResultList().get(0);
+            return utilisateur;
+
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -141,8 +152,36 @@ public class UtilisateurResource {
             if (test)
                 ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getA_idUtilisateur(),
                         userFound.getI_role());
+            else {
+                throw new Exception("Identifiants incorrects.");
+            }
         } else
-            throw new Exception("L'utilisateur qui a pour email " + email + " n'existe pas.");
+            throw new Exception("Identifiants incorrects.");
+
+        return ret;
+    }
+
+    /**
+     * Tentative de connexion a partir d un mail et d'un token.
+     * 
+     * @param email    Le mail de l utilisateur.
+     * @param password Le mot de passe de l utilisateur.
+     * @return val Le token de connexion.
+     * @throws Exception
+     */
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/refresh/{email")
+    @RolesAllowed({ "user" })
+    @POST
+    public String refreshToken(@PathParam("email") String email) throws Exception {
+        String ret = "";
+        long tokenDuration = 3600;
+        Utilisateur userFound = this.utilisateurEmail(email);
+        if (userFound != null) {
+            ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getA_idUtilisateur(),
+                    userFound.getI_role());
+        } else
+            throw new Exception("Identifiants ou token incorrects.");
 
         return ret;
     }
