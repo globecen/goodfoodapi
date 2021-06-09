@@ -15,68 +15,68 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import org.goodfood2.Entity.Allergene;
+import org.goodfood2.Entity.Article_Allergene;
 import org.goodfood2.utils.QueryUtils;
 
 /**
  * Route liees aux allergenes.
  */
-@Path("/Allergene")
-@Tag(name = "Allergene Resource", description = "L'ensemble des routes pour la partie Allergene")
-public class AllergeneRessource {
+@Path("/Article_Allergene")
+@Tag(name = "Article_Allergene Resource", description = "L'ensemble des routes pour la partie Article Allergene")
+public class Article_AllergeneResource {
 
     // Permet de gerer les entitees.
     @Inject
     EntityManager entityManager;
 
     /**
-     * Recupere toutes les allergenes des utilisateurs.
+     * Recupere tous les articles_allergenes des utilisateurs.
      * @return Les allergenes.
      */
     @Path("/")
     @GET
-    public List<Allergene> allergenes() {
+    public List<Article_Allergene> article_allergenes() {
         return entityManager.createQuery(
-            QueryUtils.makeFindAllQuery("Allergene"))
+            QueryUtils.makeFindAllQuery("Article_Allergene"))
                 .getResultList();
     }
 
     /**
-     * Cree un allergene.
-     * @param a L allergene.
+     * Cree un article_allergene.
+     * @param a L article_allergene.
      * @return Le statut de la reponse.
      */
     @Path("/creer")
     @POST
     @Transactional
-    public Response creerAllergene(Allergene a) throws Exception {
+    public Response creerArticle_Allergene(Article_Allergene a) throws Exception {
         entityManager.persist(a);
         return Response.status(200).build();
     }
 
     /**
-     * Modifie un allergene.
-     * @param a L allergene.
-     * @return L adresse fournisseur modifiee.
+     * Modifie un article_allergene.
+     * @param a L article_allergene.
+     * @return L article_allergene modifiee.
      */
     @Path("/modifier")
     @PATCH
     @Transactional
-    public Allergene modifAllergene(Allergene a) throws Exception {
+    public Article_Allergene modifArticle_Allergene(Article_Allergene a) throws Exception {
         return entityManager.merge(a);
     }
 
     /**
-     * Supprime un allergene.
-     * @param id L id de l allergene.
-     * @return Le statut de la reponse.
+     * Supprime un article_allergene.
+     * @param id L id de l article_allergene.
+     * @return Le statut de l article_allergene.
      */
     @Path("/supprimer/{id}")
     @DELETE
     @Transactional
-    public Response supprAllergene(@PathParam("id") Long id) throws Exception{
-        Allergene a = (Allergene)entityManager.createQuery(
-            QueryUtils.makeFindByParamQueryInt("Allergene", "id", id.toString()))
+    public Response supprArticle_Allergene(@PathParam("id") Long id) throws Exception{
+        Article_Allergene a = (Article_Allergene)entityManager.createQuery(
+            QueryUtils.makeFindByParamQueryInt("Article_Allergene", "id", id.toString()))
                 .getResultList().get(0);
         if (a == null) {
             return Response.status(404).build();
