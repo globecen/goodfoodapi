@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 /**
  * Represente une commande.
  */
 @Entity
-public class Commande{
+public class Commande extends PanacheEntityBase{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
