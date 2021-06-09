@@ -169,7 +169,7 @@ public class UtilisateurResource {
      * @param p L utilisateur.
      * @return L utilisateur modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Utilisateur modifUtilisateur(Utilisateur u) throws Exception {
