@@ -23,7 +23,7 @@ public class Article_Allergene{
 	@Column(name="id_allergene")
 	private int c_idAllergene;
 
-    @Column(name="id_allergene")
+    @Column(name="est_active")
 	private int d_estActive;
 
 	public Article_Allergene() {
