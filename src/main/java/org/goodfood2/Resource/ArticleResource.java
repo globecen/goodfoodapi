@@ -218,7 +218,7 @@ public class ArticleResource {
         }
 
         if (!b_idCategorieArticle.isEmpty()) {
-            query += String.format("and b_idCategorieArticle = %d", b_idCategorieArticle) + " ";
+            query += String.format("and b_idCategorieArticle = %s", b_idCategorieArticle) + " ";
         }
 
         query += "and j_estActive = 1";
