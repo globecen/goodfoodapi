@@ -204,11 +204,11 @@ public class ArticleResource {
     @PermitAll
     public List<Article> articles(@DefaultValue("25") @QueryParam("pageSize") Integer pageSize,
             @DefaultValue("1") @QueryParam("pageNumber") Integer pageNumber,
-            @DefaultValue("") @QueryParam("i_estMenu") String i_estMenu,
-            @DefaultValue("") @QueryParam("d_libelleArticle") String d_libelleArticle,
-            @DefaultValue("") @QueryParam("e_descriptionArticle") String e_descriptionArticle,
-            @DefaultValue("-1") @QueryParam("c_idFranchise") int c_idFranchise,
-            @DefaultValue("-1") @QueryParam("b_idCategorieArticle") String b_idCategorieArticle) {
+            @DefaultValue("") @QueryParam("estMenu") String i_estMenu,
+            @DefaultValue("") @QueryParam("libelleArticle") String d_libelleArticle,
+            @DefaultValue("") @QueryParam("descriptionArticle") String e_descriptionArticle,
+            @DefaultValue("-1") @QueryParam("idFranchise") int c_idFranchise,
+            @DefaultValue("-1") @QueryParam("idCategorieArticle") int b_idCategorieArticle) {
         PanacheQuery<Article> articles = null;
         String query = "from Article" + " ";
         query += String.format("where d_libelleArticle like '%s'", "%" + d_libelleArticle + "%") + " ";
@@ -222,8 +222,8 @@ public class ArticleResource {
             query += String.format("and i_estMenu = '%s'", i_estMenu) + " ";
         }
 
-        if (!b_idCategorieArticle.isEmpty()) {
-            query += String.format("and b_idCategorieArticle = %s", b_idCategorieArticle) + " ";
+        if (b_idCategorieArticle > -1) {
+            query += String.format("and b_idCategorieArticle = %d", b_idCategorieArticle) + " ";
         }
 
         query += "and j_estActive = 1";

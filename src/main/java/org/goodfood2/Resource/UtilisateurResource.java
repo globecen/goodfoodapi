@@ -169,7 +169,7 @@ public class UtilisateurResource {
      * @param p L utilisateur.
      * @return L utilisateur modifie.
      */
-    @Path("/modify")
+    @Path("/modifier")
     @PATCH
     @Transactional
     public Utilisateur modifUtilisateur(Utilisateur u) throws Exception {
@@ -183,7 +183,7 @@ public class UtilisateurResource {
      * @return Le statut de la reponse.
      * @throws Exception
      */
-    @Path("/delete/{id}")
+    @Path("/supprimer/{id}")
     @DELETE
     @Transactional
     public Response supprUtilisateur(@PathParam("id") Long id) throws Exception {
