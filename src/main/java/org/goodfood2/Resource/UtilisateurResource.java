@@ -23,6 +23,7 @@ import com.arjuna.ats.internal.arjuna.recovery.PeriodicRecovery.Status;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.goodfood2.Entity.Adresse_Utilisateur;
+import org.goodfood2.Entity.Commande;
 import org.goodfood2.Entity.Utilisateur;
 import org.goodfood2.utils.QueryUtils;
 import org.goodfood2.utils.SecurityUtils;
@@ -107,6 +108,22 @@ public class UtilisateurResource {
                 .find("from Adresse_Utilisateur a where a.b_idUtilisateur = " + id);
         return adressesU.list();
     }
+
+    /**
+     * Recupere les commandes liees a un utilisateur.
+     * 
+     * @param id L id de l utilisateur.
+     * @return La liste des adresses.
+     * @throws Exception
+     */
+    @Path("/{id}/Commande")
+    @GET
+    public List<Commande> utilisateurIdCommande(@PathParam("id") Long id) throws Exception {
+        PanacheQuery<Commande> commandesU = Commande
+                .find("from Commande c where c.b_idUtilisateur = " + id);
+        return commandesU.list();
+    }
+
 
     /**
      * Recupere l utilisateur a partir d un mail.
