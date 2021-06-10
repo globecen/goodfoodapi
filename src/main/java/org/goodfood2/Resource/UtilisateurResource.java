@@ -119,11 +119,9 @@ public class UtilisateurResource {
     @Path("/{id}/Commande")
     @GET
     public List<Commande> utilisateurIdCommande(@PathParam("id") Long id) throws Exception {
-        PanacheQuery<Commande> commandesU = Commande
-                .find("from Commande c where c.b_idUtilisateur = " + id);
+        PanacheQuery<Commande> commandesU = Commande.find("from Commande c where c.b_idUtilisateur = " + id);
         return commandesU.list();
     }
-
 
     /**
      * Recupere l utilisateur a partir d un mail.
@@ -132,14 +130,13 @@ public class UtilisateurResource {
      * @return L utilisateur.
      * @throws Exception
      */
-    private Utilisateur utilisateurEmail(@PathParam("email") String email) throws Exception {
-        var userList = entityManager
+    private Utilisateur utilisateurEmail(String email) throws Exception {
+        List<Utilisateur> userList = entityManager
                 .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "d_emailUtilisateur", email))
                 .getResultList();
+        System.out.println(userList.size());
         if (userList.size() > 0) {
-            Utilisateur utilisateur = (Utilisateur) entityManager
-                    .createQuery(QueryUtils.makeFindByParamQueryString("Utilisateur", "d_emailUtilisateur", email))
-                    .getResultList().get(0);
+            Utilisateur utilisateur = userList.get(0);
             return utilisateur;
 
         } else {
@@ -169,9 +166,6 @@ public class UtilisateurResource {
             if (test)
                 ret = SecurityUtils.generateTokenSmallRye(tokenDuration, email, userFound.getA_idUtilisateur(),
                         userFound.getI_role());
-            else {
-                throw new Exception("Identifiants incorrects.");
-            }
         } else
             throw new Exception("Identifiants incorrects.");
 
