@@ -195,6 +195,7 @@ public class ArticleResource {
      *                             ou tous les articles.
      * @param d_libelleArticle     Une partie d'un libelle.
      * @param e_descriptionArticle Une partie de la description.
+     * @param c_idFranchise        L id de la franchise liee.
      * @param b_idCategorieArticle Une categorie specifique d articles.
      * @return La liste d articles.
      */
