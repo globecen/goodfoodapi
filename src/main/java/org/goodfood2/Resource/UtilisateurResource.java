@@ -170,9 +170,9 @@ public class UtilisateurResource {
      * @throws Exception
      */
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/refresh/{email")
-    @RolesAllowed({ "user" })
-    @POST
+    @Path("/refresh/{email}")
+    @RolesAllowed({ "user", "admin" })
+    @GET
     public String refreshToken(@PathParam("email") String email) throws Exception {
         String ret = "";
         long tokenDuration = 3600;
