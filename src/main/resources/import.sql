@@ -34,7 +34,7 @@ quarkus.smallrye-jwt.enabled=true
 
 mp.openapi.extensions.smallrye.info.title=API GoodFood2
 mp.openapi.extensions.smallrye.info.version=1.0.0
-mp.openapi.extensions.smallrye.info.description=Cette api permet de pouvoir faire un ensemble d'action pour le projet GoodFood2
+mp.openapi.extensions.smallrye.info.description="Cette api permet de pouvoir faire un ensemble d'action pour le projet GoodFood2"
 mp.openapi.extensions.smallrye.info.contact.email=julien.legrand.pro@gmail.com
 mp.openapi.extensions.smallrye.info.contact.name=Julien LEGRAND
 mp.openapi.extensions.smallrye.info.license.name=Apache 2.0
